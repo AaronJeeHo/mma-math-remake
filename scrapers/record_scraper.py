@@ -4,10 +4,9 @@ Python Version: 3.7
 """
 
 import requests
-import os
-import re
 import csv
 from bs4 import BeautifulSoup
+from pathlib import Path
 
 
 def get_record(link):
@@ -55,21 +54,34 @@ def build_record_db(fighter_urls):
         fight_record = get_record(fighter_link)
 
         if fight_record is not None:
-            file_loc = (f'../data/fighters/'
-                        f'{name_char}-fighters/{name}/fight_records.txt')
+            dir_loc = f'../data/fighters/{name_char}-fighters/{name}'
 
-            with open(file_loc, 'w', newline='') as record_file:
-                tsv_writer = csv.writer(record_file, delimiter='\t')
+            Path(dir_loc).mkdir(parents=True, exist_ok=True)
+
+            with open(f'{dir_loc}/fight_records.txt', 'w', newline='') as file:
+                tsv_writer = csv.writer(file, delimiter='\t')
                 tsv_writer.writerows(fight_record)
 
     print(f'{name_char}-fighters database created!')
 
 
+def build_all_records(url_dir):
+    """
+    Retrieves records for ALL fighters
+    WILL TAKE A LONG TIME!!!
+    :param str url_dir: url_dir location
+    """
+
+    url_files = Path(url_dir).glob('fighters*')
+
+    for link_files in url_files:
+        build_record_db(str(link_files))
+
+    print('ALL RECORDS FOUND!')
+
+
 def main():
-    x_links = '../data/urls/fighters_x.txt'
-    build_record_db(x_links)
-
-
+    build_all_records('../data/urls')
 
 
 if __name__ == '__main__':
