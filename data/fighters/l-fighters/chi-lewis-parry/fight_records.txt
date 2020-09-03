@@ -1,0 +1,12 @@
+Mahmoud Hassan	W	KO/TKO	1
+Lukasz Parobiec	D	Draw	3
+Ibrahim Elsawi	W	TKO	2
+Lukasz Parobiec	D	Decision - Majority (Draw)	3
+Stav Economou	D	No Contest	1
+Alain Ngalani	W	TKO	1
+Alain Ngalani	D	No Contest	1
+Stephen Lambert	W	TKO	1
+Arkadiusz Dorocki	W	Submission (Guillotine)	1
+David Gregory	W	Submission (Kneebar)	1
+Nikki Kent	W	KO	1
+Ollie Beard	W	TKO	2

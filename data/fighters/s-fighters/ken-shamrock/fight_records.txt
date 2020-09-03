@@ -1,0 +1,47 @@
+Royce Gracie	L	TKO	1
+Kevin Ferguson	L	TKO	1
+Mike Bourke	L	TKO	1
+Johnathan Ivey	W	Unanimous Decision	3
+Pedro Rizzo	L	TKO	1
+Ross Clifton	W	Submission (Armbar)	1
+Robert Berry	L	KO	1
+Tito Ortiz	L	KO/TKO	1
+Tito Ortiz	L	KO/TKO	1
+Kazushi Sakuraba	L	KO/TKO	1
+Rich Franklin	L	KO/TKO	1
+Kimo Leopoldo	W	KO/TKO	1
+Tito Ortiz	L	KO/TKO	3
+Don Frye	L	Decision - Split	3
+Sam Adkins	W	Submission (Kimura)	1
+Kazuyuki Fujita	L	KO/TKO	1
+Alexander Otsuka	W	KO/TKO	1
+Brian Johnston	W	Submission	1
+Dan Severn	L	Decision - Split	3
+Kimo Leopoldo	W	Submission	1
+Kazuo Takahashi	W	Decision	1
+Katsuomi Inagaki	W	Submission	1
+Oleg Taktarov	D	Draw	2
+Larry Papadopoulos	W	Submission (Achilles Lock)	1
+Dan Severn	W	Submission	1
+Minoru Suzuki	L	Submission (Kneebar)	1
+Royce Gracie	D	Other	2
+Bas Rutten	W	Submission (Kneebar)	1
+Leon Dijk	W	Submission	1
+Manabu Yamada	W	Unanimous Decision	1
+Masakatsu Funaki	W	Submission	1
+Maurice Smith	W	Submission	1
+Alex Cook	W	Submission	1
+Takaku Fuke	W	Submission (Rear Naked Choke)	1
+Felix Lee Mitchell	W	Submission	1
+Christophe Leninger	W	KO/TKO	1
+Masakatsu Funaki	L	Submission	1
+Bas Rutten	W	Submission	1
+Matt Hume	W	Submission (Arm Lock)	1
+Ryushi Yanagisawa	W	Submission	1
+Minoru Suzuki	L	Submission (Heel Hook)	1
+Andre Van Den Oetelaar	W	Submission (Heel Hook)	1
+Royce Gracie	L	Submission	1
+Patrick Trey Smith	W	Submission	1
+Takaku Fuke	W	Submission (Rear Naked Choke)	1
+Kazuo Takahashi	W	Submission (Heel Hook)	1
+Masakatsu Funaki	W	Submission (Rear Naked Choke)	1

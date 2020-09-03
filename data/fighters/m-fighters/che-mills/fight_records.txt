@@ -1,0 +1,29 @@
+Lewis Long	L	TKO (Injury)	1
+Matt Inman	L	Submission (Triangle Choke)	2
+Terry Montgomery	D	No Contest	1
+Jack Marshman	L	TKO (Punches)	2
+Leeroy Barnes	W	Submission (Rear Naked Choke)	1
+Faycal Hucin	L	TKO	2
+Cathal Pendred	L	TKO (Corner Stoppage)	3
+Matthew Riddle	D	No Contest	3
+Duane Ludwig	W	KO/TKO	1
+Rory MacDonald	L	KO/TKO	2
+Chris Cope	W	KO/TKO	1
+Marcio Cesar	W	KO (Punch)	1
+Magomed Shikshabekov	W	Unanimous Decision	-
+Jake Hecht	W	Decision - Unanimous	3
+Manuel Garcia	W	KO (Knee)	1
+Yuya Shirai	L	Submission (Armbar)	1
+Jim Wallhead	L	Decision - Unanimous	3
+Edgelson Lua	W	Decision - Unanimous	3
+Aidan Marron	W	Submission (Punches)	1
+Marius Zaromskis	W	TKO (Doctor Stoppage)	1
+Ross Mason	W	Submission (Rear Naked Choke)	1
+Afnan Saeed	W	TKO	1
+Oriol Gaset	W	Submission (Rear Naked Choke)	1
+Paul Taylor	D	No Contest	1
+Marius Zaromskis	W	KO (Knee)	1
+Rob Zielinski	W	TKO	1
+Pedro Bessa	L	Submission (Keylock)	1
+Chris Taylor	W	Submission (Guillotine)	1
+Matt Thorpe	L	Submission (Armbar)	1

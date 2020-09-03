@@ -1,0 +1,6 @@
+Koji Ando	L	Decision - Unanimous	3
+Katsunori Kikuno	L	Decision - Majority	2
+Milton Vieira	L	Unanimous Decision	2
+Takumi Nakayama	W	Decision - Majority	2
+Satoru Kitaoka	L	Decision - Unanimous	2
+Satoru Kitaoka	D	Draw	2

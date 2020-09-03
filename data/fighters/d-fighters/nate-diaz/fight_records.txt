@@ -1,0 +1,33 @@
+Jorge Masvidal	L	TKO - Doctor's Stoppage	3
+Anthony Pettis	W	Decision - Unanimous	3
+Conor McGregor	L	Decision - Majority	5
+Conor McGregor	W	Submission	2
+Michael Johnson	W	Decision - Unanimous	3
+Rafael Dos Anjos	L	Decision - Unanimous	3
+Gray Maynard	W	KO/TKO	1
+Josh Thomson	L	KO/TKO	2
+Benson Henderson	L	Decision - Unanimous	5
+Jim Miller	W	Submission	2
+Donald Cerrone	W	Decision - Unanimous	3
+Takanori Gomi	W	Submission	1
+Rory MacDonald	L	Decision - Unanimous	3
+Dong Hyun Kim	L	Decision - Unanimous	3
+Marcus Davis	W	Submission	3
+Rory Markham	W	KO/TKO	1
+Gray Maynard	L	Decision - Split	3
+Melvin Guillard	W	Submission	2
+Joe Stevenson	L	Decision - Unanimous	3
+Clay Guida	L	Decision - Split	3
+Josh Neer	W	Decision - Split	3
+Kurt Pellegrino	W	Submission	2
+Alvin Robinson	W	Submission	1
+Junior Assuncao	W	Submission	1
+Manvel Gamburyan	W	Submission	2
+Gray Maynard	W	Submission (Guillotine)	2
+Hermes Franca	L	Submission	2
+Dennis Davis	W	Submission (Keylock)	1
+Joe Hurley	W	Submission	2
+Gilbert Rael	W	KO/TKO	1
+Tony Juarez	W	KO/TKO	1
+Koji Oishi	L	Unanimous Decision	3
+Alejandro Garcia	W	Submission	3

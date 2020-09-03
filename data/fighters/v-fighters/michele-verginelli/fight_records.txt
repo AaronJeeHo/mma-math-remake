@@ -1,0 +1,4 @@
+Norman Paraisy	D	Draw	3
+Bruno Santos	L	Decision - Unanimous	5
+Igor Araujo	L	Majority Decision	3
+Aslambek Saidov	L	Decision - Unanimous	2

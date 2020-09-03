@@ -1,0 +1,28 @@
+Anthony Smith	L	KO/TKO	1
+Sam Alvey	L	Decision - Split	3
+Daniel Kelly	L	Decision - Split	3
+Glover Teixeira	L	KO/TKO	1
+Ryan Bader	L	Decision - Unanimous	3
+Chael Sonnen	W	KO/TKO	1
+Dan Henderson	W	Decision - Split	3
+Rogerio Nogueira	L	Decision - Unanimous	3
+Jon Jones	L	Decision - Unanimous	5
+Phil Davis	W	Decision - Unanimous	5
+Tito Ortiz	W	KO/TKO	2
+Quinton Jackson	W	Decision - Unanimous	3
+Thiago Silva	W	Decision - Unanimous	3
+Lyoto Machida	L	KO/TKO	2
+Forrest Griffin	W	KO/TKO	3
+Chuck Liddell	W	KO/TKO	2
+Michael Bisping	W	Decision - Split	3
+Tito Ortiz	D	Draw	3
+Sean Salmon	W	KO/TKO	2
+Jason Lambert	W	KO/TKO	2
+Stephan Bonnar	W	Decision - Majority	3
+Sam Hoger	W	Decision - Split	3
+Brad Imes	W	Decision - Split	3
+Jaime Jara	W	Decision - Unanimous	3
+Hector Ramirez	W	Decision - Unanimous	2
+Bryan Pardoe	W	KO/TKO	1
+Danny Anderson	W	Submission (Punches)	1
+Dennis Reed	W	Submission	1

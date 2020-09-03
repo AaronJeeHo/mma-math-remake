@@ -1,0 +1,22 @@
+Dan Hooker	L	Decision - Split	5
+Edson Barboza	W	Decision - Split	3
+James Vick	W	Decision - Unanimous	3
+Mike Perry	L	Decision - Split	3
+Charles Oliveira	W	KO/TKO	2
+Stevie Ray	W	KO/TKO	1
+Alessandro Ricci	W	KO/TKO	1
+Francisco Trinaldo	L	TKO - Doctor's Stoppage	3
+Joshua Burkman	W	Decision - Unanimous	3
+Daron Cruickshank	W	Submission	3
+Ross Pearson	L	Decision - Split	3
+Edson Barboza	L	Decision - Unanimous	3
+Danny Castillo	W	KO/TKO	2
+Jason Saggo	W	Decision - Split	3
+Craig Johnson	W	KO	2
+Marc Stevens	W	TKO	2
+Julian Lane	W	Decision - Unanimous	3
+Corey Bleaken	W	Unanimous Decision	3
+Ricky Nuno	W	TKO	1
+Khama Worthy	W	TKO	1
+Judah Ciervo	W	TKO (Doctor Stoppage)	2
+Mtume Goodrum	W	TKO	2

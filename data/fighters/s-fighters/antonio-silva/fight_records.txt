@@ -1,0 +1,32 @@
+Vitaly Minakov	L	KO	2
+Ivan Shtyrkov	L	Decision - Unanimous	3
+Roy Nelson	L	KO/TKO	2
+Stefan Struve	L	KO/TKO	1
+Mark Hunt	L	KO/TKO	1
+Soa Palelei	W	KO/TKO	2
+Frank Mir	L	KO/TKO	1
+Andrei Arlovski	L	KO/TKO	1
+Mark Hunt	D	Draw	5
+Cain Velasquez	L	KO/TKO	1
+Alistair Overeem	W	KO/TKO	3
+Travis Browne	W	KO/TKO	1
+Cain Velasquez	L	KO/TKO	1
+Daniel Cormier	L	KO/TKO	1
+Fedor Emelianenko	W	TKO - Doctor's Stoppage	2
+Mike Kyle	W	KO/TKO	2
+Andrei Arlovski	W	Decision - Unanimous	3
+Fabricio Werdum	L	Decision - Unanimous	3
+Jim York	W	Submission (Arm Triangle)	1
+Yoshihiro Nakao	W	TKO (Injury)	1
+Justin Eilers	W	KO/TKO	2
+Ricco Rodriguez	W	Decision - Split	3
+Jonathan Wiezorek	W	Submission	1
+Wesley Correira	W	KO/TKO	1
+Eric Pele	L	TKO	1
+Georgy Kaysinov	W	KO	1
+Tom Erikson	W	TKO	1
+Tadas Rimkevicius	W	TKO	1
+Ruben Villareal	W	TKO	1
+Rafael Carino	W	TKO (Corner Stoppage)	1
+Marcus Tchinda	W	TKO	1
+Tengiz Tedoradze	W	TKO	1

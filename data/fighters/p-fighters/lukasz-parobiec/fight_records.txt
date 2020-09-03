@@ -1,0 +1,22 @@
+Chi Lewis-Parry	D	Draw	3
+Marthin Hamlet	L	Decision - Unanimous	3
+Wagner Prado	L	KO/TKO	1
+Chi Lewis-Parry	D	Decision - Majority (Draw)	3
+Mauro Cerilli	L	Decision - Unanimous	3
+Karol Celinski	L	KO/TKO	3
+Tom Aspinall	W	DQ (Illegal Elbows)	2
+Anatoli Ciumac	L	Decision - Unanimous	3
+Jonathan Dargan	W	TKO (Punches)	1
+Mike Neun	W	TKO	1
+Phil de Fries	L	Submission (Rear Naked Choke)	1
+Erdem Ciftci	W	TKO (Punches)	2
+Callum Cook	W	Submission (Triangle Choke)	2
+Jason Tyldesley	W	Submission (Strikes)	1
+Wayne Fairless	W	TKO (Punches)	1
+Kristan Bircher	W	KO	1
+Scott Forster	W	TKO (Punches)	1
+Simon Lee	W	TKO (Punches)	1
+Neil Robbins	W	Submission (Kneebar)	2
+Steve Watson	L	Submission (Armbar)	1
+Andrew Punshon	L	Submission (Armbar)	1
+Cliff Moore	L	Submission (Rear Naked Choke)	1

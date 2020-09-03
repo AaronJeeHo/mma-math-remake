@@ -1,0 +1,12 @@
+Tony Sims	L	KO	1
+Karo Parisyan	L	Decision - Unanimous	3
+Sheldon Westcott	L	Unanimous Decision	3
+Sheldon Westcott	D	Draw	3
+Nick Diaz	L	KO/TKO	2
+Alex Karalexis	D	Decision - Unanimous	3
+Tony Llamas	W	Submission (Rear Naked Choke)	1
+Joe Stevenson	L	Submission	1
+Georges St-Pierre	L	KO/TKO	2
+Duane Ludwig	L	Submission (Knees)	1
+John Alessio	L	Submission (Keylock)	1
+Yves Edwards	L	Submission (Verbal)	1

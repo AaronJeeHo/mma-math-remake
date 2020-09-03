@@ -1,0 +1,17 @@
+Josh Hill	L	Decision - Unanimous	3
+Ricky Simon	L	KO	1
+Joey Miolla	W	Decision - Unanimous	3
+William Joplin	W	TKO	3
+Joe Murphy	W	Decision - Unanimous	3
+Rafael Souza	W	Unanimous Decision	3
+Thomas Almeida	L	TKO	4
+Guilherme Cadena Martins	W	TKO (Doctor Stoppage)	3
+Felipe Douglas	W	TKO (Doctor Stoppage)	2
+Cassiano Laureano	W	Unanimous Decision	3
+Bobby Sanchez	W	Submission (Guillotine)	1
+Eduardo Felipe	L	Split Decision	3
+Bruno Dias	L	Submission (Guillotine)	1
+Eduardo Henrique	W	KO	1
+Guilherme Gomes	W	TKO (Punches)	2
+Ricardo Sattelmayer	W	Submission (Punches)	1
+Patricio Freire	L	TKO - Head Kick	1

@@ -1,0 +1,19 @@
+Erik Perez	L	Decision - Unanimous	3
+Brad Pickett	L	Decision - Split	3
+John Lineker	L	Submission	1
+Alex Caceres	W	KO/TKO	1
+Urijah Faber	L	Submission	2
+Takeya Mizugaki	L	Decision - Unanimous	3
+George Roop	W	KO/TKO	2
+Edwin Figueroa	W	KO/TKO	2
+Roland Delorme	D	No Contest	1
+Alex Soto	W	Decision - Unanimous	3
+Antonio Duarte	W	KO	1
+Brad McDonald	W	KO	1
+Reuben Duran	L	Submission	3
+Erik Koch	L	KO/TKO	1
+Fernando Bernstein	W	TKO	1
+Aaron Arana	W	Majority Decision	3
+Johnny Gomez	W	Unanimous Decision	3
+Chris Drumm	W	KO	1
+Ray Cox	W	KO	1

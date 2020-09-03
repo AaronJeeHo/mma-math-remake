@@ -1,0 +1,28 @@
+Michael Bisping	W	Submission	3
+Johny Hendricks	W	Decision - Split	5
+Nick Diaz	W	Decision - Unanimous	5
+Carlos Condit	W	Decision - Unanimous	5
+Jake Shields	W	Decision - Unanimous	5
+Josh Koscheck	W	Decision - Unanimous	5
+Dan Hardy	W	Decision - Unanimous	5
+Thiago Alves	W	Decision - Unanimous	5
+BJ Penn	W	KO/TKO	4
+Jon Fitch	W	Decision - Unanimous	5
+Matt Serra	W	KO/TKO	2
+Matt Hughes	W	Submission	2
+Josh Koscheck	W	Decision - Unanimous	3
+Matt Serra	L	KO/TKO	1
+Matt Hughes	W	KO/TKO	2
+BJ Penn	W	Decision - Split	3
+Sean Sherk	W	KO/TKO	2
+Frank Trigg	W	Submission	1
+Jason Miller	W	Decision - Unanimous	3
+Dave Strasser	W	Submission	1
+Matt Hughes	L	Submission	1
+Jay Hieron	W	KO/TKO	1
+Karo Parisyan	W	Decision - Unanimous	3
+Pete Spratt	W	Submission	1
+Thomas Denny	W	KO/TKO	2
+Travis Galbraith	W	KO/TKO	1
+Justin Bruckmann	W	Submission	1
+Ivan Menjivar	W	KO/TKO	1

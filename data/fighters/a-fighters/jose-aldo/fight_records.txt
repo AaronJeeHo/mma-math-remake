@@ -1,0 +1,35 @@
+Petr Yan	L	KO/TKO	5
+Marlon Moraes	L	Decision - Split	3
+Alexander Volkanovski	L	Decision - Unanimous	3
+Renato Moicano	W	KO/TKO	2
+Jeremy Stephens	W	KO/TKO	1
+Max Holloway	L	KO/TKO	3
+Max Holloway	L	KO/TKO	3
+Frankie Edgar	W	Decision - Unanimous	5
+Conor McGregor	L	KO/TKO	1
+Chad Mendes	W	Decision - Unanimous	5
+Ricardo Lamas	W	Decision - Unanimous	5
+Chan Sung Jung	W	KO/TKO	4
+Frankie Edgar	W	Decision - Unanimous	5
+Chad Mendes	W	KO/TKO	1
+Kenny Florian	W	Decision - Unanimous	5
+Mark Hominick	W	Decision - Unanimous	5
+Manvel Gamburyan	W	KO/TKO	2
+Urijah Faber	W	Decision - Unanimous	5
+Mike Brown	W	KO/TKO	2
+Cub Swanson	W	KO/TKO	1
+Chris Mickle	W	KO/TKO	1
+Rolando Perez	W	KO/TKO	1
+Jonathan Brookins	W	KO/TKO	3
+Alexandre Franca Nogueira	W	KO/TKO	2
+Shoji Maruyama	W	Unanimous Decision	3
+Fabio Mello	W	Unanimous Decision	3
+Thiago Meller	W	Majority Decision	3
+Luciano Azevedo	L	Submission (Rear Naked Choke)	2
+Micky Young	W	TKO (Punches)	1
+Phil Harris	W	TKO (Doctor Stoppage)	1
+Anderson Silverio	W	TKO	1
+Aritano Barbosa	W	KO	1
+Luiz de Paula	W	Submission (Arm Triangle)	1
+Hudson Rocha	W	TKO (Doctor Stoppage)	1
+Mario Bigola	W	KO (Head Kick)	1

@@ -1,0 +1,7 @@
+Norman Paraisy	L	Decision - Majority	2
+Hayato Sakurai	L	Decision - Unanimous	2
+Dong Hyun Kim	D	Draw	3
+Dong Hyun Kim	L	KO	3
+Satoru Kitaoka	L	Decision - Split	3
+Koji Oishi	W	Submission (Toe Hold)	2
+Yushin Okami	L	Unanimous Decision	2

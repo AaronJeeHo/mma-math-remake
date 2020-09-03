@@ -1,0 +1,11 @@
+Joe Schilling	W	KO	3
+Alton Cunningham	W	Decision - Unanimous	3
+Jaquis Williams	W	Decision - Majority	3
+Mike Ortega	W	KO	2
+Justin Baesman	W	Decision - Split	3
+Clifford Starks	L	Unanimous Decision	3
+Eric Lawson	L	Submission	1
+Marcus Gaines	W	TKO	1
+Larry Rodriguez	W	TKO	1
+Raymond Doxie	W		-
+Steve Hernandez	W	TKO	2

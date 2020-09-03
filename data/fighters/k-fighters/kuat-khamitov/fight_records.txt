@@ -1,0 +1,6 @@
+Peter Queally	D	Draw	5
+Magomedsaygid Alibekov	L	Decision - Majority	5
+Gadzhi Rabadanov	W	Technical Submission (Triangle Choke)	3
+Lowen Tynanes	L	Decision - Unanimous	3
+Zubaira Tukhugov	L	Decision - Split	2
+Paul Redmond	W	Submission (Leg Triangle)	1

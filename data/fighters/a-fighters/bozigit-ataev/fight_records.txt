@@ -1,0 +1,26 @@
+Emiliano Sordi	L	Submission	1
+Viktor Nemkov	D	Decision - Unanimous (Draw)	2
+Emiliano Sordi	L	KO/TKO	1
+Dan Spohn	W	KO/TKO	1
+Emiliano Sordi	W	KO	1
+Vinny Magalhaes	L	Submission (Kimura)	1
+Sean O'Connell	W	KO/TKO	1
+Dan Spohn	L	TKO	3
+Jeremy May	W	TKO (Punches)	1
+Valdas Pocevicius	W	KO (Punch)	1
+Beneilton Pereira da Silva	W	TKO	1
+Mindaugas Kulikauskas	W	Submission (Armbar)	1
+Alistair Overeem	L	KO/TKO	2
+Kestutis Arbocius	W	Submission (Guillotine)	2
+Chris Franco	W	Submission (Neck Crank)	1
+Aaron Brink	W	KO	1
+Tsuyoshi Kosaka	W	Decision - Majority	3
+Islam Dadalov	W	Submission (Knees)	1
+Maynard Marcum	W	KO (Punch)	1
+Rolandas Digrys	W	Submission (Armbar)	1
+Dimitar Doichinov	W	TKO	1
+Vitali Shkraba	W	TKO (Corner Stoppage)	1
+Yuri Zhernikov	W	Submission (Punches)	1
+Tikhon Gladkov	W	TKO (Punches)	1
+Arunas Juskevicius	W	KO (Punch)	1
+Vasilin Bazhirov	W	TKO (Punches)	1

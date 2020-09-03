@@ -1,0 +1,5 @@
+Austin Lyons	L	Technical Decision	3
+Luke Sanders	L	TKO	2
+Mike Santiago	L	Decision - Unanimous	3
+Austin Lyons	L	Decision - Split	5
+Hunter Worsham	W	Decision - Unanimous	3

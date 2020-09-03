@@ -1,0 +1,10 @@
+Hiromasa Ogikubo	L	Technical Submission	5
+Ryuichi Miki	W	Decision - Majority	5
+Yosuke Saruta	L	Decision - Majority	3
+Kosuke Suzuki	L	Decision - Unanimous	3
+Kiyotaka Shimizu	L	Decision - Unanimous	3
+Shinichi Kojima	L	Split Decision	3
+Ryuichi Miki	L	Decision - Unanimous	3
+Mamoru Yamaguchi	L	Unanimous Decision	3
+Yuki Shojo	W	Majority Decision	2
+Ryuichi Miki	W	Decision - Unanimous	2

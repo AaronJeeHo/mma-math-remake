@@ -1,0 +1,45 @@
+Justin Salas	L	Decision - Split	3
+Tony Ferguson	L	TKO - Doctor's Stoppage	1
+Joe Brammer	W	Decision - Unanimous	3
+Ross Pearson	L	TKO - Doctor's Stoppage	2
+Shane Nelson	W	Decision - Unanimous	3
+Shane Nelson	L	KO/TKO	1
+Jorge Gurgel	W	Decision - Unanimous	3
+Steve Claveau	W	Unanimous Decision	3
+Thiago Meller	W	Unanimous Decision	3
+Ryan Schultz	L	Unanimous Decision	3
+Eddie Alvarez	L	KO	1
+Darrell Smith	W	Submission (Arm Lock)	2
+Spencer Fisher	L	TKO - Doctor's Stoppage	1
+Michihiro Omigawa	W	KO/TKO	1
+Andrew Chappelle	W	Unanimous Decision	3
+Maicon Alarcao	W	TKO (Injury)	1
+Nuri Shakir	W	Unanimous Decision	3
+Sammy Morgan	L	Submission (Armbar)	1
+Cedric Marks	W	Submission (Armbar)	1
+Nick Gilardi	W	Submission (Punches)	2
+Chris Lytle	L	KO	1
+Alexandre Barros	W	Unanimous Decision	3
+Robbie Lawler	L	Decision - Unanimous	3
+Mike Willus	W	Submission (Armbar)	1
+Yves Edwards	L	Unanimous Decision	3
+Earl Thompson	W	Submission (Armbar)	1
+Steve Berger	W	Unanimous Decision	3
+Aaron Stregles	W	KO	1
+Jeremy Bennett	W	KO	1
+Colin O'Rourke	W	Majority Decision	3
+Falaniko Vitale	L	TKO	1
+Yves Edwards	L	Unanimous Decision	1
+Joe Merit	W	Submission (Armbar)	1
+CJ Fernandes	D	Draw	1
+Billy Johnson	W	Submission (Punches)	1
+Rob Tallack	W	TKO	1
+Tony Apponte	W	Submission (Strikes)	1
+James Julian	W	Submission (Armbar)	1
+Shane Garrett	W	Unanimous Decision	1
+Phil Stroffolino	W	Submission (Strikes)	1
+Brian Boclair	W	Submission (Armbar)	1
+Chris Mounce	W	Submission (Keylock)	-
+Billy Johnson	W	Submission (Armbar)	1
+Mario Roberto	L	Submission (Kneebar)	-
+Chris Malgieri	W	Submission (Heel Hook)	-
