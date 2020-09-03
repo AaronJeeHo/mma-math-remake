@@ -1,0 +1,4 @@
+Dave Martin	W	Decision - Split	3
+Eric Lawson	L	Submission	1
+Jesse Jones	L	KO/TKO	1
+Dave Martin	W	Decision - Unanimous	3

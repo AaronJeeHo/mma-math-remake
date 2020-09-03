@@ -1,0 +1,33 @@
+Damian Stasiak	W	Decision - Majority	5
+Pawel Politylo	W	Decision - Split	3
+Sebastian Przybysz	W	Decision - Unanimous	3
+Kamil Selwa	W	Decision - Unanimous	3
+Pawel Politylo	W	Decision - Split	3
+Tobias Huber	W	Decision - Unanimous	3
+Edgars Skrivers	L	Decision - Unanimous	5
+Musa Kazikhanov	D	Draw	3
+Vitaliy Branchuk	L	Decision - Unanimous	3
+Alexey Nevzorov	W	Decision - Unanimous	3
+Tural Ragimov	L	Submission (Armbar)	3
+Lemmy Krusic	W	Decision - Unanimous	3
+Janos Gonczi	W	Submission (North-South Choke)	2
+Zoltan Turai	W	Submission (Armbar)	1
+Jasmin Ilijas	W	Decision - Unanimous	5
+Max Coga	L	Submission (Rear Naked Choke)	2
+Artak Nazaryan	W	Decision - Unanimous	3
+Bojan Kosednar	W	Decision - Unanimous	3
+Cristian Binda	W	Submission (Heel Hook)	1
+Juha-Pekka Vainikainen	L	Submission (Guillotine)	2
+Salman Zhamaldaev	W	Submission (Guillotine)	2
+Artiom Damkovsky	L	KO (Slam)	1
+Vugar Bakhshiev	W	Submission (Rear Naked Choke)	3
+Ivan Curak	W	Submission (Arm Triangle)	1
+Bojan Bilic	W	Submission (Arm Triangle)	1
+Alexey Nevzorov	L	Technical Submission (Armbar)	1
+Aleksandar Vickovic	W	Submission (Keylock)	1
+Lemmy Krusic	W	Submission (Rear Naked Choke)	1
+Cristian Binda	L	Submission (Rear Naked Choke)	2
+Tomas Deak	W	Submission (Rear Naked Choke)	1
+Sreten Miletic	W	Submission (Armbar)	1
+Tibor Hlada	W	Submission (Rear Naked Choke)	1
+Drazen Matejic	W	Submission (Armbar)	2

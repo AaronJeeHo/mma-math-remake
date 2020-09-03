@@ -1,0 +1,21 @@
+Alex Nicholson	L	KO	1
+Hyun Man Myung	L	KO	2
+Hyun Man Myung	L	TKO (Doctor Stoppage)	1
+Frank Tate	W	Decision - Split	3
+Kirill Sidelnikov	L	Decision - Split	3
+Shinichi Suzukawa	W	TKO	1
+Oli Thompson	L	Decision - Unanimous	2
+Emil Zahariev	W	KO	2
+Shinichi Suzukawa	W	KO/TKO	1
+Jon Hill	W	TKO	1
+Travis Wiuff	W	TKO	2
+Richard White	W	TKO	1
+Demoreo Dennis	W	TKO	2
+Walt Harris	W	Unanimous Decision	3
+Mario Rinaldi	W	TKO	2
+Eric Prindle	L	Majority Decision	3
+Jay White	W	KO	1
+Joel Wyatt	W	TKO	2
+Kenny Garner	W	TKO	3
+Daniel Perez	W	TKO	2
+Johnathan Ivey	W	Unanimous Decision	3

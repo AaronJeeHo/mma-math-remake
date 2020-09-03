@@ -1,0 +1,17 @@
+Ali Bagov	L	Decision - Majority	5
+Eduard Vartanyan	W	Decision - Split	5
+Ali Bagov	W	KO/TKO	1
+Eduard Vartanyan	W	KO/TKO	1
+Julio Cesar de Almeida	W	TKO	3
+Zulfikar Usmanov	W	TKO (Doctor Stoppage)	1
+Vadim Russul	W	Submission (Rear Naked Choke)	1
+Ali Bagov	W	KO	3
+Rasul Ediev	W	Submission (Guillotine)	2
+Islam Makoev	W	Decision - Unanimous	2
+Aktilek Jumabek	W	Decision - Unanimous	3
+Garik Aivazyan	W	Submission (Anaconda Choke)	1
+Sergei Bal	W	Submission (Arm Triangle)	2
+Andrey Markovich	W	Decision - Unanimous	3
+Ilya Gomelyuk	W	TKO	3
+Salim Kaskulov	W	TKO	1
+Magomed Alhasov	L	Decision - Unanimous	2

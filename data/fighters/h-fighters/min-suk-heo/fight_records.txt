@@ -1,0 +1,3 @@
+Dmitry Samoilov	L	TKO	2
+Karl Amoussou	L	Decision - Split	3
+Yuta Watanabe	L	Decision - Majority	2

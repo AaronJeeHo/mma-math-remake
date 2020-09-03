@@ -1,0 +1,3 @@
+Max Holloway	L	Decision	3
+Mitch Clarke	L	Decision - Unanimous	3
+Jose Rodriguez	L	Decision - Majority	3

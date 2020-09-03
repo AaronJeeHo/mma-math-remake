@@ -1,0 +1,9 @@
+Ricky Steele	L	Decision - Split	3
+John Sweeney	W	KO/TKO	3
+Louis Gaudinot	W	Decision - Unanimous	3
+Miguel Restrepo	W	Decision - Unanimous	3
+Brandon Urquijo	W	Decision - Unanimous	3
+Nathan Trepagnier	W	TKO	3
+Brandon Urquijo	W	Decision - Split	3
+Humberto Perea	W	Decision - Majority	3
+Tommy Espinosa	W	Decision - Unanimous	3

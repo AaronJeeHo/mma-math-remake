@@ -1,0 +1,57 @@
+Lyoto Machida	W	Decision - Split	3
+Rafael Lovato Jr.	L	Decision - Majority	5
+Rory MacDonald	W	TKO	2
+Rafael Carvalho	W	TKO	1
+Alexander Shlemenko	W	Decision - Unanimous	3
+Chris Weidman	W	KO/TKO	2
+Uriah Hall	W	KO/TKO	1
+Vitor Belfort	W	KO/TKO	2
+Thiago Santos	W	KO/TKO	1
+Thales Leites	W	Decision - Unanimous	3
+Uriah Hall	L	KO/TKO	2
+Constantinos Philippou	W	Decision - Unanimous	3
+Dan Henderson	W	KO/TKO	1
+Jacare Souza	L	Submission	3
+Mark Munoz	W	Submission	1
+Lyoto Machida	L	Decision - Unanimous	5
+Ilir Latifi	W	Decision - Unanimous	3
+Mike Kyle	W	Submission	1
+Ovince Saint Preux	W	Decision - Unanimous	3
+Hiroshi Izumi	W	KO/TKO	1
+Keith Jardine	D	Draw	3
+Tatsuya Mizuno	W	Submission	1
+Jake O'Brien	W	Submission	1
+Muhammed Lawal	L	Decision - Unanimous	5
+Gary Goodridge	W	KO/TKO	1
+Rameau Thierry Sokoudjou	W	KO/TKO	2
+Renato Sobral	W	KO/TKO	1
+Mark Hunt	W	Submission	1
+Jacare Souza	W	KO/TKO	1
+Melvin Manhoef	W	Submission (Triangle Choke)	1
+Melvin Manhoef	W	Submission	1
+Dong Sik Yoon	W	Decision - Unanimous	2
+Denis Kang	W	Submission	1
+Steve Mensing	W	KO/TKO	1
+Evangelista Santos	W	KO/TKO	1
+Damir Mirenic	W	KO/TKO	1
+Kyacey Uscola	W	TKO	1
+Alexander Kokoev	W	Unanimous Decision	3
+Gregory Bouchelaghem	W	TKO	1
+Hector Lombard	W	Decision - Unanimous	2
+Akihiro Gono	L	Submission (Armbar)	2
+Akihiro Gono	L	Submission	2
+Makoto Takimoto	W	TKO - Doctor's Stoppage	1
+Hidetada Irie	W	TKO	2
+Sanjin Kadunc	W	TKO	1
+Andre Fyeet	W	TKO	1
+Tsuyoshi Kurihara	W	KO/TKO	1
+Stefan Klever	W	KO/TKO	1
+Chico Martinez	W	Submission (Rear Naked Choke)	1
+John Donnelly	W	Submission (Armbar)	1
+Petras Markevicius	L	Submission (Armbar)	2
+Erik Oganov	W	Submission (Rear Naked Choke)	1
+Rody Trost	W	TKO	1
+Niko Puhakka	W	Submission (Rear Naked Choke)	2
+Gilson Ferreira	D	Draw	2
+Xander Nel	W	TKO	1
+Daniel Spek	W	TKO	1

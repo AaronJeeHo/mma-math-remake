@@ -1,0 +1,24 @@
+Tito Ortiz	L	Split Decision	3
+Anderson Silva	L	KO/TKO	1
+Kyle Kingsbury	W	Decision - Unanimous	3
+Igor Pokrajac	W	Decision - Unanimous	3
+Krzysztof Soszynski	W	KO/TKO	2
+Krzysztof Soszynski	L	TKO - Doctor's Stoppage	3
+Mark Coleman	L	Decision - Unanimous	3
+Jon Jones	L	Decision - Unanimous	3
+Eric Schafer	W	KO/TKO	2
+Mike Nickels	W	Submission	1
+Forrest Griffin	L	Decision - Unanimous	3
+Rashad Evans	L	Decision - Majority	3
+Keith Jardine	W	Decision - Unanimous	3
+James Irvin	W	Submission	1
+Sam Hoger	W	Decision - Unanimous	3
+Forrest Griffin	L	Decision - Unanimous	3
+Sean Sallee	W	Submission (Triangle Choke)	1
+William Hill	W	TKO	1
+Brad Lynde	W	Submission (Rear Naked Choke)	1
+Lyoto Machida	L	TKO - Doctor's Stoppage	1
+Terry Martin	W	Decision - Unanimous	1
+Jay Massey	W	Submission (Guillotine)	1
+Josh Kruger	W	Submission (Armbar)	1
+Brian Ebersole	W	Submission (Guillotine)	1

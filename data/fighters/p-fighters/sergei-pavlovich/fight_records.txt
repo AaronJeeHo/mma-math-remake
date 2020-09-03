@@ -1,0 +1,15 @@
+Maurice Greene	W	KO/TKO	1
+Marcelo Golm	W	KO/TKO	1
+Alistair Overeem	L	KO/TKO	1
+Kirill Sidelnikov	W	TKO (Punches)	1
+Mikhail Mokhnatkin	W	Decision - Unanimous	5
+Alexei Kudin	W	Decision - Unanimous	3
+Akhmedshaikh Gelegaev	W	TKO (Knees and Punches)	1
+Chaban Ka	W	TKO (Punches)	1
+Magomedbag Agaev	W	Decision - Unanimous	3
+Ruben Wolf	W	TKO (Punches)	1
+Sultan Murtazaliev	W	TKO (Punches)	1
+Vladimir Daineko	W	KO (Punch)	1
+Ilja Skondric	W	TKO (Punches)	1
+Sergey Buinachev	W	TKO (Punches)	1
+Alexander Derevyanko	W	TKO (Punches)	1

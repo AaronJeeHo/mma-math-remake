@@ -1,0 +1,30 @@
+Alexandre Almeida	L	Decision - Majority	2
+Lance Palmer	L	Submission (Neck Crank)	3
+Andre Harrison	L	Decision - Unanimous	3
+Boris Fedorov	L	Decision - Unanimous	3
+Sergey Yakovlev	W	TKO	1
+Aliyar Sarkerov	L	Submission (Guillotine)	3
+Alison Santos Marques	W	KO	1
+Paata Robakidze	W	KO	2
+Soo Chul Kim	L	TKO	1
+Giovanni Moljo	W	Decision - Unanimous	3
+Alison Santos Marques	W	Decision - Unanimous	3
+Alison Santos Marques	D	Majority Draw	3
+Marcus Brimage	L	KO/TKO	1
+Leandro Issa	L	Submission	3
+Mark Eddiva	L	Decision - Unanimous	3
+Yuki Nakahara	W	Decision - Unanimous	2
+Yongqiang Zhang	W	Submission (Choke)	1
+Longyun Jiang	W	KO	1
+Irshaad Sayed	W	Split Decision	3
+Honggang Yao	W	Split Decision	3
+Yanfei Zhao	W	Unanimous Decision	3
+Rustam Taldiev	W	Unanimous Decision	3
+Michel Boom	W	Submission (Armbar)	2
+Bolin Li	W	KO	1
+Robert Lek	W	Submission (Armbar)	1
+Irshaad Sayed	W	Unanimous Decision	3
+Yu Long Fei	W	Unanimous Decision	3
+Honggang Yao	W	TKO (Doctor Stoppage)	2
+Zhen Wang	W	Submission (Guillotine)	2
+Zhouwen Jiang	W	Unanimous Decision	3

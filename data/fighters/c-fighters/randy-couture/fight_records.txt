@@ -1,0 +1,30 @@
+Lyoto Machida	L	KO/TKO	2
+James Toney	W	Submission	1
+Mark Coleman	W	Submission	2
+Brandon Vera	W	Decision - Unanimous	3
+Antonio Rodrigo Nogueira	L	Decision - Unanimous	3
+Brock Lesnar	L	KO/TKO	2
+Gabriel Gonzaga	W	KO/TKO	3
+Tim Sylvia	W	Decision - Unanimous	5
+Chuck Liddell	L	KO/TKO	2
+Mike Van Arsdale	W	Submission	3
+Chuck Liddell	L	KO/TKO	1
+Vitor Belfort	W	TKO - Doctor's Stoppage	3
+Vitor Belfort	L	TKO - Doctor's Stoppage	1
+Tito Ortiz	W	Decision - Unanimous	5
+Chuck Liddell	W	KO/TKO	3
+Ricco Rodriguez	L	KO/TKO	5
+Josh Barnett	L	KO/TKO	2
+Pedro Rizzo	W	KO/TKO	3
+Pedro Rizzo	W	Decision - Unanimous	5
+Tsuyoshi Kosaka	W	Unanimous Decision	2
+Valentijn Overeem	L	Submission (Guillotine)	1
+Kevin Randleman	W	KO/TKO	3
+Jeremy Horn	W	Unanimous Decision	3
+Ryushi Yanagisawa	W	Majority Decision	2
+Mikhail Illoukhine	L		1
+Enson Inoue	L	Submission	1
+Maurice Smith	W	Decision - Majority	3
+Vitor Belfort	W	KO/TKO	1
+Tony Halme	W	Submission	1
+Steven Graham	W	KO/TKO	1

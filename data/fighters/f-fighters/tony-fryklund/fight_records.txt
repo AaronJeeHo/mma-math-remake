@@ -1,0 +1,12 @@
+Patrick Cenoble	D	Draw	3
+Cung Le	L	KO/TKO	3
+Duane Ludwig	L	KO/TKO	2
+Anderson Silva	L	KO/TKO	1
+Ivan Salaverry	L	Submission	1
+Matt Lindland	L	Unanimous Decision	3
+Brian Ebersole	W	Submission (Ankle Lock)	2
+David Loiseau	L	TKO	1
+Rodrigo Ruas	W	KO/TKO	2
+Jeremiah O'Neal	W	Submission (Guillotine)	1
+Donnie Chappell	W	Submission	1
+Kevin Jackson	L	Submission	1

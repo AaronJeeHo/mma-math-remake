@@ -1,0 +1,8 @@
+Kenny Porter	W	Decision - Unanimous	3
+Luis Marquez	W	KO/TKO	1
+Alberto Blas	W	Submission	1
+Walter Flores	L	Decision - Unanimous	3
+Travis Taylor	W	KO/TKO	1
+Robert Herrera	L	Decision - Majority	3
+Andre Cuff	L	Decision - Unanimous	3
+Carlos Rodriguez	W	KO/TKO	1

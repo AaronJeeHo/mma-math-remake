@@ -1,0 +1,47 @@
+Calvin Kattar	L	KO/TKO	2
+Yair Rodriguez	L	Decision - Unanimous	3
+Yair Rodriguez	D	No Contest	1
+Zabit Magomedsharipov	L	Decision - Unanimous	3
+Jose Aldo	L	KO/TKO	1
+Josh Emmett	W	KO/TKO	2
+Dooho Choi	W	KO/TKO	2
+Gilbert Melendez	W	Decision - Unanimous	3
+Renato Moicano	L	Decision - Split	3
+Frankie Edgar	L	Decision - Unanimous	3
+Renan Barao	W	Decision - Unanimous	3
+Max Holloway	L	Decision - Unanimous	3
+Dennis Bermudez	W	KO/TKO	3
+Charles Oliveira	L	Decision - Unanimous	3
+Cub Swanson	L	Decision - Unanimous	5
+Darren Elkins	W	Decision - Unanimous	3
+Rony Jason	W	KO/TKO	1
+Estevan Payan	W	Decision - Unanimous	3
+Yves Edwards	L	KO/TKO	1
+Donald Cerrone	L	Decision - Unanimous	3
+Anthony Pettis	L	Decision - Split	3
+Danny Downes	W	Decision - Unanimous	3
+Marcus Davis	W	KO/TKO	3
+Melvin Guillard	L	Decision - Split	3
+Sam Stout	W	Decision - Split	3
+Justin Buchholz	W	TKO - Doctor's Stoppage	1
+Gleison Tibau	L	Decision - Unanimous	3
+Joe Lauzon	L	Submission	2
+Rafael Dos Anjos	W	KO/TKO	3
+Spencer Fisher	L	Decision - Unanimous	3
+Cole Miller	W	KO/TKO	2
+Diego Saraiva	W	Decision - Unanimous	3
+Nick Walker	W	TKO	1
+Din Thomas	L	Submission	2
+Vern Jefferson	W	TKO	1
+Norm Alexander	W	Submission (Triangle Choke)	1
+Chris Mickle	W	KO	4
+Aaron Williams	W	TKO	1
+Doug Alcorn	W	Submission (Armbar)	1
+Chris Mickle	W	TKO	2
+Kendrick Johnson	W	KO	1
+Will Shutt	W	TKO	1
+Sharome Blanchard	W	TKO	1
+Chris Mickle	L	Submission (Rear Naked Choke)	2
+Chris Caleb	W	KO	1
+Gary Percival	W	TKO	1
+Ted Worthington	W	KO	1

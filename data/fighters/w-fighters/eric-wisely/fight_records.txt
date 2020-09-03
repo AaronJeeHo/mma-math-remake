@@ -1,0 +1,41 @@
+Joe Richardson	W	TKO	3
+Carl Wittstock	W	TKO (Punches)	3
+Morgan Sickinger	W	Submission (Armbar)	1
+Eric Thomas	W	TKO (Punches)	3
+Austin Hubbard	W	Decision - Unanimous	5
+John Ramirez	W	Submission (Reverse Triangle Choke	5
+Demian Papagni	W	TKO (Punches)	1
+Dustin Parrish	D	Draw	3
+Cliff Wright	W	Decision - Unanimous	5
+Jared Downing	W	Decision - Split	5
+John Alessio	L	Decision - Unanimous	3
+Donnie Bell	W	Decision - Split	3
+Jeremy Castro	W	KO/TKO	1
+Brian Geraghty	W	Decision - Unanimous	5
+Chriss Woodruff	W	Win	1
+Jason Young	L	Decision - Unanimous	3
+Charles Oliveira	L	Submission	1
+Brandon Girtz	W	TKO	2
+Pat Healy	L	Decision - Unanimous	3
+Lance Wipf	W	Decision - Split	3
+Matt Veach	W	Submission (Armbar)	2
+Hermes Franca	W	Unanimous Decision	3
+Lonnie Scriven	W	Decision - Unanimous	5
+Ramiro Hernandez	L	Split Decision	3
+Hermes Franca	W	TKO	1
+Scott McAfee	W	Decision - Split	3
+Jeremy Ashley	L	Decision - Unanimous	3
+Cole Williams	W	Submission (Armbar)	2
+Ramiro Hernandez	L	Unanimous Decision	3
+Tristian Hansburger	W	KO/TKO	1
+Danny Rodriguez	W	Submission	1
+Lucas Gwaltney	W	KO/TKO	3
+Micah Washington	W	KO/TKO	2
+Erik Koch	L	Unanimous Decision	3
+Jason Medina	W	KO/TKO	2
+Jeremy Castro	L	Decision - Majority	3
+Willie Dale	W	KO/TKO	2
+Brady Wakeland	W	Win	2
+Alex Wakeland	W	Win	3
+Cody Clayes	W	Win	1
+Nathan Aber	W	Win	1

@@ -1,0 +1,27 @@
+Teddy Ash	L	TKO (Doctor's Stoppage)	4
+Teddy Ash	W	KO/TKO	1
+Nikolay Aleksakhin	L	TKO	1
+Karl Amoussou	W	Decision - Unanimous	3
+Luke Jumeau	L	Decision - Unanimous	3
+Court McGee	L	Decision - Unanimous	3
+Danny Roberts	L	Decision - Unanimous	3
+Dong Hyun Ma	W	KO/TKO	3
+Zak Cummings	L	KO/TKO	1
+Chuck O'Neil	W	Unanimous Decision	5
+Nick Duell	W	Decision - Unanimous	3
+Jose Figueroa	L	TKO	1
+Dan Hornbuckle	W	Decision - Unanimous	3
+Keith Cunagin	W	Submission	2
+Ryan Thomas	W	Decision - Unanimous	3
+Nate Moore	W	Decision - Unanimous	3
+Joshua Thorpe	W	TKO	2
+Travis Clark	L	KO	1
+Brian Rogers	L	Unanimous Decision	3
+David Branch	L	Unanimous Decision	3
+Donald Crawford Jr.	W	Decision - Unanimous	3
+Joshua Blanchard	W	TKO	1
+Chris Mierzwiak	W	Decision - Unanimous	3
+Ricco Ralston	W	Submission	1
+Keenan Curry	W	TKO	1
+George Oiler	W	Submission	1
+Jason Butcher	L	KO	1

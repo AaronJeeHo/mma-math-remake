@@ -1,0 +1,4 @@
+Vitaly Shemetov	L	KO (Knee)	1
+Thiago Perpetuo	L	TKO (Punches)	3
+Thiago Perpetuo	D	Draw	3
+Gilberto Galvao	L	KO (Knee)	1

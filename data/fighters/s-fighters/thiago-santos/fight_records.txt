@@ -1,0 +1,28 @@
+Jon Jones	L	Decision - Split	5
+Jan Blachowicz	W	KO/TKO	3
+Jimi Manuwa	W	KO/TKO	2
+Eryk Anders	W	KO/TKO	3
+Kevin Holland	W	Decision - Unanimous	3
+David Branch	L	KO/TKO	1
+Anthony Smith	W	KO/TKO	2
+Jack Hermansson	W	KO/TKO	1
+Gerald Meerschaert	W	KO/TKO	2
+Jack Marshman	W	KO/TKO	2
+Eric Spicely	L	Submission	1
+Gegard Mousasi	L	KO/TKO	1
+Nate Marquardt	W	KO/TKO	1
+Elias Theodorou	W	Decision - Unanimous	3
+Steve Bosse	W	KO/TKO	1
+Andy Enz	W	KO/TKO	1
+Uriah Hall	L	Decision - Unanimous	3
+Ronny Markes	W	KO/TKO	1
+Cezar Ferreira	L	Submission	1
+Denis Figueira da Silva	W	TKO	1
+Vicente Luque	L	TKO (Punches)	1
+Junior Vidal	W	TKO (Punches)	1
+Eneas Souza	W	Submission (Rear Naked Choke)	3
+Marcos Viggiani	W	Unanimous Decision	3
+Rafael Braga	W	TKO (Punches)	1
+Mauricio Chueke	W	Unanimous Decision	3
+Gabriel Barreiro	W	TKO (Punches)	2
+Guilherme Benedito Nunes	W	Unanimous Decision	3

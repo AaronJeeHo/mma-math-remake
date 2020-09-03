@@ -1,0 +1,25 @@
+Fabricio Werdum	L	Submission	1
+Anthony Smith	L	Submission	4
+Jon Jones	L	KO/TKO	3
+Glover Teixeira	W	KO/TKO	5
+Jan Blachowicz	W	Decision - Unanimous	3
+Daniel Cormier	L	Decision - Split	5
+Anthony Johnson	L	KO/TKO	1
+Jimi Manuwa	W	KO/TKO	2
+Jon Jones	L	Decision - Unanimous	5
+Mauricio Rua	W	Decision - Unanimous	3
+Thiago Silva	W	Decision - Unanimous	3
+Vladimir Matyushenko	W	KO/TKO	1
+Matt Hamill	W	KO/TKO	2
+James Te Huna	W	Submission	1
+Cyrille Diabate	W	Submission	2
+Phil Davis	L	Submission	1
+Jared Hamman	W	KO/TKO	1
+Vladimir Shemarov	W	KO	1
+Pedro Quetglas	W	TKO	1
+Krzysztof Kulak	W	Unanimous Decision	2
+Matteo Minonzio	W	TKO	1
+Florian Muller	W	TKO	2
+Farbod Fadami	W	TKO	1
+Mikael Haydari	W	TKO	1
+Saku Heikola	W	Submission (Rear Naked Choke)	2

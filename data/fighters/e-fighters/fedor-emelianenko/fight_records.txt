@@ -1,0 +1,46 @@
+Quinton Jackson	W	KO	1
+Ryan Bader	L	TKO	1
+Chael Sonnen	W	TKO	1
+Frank Mir	W	TKO	1
+Matt Mitrione	L	TKO	1
+Fabio Maldonado	W	Decision - Majority	3
+Jaideep Singh	W	TKO	1
+Pedro Rizzo	W	KO/TKO	1
+Satoshi Ishii	W	KO/TKO	1
+Jeff Monson	W	Decision - Unanimous	3
+Dan Henderson	L	KO/TKO	1
+Antonio Silva	L	TKO - Doctor's Stoppage	2
+Fabricio Werdum	L	Submission	1
+Brett Rogers	W	KO/TKO	2
+Andrei Arlovski	W	KO/TKO	1
+Tim Sylvia	W	Submission	1
+Hong Man Choi	W	Submission	1
+Matt Lindland	W	Submission	1
+Mark Hunt	W	Submission	1
+Mark Coleman	W	Submission	2
+Wagner da Conceicao Martins	W	KO/TKO	1
+Mirko Filipovic	W	Decision - Unanimous	3
+Tsuyoshi Kosaka	W	TKO - Doctor's Stoppage	1
+Antonio Rodrigo Nogueira	W	Decision - Unanimous	3
+Antonio Rodrigo Nogueira	D	Could Not Continue	1
+Naoya Ogawa	W	Submission	1
+Kevin Randleman	W	Submission	1
+Mark Coleman	W	Submission	1
+Yuji Nagata	W	KO/TKO	1
+Gary Goodridge	W	KO/TKO	1
+Kazuyuki Fujita	W	Submission	1
+Egidijus Valavicius	W	Submission (Kimura)	2
+Antonio Rodrigo Nogueira	W	Decision - Unanimous	3
+Heath Herring	W	TKO - Doctor's Stoppage	1
+Semmy Schilt	W	Decision - Unanimous	3
+Chris Haseman	W	TKO	1
+Lee Hasdell	W	Submission (Guillotine)	1
+Ryushi Yanagisawa	W	Unanimous Decision	3
+Renato Sobral	W	Unanimous Decision	2
+Kerry Schall	W	Submission (Armbar)	1
+Mihail Apostolov	W	Submission (Rear Naked Choke)	1
+Tsuyoshi Kosaka	L	TKO (Cut)	1
+Ricardo Arona	W	Unanimous Decision	3
+Hiroya Takada	W	KO	1
+Levon Lagvilava	W	Submission (Rear Naked Choke)	1
+Martin Lazarov	W	Submission (Guillotine)	1

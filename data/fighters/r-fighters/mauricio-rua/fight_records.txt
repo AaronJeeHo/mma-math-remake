@@ -1,0 +1,39 @@
+Rogerio Nogueira	W	Decision - Split	3
+Paul Craig	D	Decision - Split (Draw)	3
+Tyson Pedro	W	KO/TKO	3
+Anthony Smith	L	KO/TKO	1
+Gian Villante	W	KO/TKO	3
+Corey Anderson	W	Decision - Split	3
+Rogerio Nogueira	W	Decision - Unanimous	3
+Ovince Saint Preux	L	KO/TKO	1
+Dan Henderson	L	KO/TKO	3
+James Te Huna	W	KO/TKO	1
+Chael Sonnen	L	Submission	1
+Alexander Gustafsson	L	Decision - Unanimous	3
+Brandon Vera	W	KO/TKO	4
+Dan Henderson	L	Decision - Unanimous	5
+Forrest Griffin	W	KO/TKO	1
+Jon Jones	L	KO/TKO	3
+Lyoto Machida	W	KO/TKO	1
+Lyoto Machida	L	Decision - Unanimous	5
+Chuck Liddell	W	KO/TKO	1
+Mark Coleman	W	KO/TKO	3
+Forrest Griffin	L	Submission	3
+Alistair Overeem	W	KO/TKO	1
+Kazuhiro Nakamura	W	Decision - Unanimous	3
+Kevin Randleman	W	Submission	1
+Cyrille Diabate	W	KO/TKO	1
+Mark Coleman	L	KO/TKO	1
+Ricardo Arona	W	KO/TKO	1
+Alistair Overeem	W	KO/TKO	1
+Rogerio Nogueira	W	Decision - Unanimous	3
+Quinton Jackson	W	KO/TKO	1
+Hiromitsu Kanehara	W	KO/TKO	1
+Yasuhito Namekawa	W	KO/TKO	1
+Akihiro Gono	W	KO/TKO	1
+Akira Shoji	W	KO/TKO	1
+Renato Sobral	L	Submission	3
+Erick Wanderlei	W	KO/TKO	2
+Evangelista Santos	W	KO/TKO	1
+Angelo Antonio	W	KO/TKO	1
+Rafael Freitas	W	KO/TKO	1

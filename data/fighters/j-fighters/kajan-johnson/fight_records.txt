@@ -1,0 +1,38 @@
+Rustam Khabilov	L	Decision - Split	3
+Islam Makhachev	L	Submission	1
+Stevie Ray	W	Decision - Split	3
+Adriano Martins	W	KO/TKO	3
+Naoyuki Kotani	W	Decision - Unanimous	3
+Lipeng Zhang	W	Decision - Unanimous	3
+Tae Hyun Bang	L	KO/TKO	3
+Chad Laprise	L	KO/TKO	2
+Richie Whitson	W	Submission (Rear Naked Choke)	1
+Ryan Healy	W	Unanimous Decision	3
+Ryan Machan	L	Submission (Rear Naked Choke)	1
+Josh Russell	W	KO/TKO	2
+Steve Claveau	W	Submission (Armbar)	2
+Samuel Guillet	W	Submission (Armbar)	1
+Zach Light	W	KO/TKO	1
+Douglas Evans	W	Submission (Rear Naked Choke)	2
+Steve Claveau	D	Draw	3
+Rory MacDonald	L	TKO	3
+Dave Pariseau	W	Submission (Rear Naked Choke)	1
+Jason St. Louis	W	Submission (Punches)	1
+Robert Hugus	W	Submission (Armbar)	1
+Todd Steen	W	Submission (Rear Naked Choke)	1
+Gord Cummings	W	KO/TKO	1
+Roger Alves	W	Decision - Split	3
+Stephane Dube	L	KO/TKO	1
+Thierry Quenneville	L	Decision - Split	2
+Jaime Renne	W	Submission (Triangle Choke)	1
+Mike Adams	L	Unanimous Decision	2
+Jeremy Whittingham	W	Decision - Unanimous	2
+Chad Hamzeh	L	KO/TKO	-
+Chris Ade	W	Decision - Split	2
+Justin Livingston	L	Decision - Majority	2
+Len Smith	L	Decision - Unanimous	2
+Josh Thomson	L	Submission (Elbows)	2
+Aaron Krafczyk	W	KO/TKO	1
+Pedro Albuquerque	W	Submission (Exhaustion)	-
+Justin Jones	L	Submission (Punches)	2
+Eric Harvey	W	Submission (Punches)	-

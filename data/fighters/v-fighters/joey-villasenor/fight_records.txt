@@ -1,0 +1,16 @@
+Jim Wallhead	L	KO	1
+Chris Camozzi	L	Split Decision	3
+Danillo Villefort	L	Unanimous Decision	3
+Jacare Souza	L	Decision - Unanimous	3
+Evangelista Santos	W	Decision - Split	3
+Phil Baroni	W	KO/TKO	1
+Ryan Jensen	W	KO/TKO	1
+Riki Fukuda	W	Split Decision	3
+Murilo Rua	L	KO/TKO	2
+David Loiseau	W	Unanimous Decision	3
+Robbie Lawler	L	KO/TKO	1
+Ryo Chonan	L	Decision - Split	2
+Jorge Santiago	W	Unanimous Decision	3
+Jermaine Andre	L	KO/TKO	1
+Tim Credeur	W	Submission (Punches)	2
+David Terrell	L	Submission (Armbar)	1
