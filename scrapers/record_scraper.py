@@ -83,9 +83,14 @@ def build_all_records(url_dir):
     print('ALL RECORDS FOUND!')
 
 
+
+
+
+
 def main():
     #build_all_records('../data/urls')
     pass
+
 
 
 if __name__ == '__main__':
