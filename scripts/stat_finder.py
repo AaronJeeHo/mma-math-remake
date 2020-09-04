@@ -3,10 +3,7 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
-import requests
 import pandas as pd
-from bs4 import BeautifulSoup
-from pathlib import Path
 
 
 def name_to_url(name):
@@ -52,9 +49,7 @@ def percent_to_stats(df, col):
     :param str col:
     :return:
     """
-
     return round(df[col].str.rstrip('%').astype('float').mean(), 2)
-
 
 
 def scrape_stats(link):
@@ -66,6 +61,7 @@ def scrape_stats(link):
 
         # Get striking stats
         striking = df_list[0]
+        print(striking.columns)
 
         body_s = list(striking.loc[(striking['SDBL/A'] != '-') &
                                    (striking['SDBL/A'] != '0/0')]['SDBL/A'])
@@ -79,6 +75,11 @@ def scrape_stats(link):
         t_sigs = striking.loc[(striking['SSL'] != '-') &
                               (striking['SSA'] != '-') &
                               (striking['SSA'] != '0')][['SSL', 'SSA']]
+
+        sig_r = round((sum(t_sigs['SSL'].astype(float)) /
+                       sum(t_sigs['SSA'].astype(float))), 2) * 100
+
+        total_s = striking.loc[striking['TSL-TSA'] != '-'][['TSL-TSA']]
 
         targets = striking.loc[((striking['%BODY'] != '0%') |
                                 (striking['%HEAD'] != '0%') |
@@ -96,41 +97,62 @@ def scrape_stats(link):
                                (clinch['TDL'] != '-') &
                                (clinch['TDA'] != '-')]
 
+        td_a = round((sum(takedowns['TDL'].astype(float)) /
+                      sum(takedowns['TDA'].astype(float))), 2) * 100
+
         # Get ground stats
         ground = df_list[2]
-        print(ground.columns)
 
         body_gs = ground.loc[(ground['SGBA'] != '0') &
                              (ground['SGBA'] != '-') &
                              (ground['SGBL'] != '-')][['SGBL', 'SGBA']]
 
+        bgs_a = round((sum(body_gs['SGBL'].astype(float)) /
+                       sum(body_gs['SGBA'].astype(float))), 2) * 100
+
         head_gs = ground.loc[(ground['SGHA'] != '0') &
                              (ground['SGHA'] != '-') &
                              (ground['SGHL'] != '-')][['SGHL', 'SGHA']]
+
+        hgs_a = round((sum(head_gs['SGHL'].astype(float)) /
+                       sum(head_gs['SGHA'].astype(float))), 2) * 100
 
         leg_gs = ground.loc[(ground['SGLA'] != '0') &
                              (ground['SGLA'] != '-') &
                              (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
 
-        subs = ground.loc[(ground['SM'] != '0') & (ground['SM'] != '-')]['SM']
+        lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
+                       sum(leg_gs['SGLA'].astype(float))), 2) * 100
+
+        sub_a = sum((ground.loc[(ground['SM'] != '0') &
+                                (ground['SM'] != '-')]['SM']).astype(int))
 
         stats_only = ground.loc[:, 'SGBL':'SM']
         active_stats = ((stats_only != '0') & (stats_only != '-')).any(axis=1)
+
         num_stats = sum(list(active_stats))
 
         # Process stats into dict
+        striking_stats = {'Head Strike Accuracy': frac_to_stats(head_s),
+                          'Body Strike Accuracy': frac_to_stats(body_s),
+                          'Leg Strike Accuracy': frac_to_stats(leg_s),
+                          'Significant Strike Accuracy': sig_r,
+                          'Total Strike Accuracy':
+                              percent_to_stats(total_s, 'TSL-TSA'),
+                          'Breakdown Head': percent_to_stats(targets, '%HEAD'),
+                          'Breakdown Body': percent_to_stats(targets, '%BODY'),
+                          'Breakdown Leg': percent_to_stats(targets, '%LEG')
+                          }
 
+        clinch_stats = {'Takedown Accuracy': td_a}
 
-
-
-
-
-
-
-
-
-
-
+        ground_stats = {'Ground Head Strike Accuracy': hgs_a,
+                        'Ground Body Strike Accuracy': bgs_a,
+                        'Ground Leg Strike Accuracy': lgs_a,
+                        'Sub Attempts Per Fight': round((sub_a/num_stats), 2)
+                        }
+        print('Stats Found!')
+        return striking_stats, clinch_stats, ground_stats
 
     except ImportError:
         print('Stats not found')
@@ -138,10 +160,9 @@ def scrape_stats(link):
 
 
 def main():
-    link = name_to_url('Khabib Nurmagomedov')
-    scrape_stats(link)
-
-
+    # link = name_to_url('Khabib Nurmagomedov')
+    # stats = scrape_stats(link)
+    pass
 
 
 if __name__ == '__main__':
