@@ -67,8 +67,6 @@ def scrape_stats(link):
         # Get striking stats
         striking = df_list[0]
 
-        print(striking.columns)
-
         body_s = list(striking.loc[(striking['SDBL/A'] != '-') &
                                    (striking['SDBL/A'] != '0/0')]['SDBL/A'])
 
@@ -80,14 +78,49 @@ def scrape_stats(link):
 
         t_sigs = striking.loc[(striking['SSL'] != '-') &
                               (striking['SSA'] != '-') &
-                              (striking['SSA'] != '0')]
+                              (striking['SSA'] != '0')][['SSL', 'SSA']]
 
         targets = striking.loc[((striking['%BODY'] != '0%') |
                                 (striking['%HEAD'] != '0%') |
                                 (striking['%LEG'] != '0%')) &
                                (striking['%BODY'] != '-') &
                                (striking['%HEAD'] != '-') &
-                               (striking['%LEG'] != '-')]
+                               (striking['%LEG'] != '-')][['%BODY',
+                                                           '%HEAD', '%LEG']]
+
+        # Get clinch stats
+        clinch = df_list[1]
+
+        takedowns = clinch.loc[((clinch['TDL'] != '0') |
+                                (clinch['TDA'] != '0')) &
+                               (clinch['TDL'] != '-') &
+                               (clinch['TDA'] != '-')]
+
+        # Get ground stats
+        ground = df_list[2]
+        print(ground.columns)
+
+        body_gs = ground.loc[(ground['SGBA'] != '0') &
+                             (ground['SGBA'] != '-') &
+                             (ground['SGBL'] != '-')][['SGBL', 'SGBA']]
+
+        head_gs = ground.loc[(ground['SGHA'] != '0') &
+                             (ground['SGHA'] != '-') &
+                             (ground['SGHL'] != '-')][['SGHL', 'SGHA']]
+
+        leg_gs = ground.loc[(ground['SGLA'] != '0') &
+                             (ground['SGLA'] != '-') &
+                             (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
+
+        subs = ground.loc[(ground['SM'] != '0') & (ground['SM'] != '-')]['SM']
+
+        stats_only = ground.loc[:, 'SGBL':'SM']
+        active_stats = ((stats_only != '0') & (stats_only != '-')).any(axis=1)
+        num_stats = sum(list(active_stats))
+
+        # Process stats into dict
+
+
 
 
 
