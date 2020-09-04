@@ -52,7 +52,8 @@ def percent_to_stats(df, col):
     return round(df[col].str.rstrip('%').astype('float').mean(), 2)
 
 
-def scrape_stats(link):
+def scrape_stats(f_name):
+    link = name_to_url(f_name)
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -61,7 +62,6 @@ def scrape_stats(link):
 
         # Get striking stats
         striking = df_list[0]
-        print(striking.columns)
 
         body_s = list(striking.loc[(striking['SDBL/A'] != '-') &
                                    (striking['SDBL/A'] != '0/0')]['SDBL/A'])
@@ -151,7 +151,7 @@ def scrape_stats(link):
                         'Ground Leg Strike Accuracy': lgs_a,
                         'Sub Attempts Per Fight': round((sub_a/num_stats), 2)
                         }
-        print('Stats Found!')
+        print(f'{f_name} Stats Found!')
         return striking_stats, clinch_stats, ground_stats
 
     except ImportError:

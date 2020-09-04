@@ -117,7 +117,7 @@ def make_graph(fighter_a, fighter_b):
         return None
 
 
-def path_finder(f_graph, fighter_a, fighter_b):
+def get_path(f_graph, fighter_a, fighter_b):
     path = []
     curr_fighter = fighter_b
     path.append(fighter_b)
@@ -132,7 +132,7 @@ def path_finder(f_graph, fighter_a, fighter_b):
 
 def mma_math(fighter_a, fighter_b):
     graph = make_graph(fighter_a, fighter_b)
-    path = path_finder(graph, fighter_a, fighter_b)
+    path = get_path(graph, fighter_a, fighter_b)
 
     return path
 
