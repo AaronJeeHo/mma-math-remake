@@ -68,7 +68,8 @@ def make_graph(fighter_a, fighter_b):
         return None
 
     if fighter_a == fighter_b:
-        return fighter_a
+        print(f'{fighter_a} can beat {fighter_b}')
+        return None
 
     fight_history = FightGraph()
     to_add = deque([fighter_a])
@@ -129,11 +130,17 @@ def path_finder(f_graph, fighter_a, fighter_b):
     return path
 
 
+def mma_math(fighter_a, fighter_b):
+    graph = make_graph(fighter_a, fighter_b)
+    path = path_finder(graph, fighter_a, fighter_b)
+
+    return path
+
+
 def main():
     f1 = 'Henry Cejudo'
     f2 = 'Stipe Miocic'
-    graph = make_graph(f1, f2)
-    path = path_finder(graph, f1, f2)
+    path = mma_math(f1, f2)
 
     print(' -> '.join(path))
 
