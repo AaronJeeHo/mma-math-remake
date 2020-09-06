@@ -4,6 +4,8 @@ Python Version: 3.7
 """
 
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
 
 def name_to_url(name):
@@ -50,6 +52,31 @@ def percent_to_stats(df, col):
     :return:
     """
     return round(df[col].str.rstrip('%').astype('float').mean(), 2)
+
+
+def scrape_ratio(f_name):
+    link = name_to_url(f_name)
+    split_url = link.split('_')
+    stat_link = f"{split_url[0]}stats/_{split_url[1]}"
+
+    try:
+        response = requests.get(stat_link, timeout=10)
+        src = response.content
+
+        soup = BeautifulSoup(src, 'lxml')
+        record_list = soup.find_all('div', class_='StatBlockInner__Value')
+
+        if len(record_list) == 3:
+            win_loss = tuple(map(int, record_list[0].text.split('-')))
+            ko = tuple(map(int, record_list[1].text.split('-')))
+            sub = tuple(map(int, record_list[2].text.split('-')))
+
+            return {'WLD': win_loss, 'KO': ko, 'SUB': sub}
+        else:
+            return None
+
+    except ImportError:
+        return None
 
 
 def scrape_stats(f_name):
@@ -151,7 +178,7 @@ def scrape_stats(f_name):
                         'Ground Leg Strike Accuracy': lgs_a,
                         'Sub Attempts Per Fight': round((sub_a/num_stats), 2)
                         }
-        print(f'{f_name} Stats Found!')
+        # print(f'{f_name} Stats Found!')
         return striking_stats, clinch_stats, ground_stats
 
     except ImportError:
@@ -162,7 +189,7 @@ def scrape_stats(f_name):
 def main():
     # link = name_to_url('Khabib Nurmagomedov')
     # stats = scrape_stats(link)
-    pass
+    stats = scrape_ratio('Khabib Nurmagomedov')
 
 
 if __name__ == '__main__':

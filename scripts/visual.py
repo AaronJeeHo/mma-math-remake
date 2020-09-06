@@ -6,7 +6,7 @@ Python Version: 3.7
 import plotly.express as px
 import pandas as pd
 from scripts.path_finder import mma_math
-from scripts.stat_finder import scrape_stats
+from scripts.stat_finder import scrape_stats, scrape_ratio
 
 
 def plot_targets(stats):
@@ -94,9 +94,106 @@ def plot_targets(stats):
     fig.show()
 
 
+def plot_totals(stats):
+    striking = stats[0]
+    clinch = stats[1]
+
+    total_data = {'Stats': ['Takedown Accuracy',
+                            'Significant Strike Accuracy',
+                            'Total Strike Accuracy'],
+                  'Percent': [clinch['Takedown Accuracy'],
+                              striking['Significant Strike Accuracy'],
+                              striking['Total Strike Accuracy']]
+                  }
+    df = pd.DataFrame(total_data, columns=['Stats', 'Percent'])
+
+    fig = px.bar(data_frame=df,
+                 x='Stats',
+                 y='Percent',
+                 title='Overall Stats',
+                 range_y=[0, 105],
+                 text='Percent',
+                 orientation='v',
+                 template='plotly_dark',
+                 color_discrete_sequence=['#4ACFAC', '#4ACFAC', '#4ACFAC']
+                 )
+
+    fig.update_traces(
+        textposition="outside",
+        texttemplate='%{y}',
+        textfont={'size': 15}
+    )
+
+    fig.update_layout(
+        title={
+            'x': 0.5, 'y': 0.97,
+            'xanchor': 'center',
+            'yanchor': 'top',
+            'font': {'size': 25}
+        }
+
+    )
+
+    fig.update_xaxes(
+        showgrid=False,
+        title='',
+        tickfont={'size': 15}
+    )
+
+    fig.update_yaxes(
+        title='',
+        ticksuffix="%",
+        tickfont={'size': 15}
+    )
+
+    fig.show()
+
+
+def plot_ratios(stats):
+    wins = stats['WLD'][0]
+    ko = stats['KO'][0]
+    sub = stats['SUB'][0]
+    dec = wins - ko - sub
+
+    ratio_data = {'Method': ['Decisions', "(T)KO's", 'Submissions'],
+                  'Count': [dec, ko, sub]}
+
+    df = pd.DataFrame(ratio_data, columns=['Method', 'Count'])
+    fig = px.pie(data_frame=df,
+                 values='Count',
+                 names='Method',
+                 title='Win Breakdown',
+                 template='plotly_dark',
+                 color='Method',
+                 color_discrete_map={'Decisions': '#4ACFAC',
+                                     "(T)KO's": '#F9AA33',
+                                     'Submissions': '#BB86FC'}
+                 )
+
+    fig.update_layout(showlegend=False,
+
+                      title={
+                          'x': 0.5, 'y': 0.97,
+                          'xanchor': 'center',
+                          'yanchor': 'top',
+                          'font': {'size': 25}}
+                      )
+
+    fig.update_traces(textposition='inside',
+                      textinfo='label+value',
+                      textfont={'size': 40},
+                      hovertemplate='<b>%{label}</b><br> %{percent}'
+                      )
+
+    fig.show()
+
+
 def main():
-    stat_list = scrape_stats('Khabib Nurmagomedov')
-    plot_targets(stat_list)
+    # tat_list = scrape_stats('Khabib Nurmagomedov')
+    ratio = scrape_ratio('Khabib Nurmagomedov')
+    # plot_targets(stat_list)
+    # plot_totals(stat_list)
+    plot_ratios(ratio)
 
 
 if __name__ == '__main__':
