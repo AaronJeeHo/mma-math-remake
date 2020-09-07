@@ -5,7 +5,6 @@ Python Version: 3.7
 
 import plotly.express as px
 import pandas as pd
-from scripts.path_finder import mma_math
 from scripts.stat_finder import scrape_stats, scrape_ratio
 
 
@@ -190,10 +189,11 @@ def plot_ratios(stats):
 
 def main():
     # tat_list = scrape_stats('Khabib Nurmagomedov')
-    ratio = scrape_ratio('Khabib Nurmagomedov')
+    # ratio = scrape_ratio('Khabib Nurmagomedov')
     # plot_targets(stat_list)
     # plot_totals(stat_list)
-    plot_ratios(ratio)
+    # plot_ratios(ratio)
+    pass
 
 
 if __name__ == '__main__':
