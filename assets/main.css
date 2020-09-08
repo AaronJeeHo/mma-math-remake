@@ -41,3 +41,98 @@
   font-size: 1.8rem;
   color: #e74c3c;
 }
+
+/* Content Area Settings */
+.content-area{
+  margin-left: 24rem;
+  margin-right: 2rem;
+  padding: 2rem 1rem;
+  height: 100vh;
+}
+
+/* Row Settings */
+.top-row{
+  height: 20%;
+}
+
+.row-two{
+  height: 30%;
+}
+
+.row-three{
+  height: 30%;
+}
+
+.bot-row{
+  height: 20%;
+}
+
+
+.row-col{
+  height: 100%;
+  margin: 1rem;
+  padding: 0;
+}
+
+.h-20{
+  height: 20%;
+}
+
+
+
+/* Card Settings */
+.card-box{
+  height: 100%;
+  padding: 0;
+}
+
+
+/* Row one display settings*/
+
+.ch-name{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #3498db;
+}
+
+.ch-img{
+  float: left;
+  max-height: 100%;
+}
+
+.op-name{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #e74c3c;
+}
+
+
+.op-img{
+  float: right;
+  max-height: 100%;
+}
+
+/* .fighter-img{
+  display: block;
+  max-height: 100%;
+  padding: 0;
+  margin: auto;
+}
+
+.fighter-name{
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.fighter-name-span{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+} */

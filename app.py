@@ -16,6 +16,24 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 # Data
 
 
+# Example Graph
+def ex_bar():
+    data = px.data.gapminder()
+
+    data_canada = data[data.country == 'Canada']
+    fig = px.bar(data_canada, x='year', y='pop',
+                 hover_data=['lifeExp', 'gdpPercap'], color='lifeExp',
+                 labels={'pop': 'population of Canada'}, height=400)
+    return fig
+
+
+def ex_pie():
+    df = px.data.tips()
+    fig = px.pie(df, values='tip', names='day')
+
+    return fig
+
+
 # HELPERS
 def side_bar():
     return html.Div(className='side-bar', children=[
@@ -57,9 +75,88 @@ def fighter_input():
                     )
 
 
+def content_layout():
+    return html.Div(className='content-area', children=[
+        dbc.Row(className="top-row", children=[
+            dbc.Col(challenger_img(), width=5, className='row-col'),
+            dbc.Col(opponent_img(), width=5, className='row-col')],
+                justify='between'),
+        #
+        # dbc.Row(className="h-30", children=[
+        #     dbc.Col(empty_card(), width=5),
+        #     dbc.Col(empty_card(), width=2),
+        #     dbc.Col(empty_card(), width=5)], justify='between'
+        # ),
+        #
+        # dbc.Row(className="h-30", children=[
+        #     dbc.Col(insert_graph(ex_bar()), width=5),
+        #     dbc.Col(empty_card(), width=5)], justify='between'
+        # ),
+        #
+        # dbc.Row(className="h-20", children=[
+        #     dbc.Col(empty_card(), width=12)
+        # ]
+        #
+        # )
+    ])
+
+def empty_card():
+    return dbc.Card(
+            dbc.CardBody([
+                html.Div([
+                    html.H2("Text"),
+                ], style={'textAlign': 'center'})
+            ])
+    )
+
+
+# TOP Row Helpers
+# def challenger_img():
+#     return [html.Img(className="ch-img", src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254"),
+#             html.Div(className="ch-flex", children=[
+#                 html.Div(className="ch-name", children=[
+#                     html.H2("Khabib"), html.H2("Nurmagomedov")]
+#                          )])]
+
+
+def challenger_img():
+    return [html.Img(className="ch-img", src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254"),
+            html.Div(className="ch-name", children=[
+                html.H2("Khabib"), html.H2("Nurmagomedov")])
+            ]
+
+
+def opponent_img():
+    return [html.Img(className="op-img", src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254"),
+            html.Div(className="op-name", children=[
+                html.H2("Khabib"), html.H2("Nurmagomedov")])
+            ]
+
+
+
+# def img_card():
+#     return dbc.Card(className='card-box', children=[
+#         dbc.CardImg(src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254",
+#                     top=True, className="fighter-img"),
+#         dbc.CardBody(html.P('Khabib Nurmagomedov', className='card-name'))],
+#                     outline=True)
+
+
+
+
+def insert_graph(fig):
+    return dcc.Graph(figure=fig)
+
+
+def fighter_img():
+    return html.Img(className="fighter-img", src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254")
+
+
+
 # App Layout
 app.layout = html.Div(children=[
-    side_bar()
+    side_bar(),
+    content_layout()
 
 
 ])
