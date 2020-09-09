@@ -78,27 +78,49 @@ def fighter_input():
 def content_layout():
     return html.Div(className='content-area', children=[
         dbc.Row(className="top-row", children=[
-            dbc.Col(challenger_img(), width=5, className='row-col'),
-            dbc.Col(opponent_img(), width=5, className='row-col')],
+            dbc.Col(challenger_img(), width=5, className='head-ch'),
+            dbc.Col(opponent_img(), width=5, className='head-op')],
                 justify='between'),
-        #
-        # dbc.Row(className="h-30", children=[
-        #     dbc.Col(empty_card(), width=5),
-        #     dbc.Col(empty_card(), width=2),
-        #     dbc.Col(empty_card(), width=5)], justify='between'
-        # ),
-        #
-        # dbc.Row(className="h-30", children=[
-        #     dbc.Col(insert_graph(ex_bar()), width=5),
-        #     dbc.Col(empty_card(), width=5)], justify='between'
-        # ),
-        #
+
+        dbc.Row(className="row-two", children=[
+            dbc.Col(get_wins(), width=5, className='wins'),
+            dbc.Col(get_wins(), width=5, className='wins')],
+                justify='between'),
+
+
+        dbc.Row(className="row-three", children=[
+            # dbc.Col(ch_fig_two(ex_pie(), ex_bar()), width=5, className='row-three-col')]
+            dbc.Col(className='row-three-col', width=5, children=[
+                dbc.Row(className='row-three-col-row', children=[
+                    dbc.Col(className='fig-col-three', width=6,
+                            children=[insert_fig(ex_pie())]),
+                    dbc.Col(className='fig-col-three', width=6,
+                            children=[insert_fig(ex_bar())])],
+                        no_gutters=True)]
+                    ),
+
+            dbc.Col(className='row-three-col', width=5, children=[
+                dbc.Row(className='row-three-col-row', children=[
+                    dbc.Col(className='fig-col-three', width=6,
+                            children=[insert_fig(ex_bar())]),
+                    dbc.Col(className='fig-col-three', width=6,
+                            children=[insert_fig(ex_pie())])],
+                        no_gutters=True)]
+                    )], justify='between'),
+
+        dbc.Row(className="row-four", children=[
+            dbc.Col(insert_fig(ex_bar()), width=5, className='row-four-col'),
+            dbc.Col(insert_fig(ex_bar()), width=5, className='row-four-col')],
+                justify='between'
+                ),
+
         # dbc.Row(className="h-20", children=[
         #     dbc.Col(empty_card(), width=12)
         # ]
         #
         # )
     ])
+
 
 def empty_card():
     return dbc.Card(
@@ -127,29 +149,49 @@ def challenger_img():
 
 
 def opponent_img():
-    return [html.Img(className="op-img", src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254"),
-            html.Div(className="op-name", children=[
-                html.H2("Khabib"), html.H2("Nurmagomedov")])
+    return [html.Div(className="op-name", children=[
+                html.H2("Khabib"), html.H2("Nurmagomedov")]),
+            html.Img(className="op-img",
+                     src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254")
             ]
 
 
+# Row Two Helpers
+def get_wins():
+    return dbc.CardGroup(className='win-holder', children=[
+        dbc.Card(className='win-card', children=[
+            dbc.CardHeader("W-L-D", className='win-head'),
+            dbc.CardBody("empty", className='win-body')
+        ]),
+        dbc.Card(className='win-card', children=[
+            dbc.CardHeader("(T)KO", className='win-head'),
+            dbc.CardBody("empty", className='win-body')
+        ]),
+        dbc.Card(className='win-card', children=[
+            dbc.CardHeader("Sub", className='win-head'),
+            dbc.CardBody("empty", className='win-body')
+        ])
+    ])
 
-# def img_card():
-#     return dbc.Card(className='card-box', children=[
-#         dbc.CardImg(src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254",
-#                     top=True, className="fighter-img"),
-#         dbc.CardBody(html.P('Khabib Nurmagomedov', className='card-name'))],
-#                     outline=True)
 
 
 
-
-def insert_graph(fig):
-    return dcc.Graph(figure=fig)
+# Row Three Helpers
 
 
-def fighter_img():
-    return html.Img(className="fighter-img", src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/2611557.png&w=350&h=254")
+# def ch_fig_two(bar, pie):
+#     return [dcc.Graph(className='two-fig', figure=bar),
+#             dcc.Graph(className='two-fig', figure=pie)]
+
+
+def insert_fig(fig):
+    return dcc.Graph(className='fig', figure=fig)
+
+
+
+# Row 3 graph
+
+
 
 
 
