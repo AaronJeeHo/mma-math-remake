@@ -64,8 +64,36 @@ def build_url_db(source_url):
     print('Fighter URLs updated')
 
 
+def name_links():
+    """
+    Get fighter names alongside their links
+    """
+    with open('../data/urls/source_urls.txt', 'r') as s_file:
+        source_list = [line.rstrip() for line in s_file]
+
+    base_url = (source_list[0]).split(r'/mma/fighter')[0]
+
+    with open('../data/urls/name_url.tsv', 'w') as name_file:
+        for source_page in source_list:
+            response = requests.get(source_page)
+            src = response.content
+
+            soup = BeautifulSoup(src, 'lxml')
+            page_links = soup.find_all(href=re.compile(r'/mma/fighter/_/id/'))
+
+            for f_link in page_links:
+                split_name = f_link.text.split(', ')
+                f_name = f"{split_name[1]} {split_name[0]}"
+                name_file.write(f"{f_name}\t{base_url}{f_link['href']}\n")
+
+            print(f"Name URL pairs in {source_page} written!")
+
+
 def main():
-    build_url_db('http://www.espn.com/mma/fighters')
+    # build_url_db('http://www.espn.com/mma/fighters')
+    # name_links()
+    pass
+
 
 
 if __name__ == '__main__':

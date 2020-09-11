@@ -6,25 +6,16 @@ Python Version: 3.7
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from urllib.request import urlopen
 
 
-def name_to_url(name):
-    n_list = name.lower().replace("-", ' ').split(' ')
-    d_name = '-'.join(n_list).replace("'", '').replace(".", '')
+def name_to_url(db, name):
+    link = list(db.loc[db['name'] == name]['link'])
 
-    if len(n_list) > 2:
-        for n in n_list:
-            with open(f"../data/urls/fighters_{n[0]}.txt", 'r') as file:
-                for line in file:
-                    if d_name in line:
-                        return line.rstrip()
+    if len(link) > 0:
+        return link[0]
     else:
-        with open(f"../data/urls/fighters_{n_list[-1][0]}.txt", 'r') as file:
-            for line in file:
-                if d_name in line:
-                    return line.rstrip()
-
-    return None
+        return None
 
 
 def frac_to_stats(stats):
@@ -54,8 +45,8 @@ def percent_to_stats(df, col):
     return round(df[col].str.rstrip('%').astype('float').mean(), 2)
 
 
-def scrape_ratio(f_name):
-    link = name_to_url(f_name)
+def scrape_ratio(link):
+    # link = name_to_url(f_name)
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -79,8 +70,8 @@ def scrape_ratio(f_name):
         return None
 
 
-def scrape_stats(f_name):
-    link = name_to_url(f_name)
+def scrape_stats(link):
+    # link = name_to_url(f_name)
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -186,10 +177,39 @@ def scrape_stats(f_name):
         return None
 
 
+def get_header_img(link):
+    response = requests.get(link, timeout=10)
+    src = response.content
+    # src = urlopen(link)
+    soup = BeautifulSoup(src, 'html.parser')
+    img_link = None
+    f_name = None
+    l_name = None
+
+    headshot = soup.find_all('figure', class_='PlayerHeader__HeadShot')
+    name_header = soup.find_all('h1', class_='PlayerHeader__Name')
+
+    if len(headshot) > 0:
+        img_list = (headshot[0].find_all('img'))
+        split_id = link.split('id/')[-1]
+        id_num = split_id.split('/')[0]
+        img_link = (f"https://a.espncdn.com/combiner/i?img=/i/headshots/"
+                    f"mma/players/full/{id_num}.png&w=350&h=254")
+
+    if len(name_header) > 0:
+        name_list = name_header[0].find_all('span')
+        f_name = name_list[0].text
+        l_name = name_list[1].text
+
+    return img_link, f_name, l_name
+
+
 def main():
-    # link = name_to_url('Khabib Nurmagomedov')
-    # stats = scrape_stats(link)
-    stats = scrape_ratio('Khabib Nurmagomedov')
+    # name_db = pd.read_csv('../data/urls/name_url.tsv',
+    #                       sep='\t', header=None, names=['name', 'link'])
+    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
+    # print(get_header_img(link))
+    pass
 
 
 if __name__ == '__main__':
