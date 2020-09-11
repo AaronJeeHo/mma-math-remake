@@ -6,7 +6,8 @@ Python Version: 3.7
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def name_to_url(db, name):
@@ -92,10 +93,15 @@ def scrape_stats(link):
 
         t_sigs = striking.loc[(striking['SSL'] != '-') &
                               (striking['SSA'] != '-') &
-                              (striking['SSA'] != '0')][['SSL', 'SSA']]
+                              (striking['SSA'].astype(str) != '0')][['SSL', 'SSA']]
 
-        sig_r = round((sum(t_sigs['SSL'].astype(float)) /
-                       sum(t_sigs['SSA'].astype(float))), 2) * 100
+        # sig_attempted = sum(t_sigs['SSA'].astype(float))
+
+        if t_sigs.empty:
+            sig_r = 0
+        else:
+            sig_r = round((sum(t_sigs['SSL'].astype(float)) /
+                           sum(t_sigs['SSA'].astype(float))), 2) * 100
 
         total_s = striking.loc[striking['TSL-TSA'] != '-'][['TSL-TSA']]
 
@@ -110,39 +116,60 @@ def scrape_stats(link):
         # Get clinch stats
         clinch = df_list[1]
 
-        takedowns = clinch.loc[((clinch['TDL'] != '0') |
-                                (clinch['TDA'] != '0')) &
+        takedowns = clinch.loc[((clinch['TDL'].astype(str) != '0') |
+                                (clinch['TDA'].astype(str) != '0')) &
                                (clinch['TDL'] != '-') &
                                (clinch['TDA'] != '-')]
 
-        td_a = round((sum(takedowns['TDL'].astype(float)) /
-                      sum(takedowns['TDA'].astype(float))), 2) * 100
+        # td_attempted = sum(takedowns['TDA'].astype(float))
+
+        if takedowns.empty:
+            td_a = 0
+        else:
+            td_a = round((sum(takedowns['TDL'].astype(float)) /
+                          sum(takedowns['TDA'].astype(float))), 2) * 100
 
         # Get ground stats
         ground = df_list[2]
 
-        body_gs = ground.loc[(ground['SGBA'] != '0') &
+        body_gs = ground.loc[(ground['SGBA'].astype(str) != '0') &
                              (ground['SGBA'] != '-') &
                              (ground['SGBL'] != '-')][['SGBL', 'SGBA']]
 
-        bgs_a = round((sum(body_gs['SGBL'].astype(float)) /
-                       sum(body_gs['SGBA'].astype(float))), 2) * 100
+        #bgs_attempted = sum(body_gs['SGBA'].astype(float))
 
-        head_gs = ground.loc[(ground['SGHA'] != '0') &
+        if body_gs.empty:
+            bgs_a = 0
+        else:
+            bgs_a = round((sum(body_gs['SGBL'].astype(float)) /
+                           sum(body_gs['SGBA'].astype(float))), 2) * 100
+
+        head_gs = ground.loc[(ground['SGHA'].astype(str) != '0') &
                              (ground['SGHA'] != '-') &
                              (ground['SGHL'] != '-')][['SGHL', 'SGHA']]
 
-        hgs_a = round((sum(head_gs['SGHL'].astype(float)) /
-                       sum(head_gs['SGHA'].astype(float))), 2) * 100
+        # hgs_attempted = sum(head_gs['SGHA'].astype(float))
 
-        leg_gs = ground.loc[(ground['SGLA'] != '0') &
-                             (ground['SGLA'] != '-') &
-                             (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
+        if head_gs.empty:
+            hgs_a = 0
+        else:
+            hgs_a = round((sum(head_gs['SGHL'].astype(float)) /
+                           sum(head_gs['SGHA'].astype(float))), 2) * 100
 
-        lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
-                       sum(leg_gs['SGLA'].astype(float))), 2) * 100
+        leg_gs = ground.loc[(ground['SGLA'].astype(str) != '0') &
+                            (ground['SGLA'] != '-') &
+                            (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
 
-        sub_a = sum((ground.loc[(ground['SM'] != '0') &
+        # lgs_attempted = sum(leg_gs['SGLA'].astype(float))
+        # print(lgs_attempted)
+        # print(leg_gs)
+        if leg_gs.empty:
+            lgs_a = 0
+        else:
+            lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
+                           sum(leg_gs['SGLA'].astype(float))), 2) * 100
+
+        sub_a = sum((ground.loc[(ground['SM'].astype(str) != '0') &
                                 (ground['SM'] != '-')]['SM']).astype(int))
 
         stats_only = ground.loc[:, 'SGBL':'SM']
@@ -190,7 +217,7 @@ def get_header_img(link):
     name_header = soup.find_all('h1', class_='PlayerHeader__Name')
 
     if len(headshot) > 0:
-        img_list = (headshot[0].find_all('img'))
+        # img_list = (headshot[0].find_all('img'))
         split_id = link.split('id/')[-1]
         id_num = split_id.split('/')[0]
         img_link = (f"https://a.espncdn.com/combiner/i?img=/i/headshots/"
@@ -205,10 +232,12 @@ def get_header_img(link):
 
 
 def main():
-    # name_db = pd.read_csv('../data/urls/name_url.tsv',
-    #                       sep='\t', header=None, names=['name', 'link'])
-    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
-    # print(get_header_img(link))
+    name_db = pd.read_csv('../data/urls/name_url.tsv',
+                          sep='\t', header=None, names=['name', 'link'])
+    #link = name_to_url(name_db, 'Khabib Nurmagomedov')
+    # link = name_to_url(name_db, 'Daniel Cormier')
+    # stats = scrape_stats(link)
+    # print(stats)
     pass
 
 

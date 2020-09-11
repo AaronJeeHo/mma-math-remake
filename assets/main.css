@@ -46,7 +46,7 @@
 .content-area{
   margin-left: 24rem;
   margin-right: 2rem;
-  padding: 2rem 1rem;
+  padding: 2rem 0.5rem;
   height: 100vh;
 }
 
@@ -186,6 +186,7 @@
 .fig {
   display: inline-block;
   max-width: 100%;
+  padding: 0;
 }
 
 .three-fig {
