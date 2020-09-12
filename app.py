@@ -38,7 +38,7 @@ def fighter_data(db, f_name):
 
 
 def challenger_visuals(records, stats):
-    totals_graph = plot_totals(stats)
+    totals_graph = plot_totals_reverse(stats)
     striking_graph = plot_targets_reverse(stats)
     ratio_graph = plot_ratios(records)
 

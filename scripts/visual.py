@@ -52,13 +52,16 @@ def plot_targets(stats):
     fig.update_traces(
         legendgroup="position",
         textposition="outside",
-        texttemplate='%{x}'
+        texttemplate='%{x}',
+        hovertemplate=('<b>%{y}</b><br><br>'
+                       'Fight Position: %{data.offsetgroup}<br><br>'
+                       'Striking Accuracy: %{x}<extra></extra>')
     )
 
     fig['data'][0]['name'] = 'Ground Strikes'
     fig['data'][1]['name'] = 'Standing Strikes'
     fig['data'][2]['name'] = 'Overall Accuracy'
-
+    print(fig.data)
     fig.update_layout(
         # title={
         #     'x': 0.5, 'y': 0.97,
@@ -145,7 +148,10 @@ def plot_targets_reverse(stats):
     fig.update_traces(
         legendgroup="position",
         textposition="outside",
-        texttemplate='%{x}'
+        texttemplate='%{x}',
+        hovertemplate=('<b>%{y}</b><br><br>'
+                       'Fight Position: %{data.offsetgroup}<br><br>'
+                       'Striking Accuracy: %{x}<extra></extra>')
     )
 
     fig['data'][0]['name'] = 'Ground Strikes'
@@ -208,38 +214,116 @@ def plot_targets_reverse(stats):
 Plot Stat Total Graphs
 """
 
+
 def plot_totals(stats):
     striking = stats[0]
     clinch = stats[1]
 
-    total_data = {'Stats': ['Takedown Accuracy',
+    total_data = {'Stats': ['Total Strike Accuracy',
                             'Significant Strike Accuracy',
-                            'Total Strike Accuracy'],
-                  'Percent': [clinch['Takedown Accuracy'],
+                            'Takedown Accuracy'],
+
+                  'Percent': [striking['Total Strike Accuracy'],
                               striking['Significant Strike Accuracy'],
-                              striking['Total Strike Accuracy']]
+                              clinch['Takedown Accuracy']
+                              ]
                   }
     df = pd.DataFrame(total_data, columns=['Stats', 'Percent'])
 
     fig = px.bar(data_frame=df,
-                 x='Stats',
-                 y='Percent',
+                 y='Stats',
+                 x='Percent',
                  # title='Overall Stats',
-                 range_y=[0, 110],
+                 range_x=[0, 105],
                  text='Percent',
-                 orientation='v',
+                 orientation='h',
                  template='plotly_dark',
-                 color_discrete_sequence=['#4ACFAC', '#4ACFAC', '#4ACFAC']
+                 color_discrete_sequence=['#e74c3c', '#e74c3c', '#e74c3c']
                  )
 
     fig.update_traces(
         textposition="outside",
-        texttemplate='%{y}',
+        texttemplate='%{x}',
+        hovertemplate=('<b>%{label}</b><br><br>Percent: %{x}')
         #textfont={'size': 15}
     )
 
     fig.update_layout(showlegend=False,
                       autosize=True,
+                      # hoverlabel={
+                      #     'font': 'right',
+                      #
+                      #
+                      # },
+
+
+
+                      margin={
+                          'pad': 0,
+                          'l': 0,
+                          'r': 0,
+                          'b': 0,
+                          't': 0,
+                      }
+
+                      )
+
+    fig.update_yaxes(
+        showgrid=False,
+        title='',
+        #tickfont={'size': 15}
+    )
+
+    fig.update_xaxes(
+        title='',
+        ticksuffix="%",
+        #tickfont={'size': 15}
+    )
+
+    return fig
+
+
+def plot_totals_reverse(stats):
+    striking = stats[0]
+    clinch = stats[1]
+
+    total_data = {'Stats': ['Total Strike Accuracy',
+                            'Significant Strike Accuracy',
+                            'Takedown Accuracy'],
+
+                  'Percent': [striking['Total Strike Accuracy'],
+                              striking['Significant Strike Accuracy'],
+                              clinch['Takedown Accuracy']
+                              ]
+                  }
+    df = pd.DataFrame(total_data, columns=['Stats', 'Percent'])
+
+    fig = px.bar(data_frame=df,
+                 y='Stats',
+                 x='Percent',
+                 # title='Overall Stats',
+                 range_x=[105, 0],
+                 text='Percent',
+                 orientation='h',
+                 template='plotly_dark',
+                 color_discrete_sequence=['#3498db', '#3498db', '#3498db']
+                 )
+
+    fig.update_traces(
+        textposition="outside",
+        texttemplate='%{x}',
+        hovertemplate=('<b>%{label}</b><br><br>Percent: %{x}')
+        #textfont={'size': 15}
+    )
+
+    fig.update_layout(showlegend=False,
+                      autosize=True,
+                      hoverlabel={
+                          'font': {
+                              'color': '#ffffff'
+                          }
+
+                      },
                       margin={
                           'pad': 0,
                           'l': 0,
@@ -249,13 +333,14 @@ def plot_totals(stats):
                       }
                       )
 
-    fig.update_xaxes(
+    fig.update_yaxes(
         showgrid=False,
         title='',
+        side="right"
         #tickfont={'size': 15}
     )
 
-    fig.update_yaxes(
+    fig.update_xaxes(
         title='',
         ticksuffix="%",
         #tickfont={'size': 15}
@@ -263,9 +348,66 @@ def plot_totals(stats):
 
     return fig
 
+
+# def plot_totals(stats):
+#     striking = stats[0]
+#     clinch = stats[1]
+#
+#     total_data = {'Stats': ['Takedown Accuracy',
+#                             'Significant Strike Accuracy',
+#                             'Total Strike Accuracy'],
+#                   'Percent': [clinch['Takedown Accuracy'],
+#                               striking['Significant Strike Accuracy'],
+#                               striking['Total Strike Accuracy']]
+#                   }
+#     df = pd.DataFrame(total_data, columns=['Stats', 'Percent'])
+#
+#     fig = px.bar(data_frame=df,
+#                  x='Stats',
+#                  y='Percent',
+#                  # title='Overall Stats',
+#                  range_y=[0, 110],
+#                  text='Percent',
+#                  orientation='v',
+#                  template='plotly_dark',
+#                  color_discrete_sequence=['#4ACFAC', '#4ACFAC', '#4ACFAC']
+#                  )
+#
+#     fig.update_traces(
+#         textposition="outside",
+#         texttemplate='%{y}',
+#         #textfont={'size': 15}
+#     )
+#
+#     fig.update_layout(showlegend=False,
+#                       autosize=True,
+#                       margin={
+#                           'pad': 0,
+#                           'l': 0,
+#                           'r': 0,
+#                           'b': 0,
+#                           't': 0,
+#                       }
+#                       )
+#
+#     fig.update_xaxes(
+#         showgrid=False,
+#         title='',
+#         #tickfont={'size': 15}
+#     )
+#
+#     fig.update_yaxes(
+#         title='',
+#         ticksuffix="%",
+#         #tickfont={'size': 15}
+#     )
+#
+#     return fig
+
 """
 Plot Ratio Graphs
 """
+
 
 def plot_ratios(stats):
     wins = stats['WLD'][0]
@@ -352,10 +494,16 @@ def main():
     link = name_to_url(name_db, 'Khabib Nurmagomedov')
     stat_list = scrape_stats(link)
     # ratio = scrape_ratio(link)
-    fig = plot_targets_reverse(stat_list)
+    fig = plot_targets(stat_list)
+    # fig_r = plot_targets_reverse(stat_list)
+
     # fig = plot_totals(stat_list)
+    # fig_r = plot_totals_reverse(stat_list)
+
     # fig = plot_ratios(ratio)
+
     fig.show()
+    # fig_r.show()
 
 
 if __name__ == '__main__':
