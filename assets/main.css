@@ -167,8 +167,8 @@
 .row-three-col{
   height: 100%;
   padding: 0;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
@@ -194,13 +194,33 @@
   max-height: 100%;
 }
 
-/* Row Three*/
+.axis-col {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.axis-box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 33.3%;
+  width: 100%;
+}
+
+.axis-text {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Row Four*/
 .row-four-col{
   height: 100%;
   display: flex;
   padding: 0;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 0;
+  margin-right: 0;
   text-align: center;
 }
 

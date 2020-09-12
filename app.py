@@ -216,6 +216,31 @@ def content_layout(ch_name, op_name):
                         no_gutters=True)]
                     ),
 
+            dbc.Col(className='axis-col', width=2, children=[
+                dbc.Row(className='axis-box', children=[
+                    html.H5('Takedown Accuracy', className='axis-text')
+
+
+                ]),
+
+
+
+                dbc.Row(className='axis-box', children=[
+                    html.H5('Sig. Strike Accuracy', className='axis-text')
+
+                ]),
+                dbc.Row(className='axis-box', children=[
+                    html.H5('Total Strike Accuracy', className='axis-text')
+
+                ]),
+
+
+
+                # dbc.Row(html.H2('Takedown Accuracy'), className='axis-stat'),
+                # dbc.Row(html.H2('Sig. Strike Accuracy'), className='axis-stat'),
+                # dbc.Row(html.H2('Total Strike Accuracy'), className='axis-stat'),
+            ]),
+
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=8, children=[
