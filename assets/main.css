@@ -1,0 +1,313 @@
+/*Sidebar Settings*/
+.side-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 22rem;
+  padding: 1rem 1rem;
+  background-color: #303030;
+  /* background-color: #375a7f; */
+  text-align: center;
+}
+
+.side-text{
+  font-size: 1.25rem;
+  top: 2rem;
+}
+
+.title-line{
+  border-top: 0.2rem solid #ffffff;
+}
+
+.side-line{
+  border-top: 0.2rem solid #444444;
+}
+
+.bold-y{
+  font-weight: bold;
+  font-size: 2rem;
+  color: #F9AA33;
+}
+
+.input-a{
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #3498db;
+}
+
+.input-b{
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #e74c3c;
+}
+
+/* Content Area Settings */
+.content-area{
+  margin-left: 24rem;
+  margin-right: 2rem;
+  padding: 2rem 0.5rem;
+  height: 100vh;
+}
+
+/* Row Settings */
+.top-row{
+  height: 17%;
+}
+
+.row-two{
+  height: 8%;
+}
+
+.row-three{
+  height: 25%;
+  margin-top: 1rem;
+}
+
+.row-four{
+  height: 30%;
+  margin-top: 0.4rem;
+}
+
+.bot-row{
+  height: 15%;
+  margin-top: 0.5rem;
+}
+
+
+.row-col{
+  height: 100%;
+  margin: 1rem;
+  padding: 0;
+}
+
+
+
+/* Card Settings */
+.card-box{
+  height: 100%;
+  padding: 0;
+}
+
+
+/* Row one display settings*/
+.head-ch{
+  height: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: left;
+}
+
+.ch-name{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #3498db;
+}
+
+.ch-img{
+  display: inline-block;
+  max-height: 100%;
+}
+
+.head-op{
+  height: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: right;
+}
+
+.op-name{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #e74c3c;
+}
+
+.op-img{
+  display: inline-block;
+  max-height: 100%;
+}
+
+
+/* Row Two*/
+.wins{
+  height: 100%;
+  /* margin-left: 1rem;
+  margin-right: 1rem; */
+  padding: 0;
+}
+
+.win-holder{
+  height: 100%;
+}
+
+.win-card{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  padding: 0;
+  justify-items: center;
+}
+
+.win-head{
+  height: 40%;
+  padding: 0;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.win-head-text{
+  padding: 0;
+  margin: 0;
+  display:inline-block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.win-body{
+  height: 60%;
+  padding: 0;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.win-body-text{
+  padding: 0;
+  margin: 0;
+  display:inline-block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* .win-card{
+  height: 100%;
+  text-align: center;
+  padding: 0;
+}
+
+.win-head{
+  height: 40%;
+  padding: 0;
+}
+
+.win-body{
+  height: 60%;
+  padding: 0;
+} */
+
+
+/* Row Three*/
+.row-three-col{
+  height: 100%;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
+.row-three-col-row{
+  height: 100%;
+}
+
+
+.fig-col-three{
+  display: flex; 
+  text-align: center;
+  justify-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+.fig {
+  display: inline-block; 
+  width: 100%;
+  padding: 0;
+}
+
+/* .three-fig {
+  max-width: 100%;
+  max-height: 100%;
+} */
+
+.axis-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 0;
+  margin-right: 0;
+  border-top: 0.4rem solid #111111;
+  border-bottom: 0.5rem solid #111111;
+  background-color: #111111
+}
+
+.axis-box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  height: 29.33%;
+  background-color: #303030;
+  border-left: 1rem solid #3498db;
+  border-right: 1rem solid #e74c3c;
+}
+
+.axis-text {
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Row Four*/
+.row-four-col{
+  height: 100%;
+  display: flex;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+}
+
+.four-axis-col {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-content: flex-start; */
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #111111
+}
+
+.four-axis-title-box {
+  display: flex;
+  /* flex-direction: column; */
+  text-align: center;
+  justify-content: center;
+  height: 12.7%;
+  background-color: #111111;
+  font-weight: bold;
+  
+  
+}
+
+.four-axis-box {
+  display: flex;
+  /* flex-direction: column; */
+  text-align: center;
+  justify-content: center;
+  height: 25.2%;
+  background-color: #303030;
+  border-left: 1rem solid #3498db;
+  border-right: 1rem solid #e74c3c;
+}

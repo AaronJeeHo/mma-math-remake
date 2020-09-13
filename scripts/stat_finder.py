@@ -6,25 +6,17 @@ Python Version: 3.7
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-def name_to_url(name):
-    n_list = name.lower().replace("-", ' ').split(' ')
-    d_name = '-'.join(n_list).replace("'", '').replace(".", '')
+def name_to_url(db, name):
+    link = list(db.loc[db['name'] == name]['link'])
 
-    if len(n_list) > 2:
-        for n in n_list:
-            with open(f"../data/urls/fighters_{n[0]}.txt", 'r') as file:
-                for line in file:
-                    if d_name in line:
-                        return line.rstrip()
+    if len(link) > 0:
+        return link[0]
     else:
-        with open(f"../data/urls/fighters_{n_list[-1][0]}.txt", 'r') as file:
-            for line in file:
-                if d_name in line:
-                    return line.rstrip()
-
-    return None
+        return None
 
 
 def frac_to_stats(stats):
@@ -33,15 +25,18 @@ def frac_to_stats(stats):
     :param list stats:
     :return:
     """
-    landed = 0
-    attempt = 0
+    try:
+        landed = 0
+        attempt = 0
 
-    for frac in stats:
-        split_vals = frac.split('/')
-        landed += int(split_vals[0])
-        attempt += int(split_vals[1])
+        for frac in stats:
+            split_vals = frac.split('/')
+            landed += int(split_vals[0])
+            attempt += int(split_vals[1])
+        return round((landed / attempt) * 100, 2)
 
-    return round((landed / attempt) * 100, 2)
+    except ZeroDivisionError:
+        return 0.0
 
 
 def percent_to_stats(df, col):
@@ -51,11 +46,13 @@ def percent_to_stats(df, col):
     :param str col:
     :return:
     """
-    return round(df[col].str.rstrip('%').astype('float').mean(), 2)
+    try:
+        return round(df[col].str.rstrip('%').astype('float').mean(), 2)
+    except ZeroDivisionError:
+        return 0.0
 
 
-def scrape_ratio(f_name):
-    link = name_to_url(f_name)
+def scrape_ratio(link):
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -73,14 +70,13 @@ def scrape_ratio(f_name):
 
             return {'WLD': win_loss, 'KO': ko, 'SUB': sub}
         else:
-            return None
+            return {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
 
     except ImportError:
-        return None
+        return {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
 
 
-def scrape_stats(f_name):
-    link = name_to_url(f_name)
+def scrape_stats(link):
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -101,10 +97,15 @@ def scrape_stats(f_name):
 
         t_sigs = striking.loc[(striking['SSL'] != '-') &
                               (striking['SSA'] != '-') &
-                              (striking['SSA'] != '0')][['SSL', 'SSA']]
+                              (striking['SSA'].astype(str) != '0')][['SSL', 'SSA']]
 
-        sig_r = round((sum(t_sigs['SSL'].astype(float)) /
-                       sum(t_sigs['SSA'].astype(float))), 2) * 100
+        # sig_attempted = sum(t_sigs['SSA'].astype(float))
+
+        if t_sigs.empty:
+            sig_r = 0.0
+        else:
+            sig_r = round((sum(t_sigs['SSL'].astype(float)) /
+                           sum(t_sigs['SSA'].astype(float))), 2) * 100
 
         total_s = striking.loc[striking['TSL-TSA'] != '-'][['TSL-TSA']]
 
@@ -119,39 +120,57 @@ def scrape_stats(f_name):
         # Get clinch stats
         clinch = df_list[1]
 
-        takedowns = clinch.loc[((clinch['TDL'] != '0') |
-                                (clinch['TDA'] != '0')) &
+        takedowns = clinch.loc[((clinch['TDL'].astype(str) != '0') |
+                                (clinch['TDA'].astype(str) != '0')) &
                                (clinch['TDL'] != '-') &
                                (clinch['TDA'] != '-')]
 
-        td_a = round((sum(takedowns['TDL'].astype(float)) /
-                      sum(takedowns['TDA'].astype(float))), 2) * 100
+        # td_attempted = sum(takedowns['TDA'].astype(float))
+
+        if takedowns.empty:
+            td_a = 0.0
+        else:
+            td_a = round((sum(takedowns['TDL'].astype(float)) /
+                          sum(takedowns['TDA'].astype(float))), 2) * 100
 
         # Get ground stats
         ground = df_list[2]
 
-        body_gs = ground.loc[(ground['SGBA'] != '0') &
+        body_gs = ground.loc[(ground['SGBA'].astype(str) != '0') &
                              (ground['SGBA'] != '-') &
                              (ground['SGBL'] != '-')][['SGBL', 'SGBA']]
 
-        bgs_a = round((sum(body_gs['SGBL'].astype(float)) /
-                       sum(body_gs['SGBA'].astype(float))), 2) * 100
+        #bgs_attempted = sum(body_gs['SGBA'].astype(float))
 
-        head_gs = ground.loc[(ground['SGHA'] != '0') &
+        if body_gs.empty:
+            bgs_a = 0.0
+        else:
+            bgs_a = round((sum(body_gs['SGBL'].astype(float)) /
+                           sum(body_gs['SGBA'].astype(float))), 2) * 100
+
+        head_gs = ground.loc[(ground['SGHA'].astype(str) != '0') &
                              (ground['SGHA'] != '-') &
                              (ground['SGHL'] != '-')][['SGHL', 'SGHA']]
 
-        hgs_a = round((sum(head_gs['SGHL'].astype(float)) /
-                       sum(head_gs['SGHA'].astype(float))), 2) * 100
+        # hgs_attempted = sum(head_gs['SGHA'].astype(float))
 
-        leg_gs = ground.loc[(ground['SGLA'] != '0') &
-                             (ground['SGLA'] != '-') &
-                             (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
+        if head_gs.empty:
+            hgs_a = 0.0
+        else:
+            hgs_a = round((sum(head_gs['SGHL'].astype(float)) /
+                           sum(head_gs['SGHA'].astype(float))), 2) * 100
 
-        lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
-                       sum(leg_gs['SGLA'].astype(float))), 2) * 100
+        leg_gs = ground.loc[(ground['SGLA'].astype(str) != '0') &
+                            (ground['SGLA'] != '-') &
+                            (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
 
-        sub_a = sum((ground.loc[(ground['SM'] != '0') &
+        if leg_gs.empty:
+            lgs_a = 0.0
+        else:
+            lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
+                           sum(leg_gs['SGLA'].astype(float))), 2) * 100
+
+        sub_a = sum((ground.loc[(ground['SM'].astype(str) != '0') &
                                 (ground['SM'] != '-')]['SM']).astype(int))
 
         stats_only = ground.loc[:, 'SGBL':'SM']
@@ -182,14 +201,62 @@ def scrape_stats(f_name):
         return striking_stats, clinch_stats, ground_stats
 
     except ImportError:
-        print('Stats not found')
-        return None
+        striking_stats = {'Head Strike Accuracy': 0.0,
+                          'Body Strike Accuracy': 0.0,
+                          'Leg Strike Accuracy': 0.0,
+                          'Significant Strike Accuracy': 0.0,
+                          'Total Strike Accuracy': 0.0,
+                          'Breakdown Head': 0.0,
+                          'Breakdown Body': 0.0,
+                          'Breakdown Leg': 0.0
+                          }
+
+        clinch_stats = {'Takedown Accuracy': 0.0}
+
+        ground_stats = {'Ground Head Strike Accuracy': 0.0,
+                        'Ground Body Strike Accuracy': 0.0,
+                        'Ground Leg Strike Accuracy': 0.0,
+                        'Sub Attempts Per Fight': 0.0
+                        }
+        return striking_stats, clinch_stats, ground_stats
+
+
+def get_header_img(link):
+    response = requests.get(link, timeout=10)
+    src = response.content
+    # src = urlopen(link)
+    soup = BeautifulSoup(src, 'html.parser')
+    img_link = None
+    f_name = None
+    l_name = None
+
+    headshot = soup.find_all('figure', class_='PlayerHeader__HeadShot')
+    name_header = soup.find_all('h1', class_='PlayerHeader__Name')
+
+    if len(headshot) > 0:
+        # img_list = (headshot[0].find_all('img'))
+        split_id = link.split('id/')[-1]
+        id_num = split_id.split('/')[0]
+        img_link = (f"https://a.espncdn.com/combiner/i?img=/i/headshots/"
+                    f"mma/players/full/{id_num}.png&w=350&h=254")
+
+    if len(name_header) > 0:
+        name_list = name_header[0].find_all('span')
+        f_name = name_list[0].text
+        l_name = name_list[1].text
+
+    return img_link, f_name, l_name
 
 
 def main():
-    # link = name_to_url('Khabib Nurmagomedov')
-    # stats = scrape_stats(link)
-    stats = scrape_ratio('Khabib Nurmagomedov')
+    name_db = pd.read_csv('../data/urls/name_url.tsv',
+                          sep='\t', header=None, names=['name', 'link'])
+    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
+    link = name_to_url(name_db, 'Niina Aaltonen')
+    stats = scrape_stats(link)
+    for d in stats:
+        for i in d:
+            print(i, d[i])
 
 
 if __name__ == '__main__':
