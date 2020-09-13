@@ -192,7 +192,10 @@ def plot_targets_reverse(stats):
 
     fig.update_yaxes(
         showgrid=False,
-        title='',
+        title={
+            'text': '',
+            'standoff': 0
+        },
         ticksuffix=" Strikes",
         side="right",
         visible=False,
@@ -271,7 +274,10 @@ def plot_totals(stats):
 
     fig.update_yaxes(
         showgrid=False,
-        title='',
+        title={
+            'text': '',
+            'standoff': 0
+        },
         visible=False
         #tickfont={'size': 15}
     )
@@ -340,9 +346,12 @@ def plot_totals_reverse(stats):
 
     fig.update_yaxes(
         showgrid=False,
-        title='',
+        title={
+            'text': '',
+            'standoff': 0
+        },
         side="right",
-        visible = False
+        visible=False
         #tickfont={'size': 15}
     )
 
@@ -437,7 +446,7 @@ def plot_ratios(stats):
     fig.update_layout(showlegend=False,
                       autosize=True,
                       margin={
-                          'pad': 5,
+                          'pad': 0,
                           'l': 0,
                           'r': 0,
                           'b': 0,
@@ -447,44 +456,6 @@ def plot_ratios(stats):
 
     return fig
 
-
-# def plot_ratios(stats):
-#     wins = stats['WLD'][0]
-#     ko = stats['KO'][0]
-#     sub = stats['SUB'][0]
-#     dec = wins - ko - sub
-#
-#     ratio_data = {'Method': ['Decisions', "(T)KO's", 'Submissions'],
-#                   'Count': [dec, ko, sub]}
-#
-#     df = pd.DataFrame(ratio_data, columns=['Method', 'Count'])
-#     fig = px.pie(data_frame=df,
-#                  values='Count',
-#                  names='Method',
-#                  title='Win Breakdown',
-#                  template='plotly_dark',
-#                  color='Method',
-#                  color_discrete_map={'Decisions': '#4ACFAC',
-#                                      "(T)KO's": '#F9AA33',
-#                                      'Submissions': '#BB86FC'}
-#                  )
-#
-#     fig.update_layout(showlegend=False,
-#
-#                       title={
-#                           'x': 0.5, 'y': 0.97,
-#                           'xanchor': 'center',
-#                           'yanchor': 'top',
-#                           'font': {'size': 25}}
-#                       )
-#
-#     fig.update_traces(textposition='inside',
-#                       textinfo='label+value',
-#                       textfont={'size': 40},
-#                       hovertemplate='<b>%{label}</b><br> %{percent}'
-#                       )
-#
-#     return fig
 
 
 def main():

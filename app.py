@@ -89,18 +89,30 @@ def get_wins(wins):
     sub = f"{wins['SUB'][0]}-{wins['SUB'][1]}"
     return dbc.CardGroup(className='win-holder', children=[
         dbc.Card(className='win-card', children=[
-            dbc.CardHeader("W-L-D", className='win-head'),
-            dbc.CardBody(f"{wld}", className='win-body')
-        ]),
+            dbc.CardHeader(className='win-head', children=[
+                html.H5("W-L-D", className='win-head-text')]
+                           ),
+            dbc.CardBody(className='win-body', children=[
+                html.H5(f"{wld}", className='win-body-text')]
+                         )]
+                 ),
         dbc.Card(className='win-card', children=[
-            dbc.CardHeader("(T)KO", className='win-head'),
-            dbc.CardBody(f"{ko}", className='win-body')
-        ]),
+            dbc.CardHeader(className='win-head', children=[
+                html.H5("(T)KO", className='win-head-text')]
+                           ),
+            dbc.CardBody(className='win-body', children=[
+                html.H5(f"{ko}", className='win-body-text')]
+                         )]
+                 ),
         dbc.Card(className='win-card', children=[
-            dbc.CardHeader("Sub", className='win-head'),
-            dbc.CardBody(f"{sub}", className='win-body')
-        ])
-    ])
+            dbc.CardHeader(className='win-head', children=[
+                html.H5("Sub", className='win-head-text')]
+                           ),
+            dbc.CardBody(className='win-body', children=[
+                html.H5(f"{sub}", className='win-body-text')]
+                         )]
+                 )]
+                         )
 
 
 # Row Three Helpers
@@ -213,32 +225,23 @@ def content_layout(ch_name, op_name):
                     dbc.Col(className='fig-col-three', width=8, children=[
                         insert_fig(ch_plots[0])
                     ])],
-                        no_gutters=True)]
+                        no_gutters=True, justify='between')]
                     ),
 
             dbc.Col(className='axis-col', width=2, children=[
                 dbc.Row(className='axis-box', children=[
-                    html.H5('Takedown Accuracy', className='axis-text')
-
-
+                    html.H4('Takedown Accuracy', className='axis-text')
                 ]),
-
-
 
                 dbc.Row(className='axis-box', children=[
-                    html.H5('Sig. Strike Accuracy', className='axis-text')
+                    html.H4('Sig. Strike Accuracy', className='axis-text')
 
-                ]),
+                ], style={'border-top-style': 'none',
+                          'border-bottom-style': 'none'}),
                 dbc.Row(className='axis-box', children=[
-                    html.H5('Total Strike Accuracy', className='axis-text')
+                    html.H4('Total Strike Accuracy', className='axis-text')
 
                 ]),
-
-
-
-                # dbc.Row(html.H2('Takedown Accuracy'), className='axis-stat'),
-                # dbc.Row(html.H2('Sig. Strike Accuracy'), className='axis-stat'),
-                # dbc.Row(html.H2('Total Strike Accuracy'), className='axis-stat'),
             ]),
 
             dbc.Col(className='row-three-col', width=5, children=[
@@ -249,13 +252,35 @@ def content_layout(ch_name, op_name):
                     dbc.Col(className='fig-col-three', width=4, children=[
                         insert_fig(op_plots[1])
                     ])],
-                        no_gutters=True)]
+                        no_gutters=True, justify='between')]
                     )],
                 justify='between'),
 
 
         dbc.Row(className="row-four", children=[
             dbc.Col(insert_fig(ch_plots[2]), width=5, className='row-four-col'),
+
+            dbc.Col(className='four-axis-col', width=2, children=[
+                dbc.Row(className='four-axis-title-box', children=[
+                    html.H4('Target Breakdown', className='axis-text')
+                ], style={'color': '#F9AA33'}),
+
+                dbc.Row(className='four-axis-box', children=[
+                    html.H3('Head', className='axis-text')
+                ]),
+
+                dbc.Row(className='four-axis-box', children=[
+                    html.H3('Body', className='axis-text')
+
+                ], style={'border-top-style': 'none',
+                          'border-bottom-style': 'none'}),
+                dbc.Row(className='four-axis-box', children=[
+                    html.H3('Leg', className='axis-text')
+
+                ]),
+            ]),
+
+
             dbc.Col(insert_fig(op_plots[2]), width=5, className='row-four-col')],
                 justify='between'
                 ),
