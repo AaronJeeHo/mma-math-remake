@@ -7,6 +7,7 @@ import sys
 import pandas as pd
 from pathlib import Path
 from _collections import deque
+from scripts.stat_finder import name_to_url
 
 
 class FightGraph:
@@ -43,16 +44,29 @@ def get_losses(fight_file):
         return None
 
 
-def name_to_file(name):
-    n_list = name.lower().replace("-", ' ').split(' ')
-    d_name = '-'.join(n_list).replace("'", '').replace(".", '')
+# def name_to_file(name):
+#     n_list = name.lower().replace("-", ' ').split(' ')
+#     d_name = '-'.join(n_list).replace("'", '').replace(".", '')
+#
+#     if len(n_list) > 2:
+#         for n in n_list:
+#             if Path(f"../data/fighters/{n[0]}-fighters/{d_name}").is_dir():
+#                 return f"../data/fighters/{n[0]}-fighters/{d_name}"
+#     else:
+#         return f"../data/fighters/{n_list[-1][0]}-fighters/{d_name}"
 
-    if len(n_list) > 2:
-        for n in n_list:
-            if Path(f"../data/fighters/{n[0]}-fighters/{d_name}").is_dir():
-                return f"../data/fighters/{n[0]}-fighters/{d_name}"
-    else:
-        return f"../data/fighters/{n_list[-1][0]}-fighters/{d_name}"
+
+def name_to_file(df, name):
+    return name_to_url(df, name)
+    # n_list = name.lower().replace("-", ' ').split(' ')
+    # d_name = '-'.join(n_list).replace("'", '').replace(".", '')
+    #
+    # if len(n_list) > 2:
+    #     for n in n_list:
+    #         if Path(f"../data/fighters/{n[0]}-fighters/{d_name}").is_dir():
+    #             return f"../data/fighters/{n[0]}-fighters/{d_name}"
+    # else:
+    #     return f"../data/fighters/{n_list[-1][0]}-fighters/{d_name}"
 
 
 def make_graph(fighter_a, fighter_b):
@@ -138,11 +152,16 @@ def mma_math(fighter_a, fighter_b):
 
 
 def main():
+    name_db = pd.read_csv('../data/urls/name_url.tsv',
+                          sep='\t', header=None, names=['name', 'link'])
     f1 = 'Henry Cejudo'
     f2 = 'Stipe Miocic'
-    path = mma_math(f1, f2)
 
-    print(' -> '.join(path))
+    # print(name_to_file(name_db, f2))
+
+    # path = mma_math(f1, f2)
+    #
+    # print(' -> '.join(path))
 
 
 if __name__ == '__main__':

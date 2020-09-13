@@ -408,10 +408,6 @@ def plot_combined_totals(challenger, opponent, ch_stats, op_stats):
 
 
 
-
-
-
-
 """
 Plot Ratio Graphs
 """

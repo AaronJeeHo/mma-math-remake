@@ -25,15 +25,18 @@ def frac_to_stats(stats):
     :param list stats:
     :return:
     """
-    landed = 0
-    attempt = 0
+    try:
+        landed = 0
+        attempt = 0
 
-    for frac in stats:
-        split_vals = frac.split('/')
-        landed += int(split_vals[0])
-        attempt += int(split_vals[1])
+        for frac in stats:
+            split_vals = frac.split('/')
+            landed += int(split_vals[0])
+            attempt += int(split_vals[1])
+        return round((landed / attempt) * 100, 2)
 
-    return round((landed / attempt) * 100, 2)
+    except ZeroDivisionError:
+        return 0.0
 
 
 def percent_to_stats(df, col):
@@ -43,11 +46,13 @@ def percent_to_stats(df, col):
     :param str col:
     :return:
     """
-    return round(df[col].str.rstrip('%').astype('float').mean(), 2)
+    try:
+        return round(df[col].str.rstrip('%').astype('float').mean(), 2)
+    except ZeroDivisionError:
+        return 0.0
 
 
 def scrape_ratio(link):
-    # link = name_to_url(f_name)
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -65,14 +70,13 @@ def scrape_ratio(link):
 
             return {'WLD': win_loss, 'KO': ko, 'SUB': sub}
         else:
-            return None
+            return {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
 
     except ImportError:
-        return None
+        return {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
 
 
 def scrape_stats(link):
-    # link = name_to_url(f_name)
     split_url = link.split('_')
     stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
@@ -98,7 +102,7 @@ def scrape_stats(link):
         # sig_attempted = sum(t_sigs['SSA'].astype(float))
 
         if t_sigs.empty:
-            sig_r = 0
+            sig_r = 0.0
         else:
             sig_r = round((sum(t_sigs['SSL'].astype(float)) /
                            sum(t_sigs['SSA'].astype(float))), 2) * 100
@@ -124,7 +128,7 @@ def scrape_stats(link):
         # td_attempted = sum(takedowns['TDA'].astype(float))
 
         if takedowns.empty:
-            td_a = 0
+            td_a = 0.0
         else:
             td_a = round((sum(takedowns['TDL'].astype(float)) /
                           sum(takedowns['TDA'].astype(float))), 2) * 100
@@ -139,7 +143,7 @@ def scrape_stats(link):
         #bgs_attempted = sum(body_gs['SGBA'].astype(float))
 
         if body_gs.empty:
-            bgs_a = 0
+            bgs_a = 0.0
         else:
             bgs_a = round((sum(body_gs['SGBL'].astype(float)) /
                            sum(body_gs['SGBA'].astype(float))), 2) * 100
@@ -151,7 +155,7 @@ def scrape_stats(link):
         # hgs_attempted = sum(head_gs['SGHA'].astype(float))
 
         if head_gs.empty:
-            hgs_a = 0
+            hgs_a = 0.0
         else:
             hgs_a = round((sum(head_gs['SGHL'].astype(float)) /
                            sum(head_gs['SGHA'].astype(float))), 2) * 100
@@ -160,11 +164,8 @@ def scrape_stats(link):
                             (ground['SGLA'] != '-') &
                             (ground['SGLL'] != '-')][['SGLL', 'SGLA']]
 
-        # lgs_attempted = sum(leg_gs['SGLA'].astype(float))
-        # print(lgs_attempted)
-        # print(leg_gs)
         if leg_gs.empty:
-            lgs_a = 0
+            lgs_a = 0.0
         else:
             lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
                            sum(leg_gs['SGLA'].astype(float))), 2) * 100
@@ -200,8 +201,24 @@ def scrape_stats(link):
         return striking_stats, clinch_stats, ground_stats
 
     except ImportError:
-        print('Stats not found')
-        return None
+        striking_stats = {'Head Strike Accuracy': 0.0,
+                          'Body Strike Accuracy': 0.0,
+                          'Leg Strike Accuracy': 0.0,
+                          'Significant Strike Accuracy': 0.0,
+                          'Total Strike Accuracy': 0.0,
+                          'Breakdown Head': 0.0,
+                          'Breakdown Body': 0.0,
+                          'Breakdown Leg': 0.0
+                          }
+
+        clinch_stats = {'Takedown Accuracy': 0.0}
+
+        ground_stats = {'Ground Head Strike Accuracy': 0.0,
+                        'Ground Body Strike Accuracy': 0.0,
+                        'Ground Leg Strike Accuracy': 0.0,
+                        'Sub Attempts Per Fight': 0.0
+                        }
+        return striking_stats, clinch_stats, ground_stats
 
 
 def get_header_img(link):
@@ -234,11 +251,12 @@ def get_header_img(link):
 def main():
     name_db = pd.read_csv('../data/urls/name_url.tsv',
                           sep='\t', header=None, names=['name', 'link'])
-    #link = name_to_url(name_db, 'Khabib Nurmagomedov')
-    # link = name_to_url(name_db, 'Daniel Cormier')
-    # stats = scrape_stats(link)
-    # print(stats)
-    pass
+    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
+    link = name_to_url(name_db, 'Niina Aaltonen')
+    stats = scrape_stats(link)
+    for d in stats:
+        for i in d:
+            print(i, d[i])
 
 
 if __name__ == '__main__':

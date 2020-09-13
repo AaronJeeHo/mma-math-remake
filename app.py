@@ -68,7 +68,7 @@ def empty_card():
 
 
 def challenger_img(link, f_name, l_name):
-    return [html.Img(className="ch-img", src=link),
+    return [html.Img(className="ch-img", src=link, alt=f"No Image"),
             html.Div(className="ch-name", children=[
                 html.H2(f_name), html.H2(l_name)])
             ]
@@ -93,7 +93,7 @@ def get_wins(wins):
                 html.H5("W-L-D", className='win-head-text')]
                            ),
             dbc.CardBody(className='win-body', children=[
-                html.H5(f"{wld}", className='win-body-text')]
+                html.H4(f"{wld}", className='win-body-text')]
                          )]
                  ),
         dbc.Card(className='win-card', children=[
@@ -101,7 +101,7 @@ def get_wins(wins):
                 html.H5("(T)KO", className='win-head-text')]
                            ),
             dbc.CardBody(className='win-body', children=[
-                html.H5(f"{ko}", className='win-body-text')]
+                html.H4(f"{ko}", className='win-body-text')]
                          )]
                  ),
         dbc.Card(className='win-card', children=[
@@ -109,7 +109,7 @@ def get_wins(wins):
                 html.H5("Sub", className='win-head-text')]
                            ),
             dbc.CardBody(className='win-body', children=[
-                html.H5(f"{sub}", className='win-body-text')]
+                html.H4(f"{sub}", className='win-body-text')]
                          )]
                  )]
                          )
@@ -358,7 +358,7 @@ def check_name(a_name, b_name,
 )
 def update_dash(n, a_value, b_value):
     if n is None:
-        return content_layout('Khabib Nurmagomedov', 'Conor McGregor')
+        return content_layout('Khabib Nurmagomedov', 'Niina Aaltonen')
         # return html.H1('PLEASE INPUT FIGHTERS', className='content-area')
     else:
         ch = a_value
