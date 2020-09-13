@@ -1,7 +1,0 @@
-Ken Hasegawa	L	Decision - Split	3
-Keita Nakamura	L	Decision - Majority	3
-Akihiro Murayama	L	Decision - Unanimous	3
-Akihiro Murayama	D	Draw	3
-Takasuke Kume	W	Decision - Unanimous	3
-Akihiro Murayama	W	Decision - Unanimous	2
-Takasuke Kume	D	Draw	2

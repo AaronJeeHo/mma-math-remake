@@ -1,8 +1,0 @@
-Ivan Vicic	W	TKO (Strikes)	1
-Robert Valentin	W	TKO	3
-Bart Cillessen	W	KO (Punch)	1
-Milan Stojadinovic	W	KO (Punch)	1
-Sasa Mihajlovic	W	TKO (Punches)	1
-Igor Kantar	W	TKO (Punches)	1
-Milan Bodonji	W	TKO	1
-Mattia Calore	W	TKO	1

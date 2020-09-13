@@ -1,7 +1,0 @@
-Jarred Brooks	D	No Contest	1
-Yoshiro Maeda	L	Decision - Majority	3
-Tatsumitsu Wada	L	Decision - Unanimous	3
-Ryuichi Miki	L	Decision - Unanimous	3
-Kiyotaka Shimizu	W	Majority Decision	3
-Ryuichi Miki	W	Decision - Split	2
-Kosuke Suzuki	W	KO/TKO	2

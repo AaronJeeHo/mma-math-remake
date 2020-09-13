@@ -1,6 +1,0 @@
-Tom Watson	W	Split Decision	3
-Ian Freeman	L	Unanimous Decision	3
-Evangelista Santos	L	TKO	1
-Michael Bisping	L	KO	3
-Michael Bisping	L	TKO	2
-Travis Lutter	L	Submission (Rear Naked Choke)	2

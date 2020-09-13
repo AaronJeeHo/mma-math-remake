@@ -1,4 +1,0 @@
-Mei Yamaguchi	D	Decision - Majority (Draw)	2
-Emi Fujino	W	Decision - Majority	3
-Mei Yamaguchi	L	Decision - Split	3
-Megumi Fujii	L	Decision - Unanimous	2
