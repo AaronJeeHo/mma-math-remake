@@ -3,13 +3,8 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
-import requests
-import csv
 import pandas as pd
-from bs4 import BeautifulSoup
-from pathlib import Path
-from scripts.stat_finder import name_to_url
-
+from urllib.error import HTTPError
 
 def update_record(link):
     split_url = link.split('_')
@@ -26,6 +21,23 @@ def update_record(link):
         print('Database not written')
         return None
 
+    except HTTPError as err:
+        print(err.code)
+        print(f"Problem reaching {link}")
+        print("Written to url_errors.txt")
+        with open("../data/urls/url_errors.txt", "a") as file:
+            file.write(f"{link}\n")
+
+
+def build_from_file(url_file):
+    with open(url_file, 'r') as file:
+        url_list = [line.rstrip() for line in file]
+
+    for link in url_list:
+        update_record(link)
+
+    print('ALL RECORDS FOUND!')
+
 
 def build_all_records(name_urls):
     """
@@ -41,7 +53,6 @@ def build_all_records(name_urls):
         update_record(link)
 
     print('ALL RECORDS FOUND!')
-
 
 
 # def get_record(link):
@@ -119,8 +130,8 @@ def build_all_records(name_urls):
 
 
 def main():
-    # update_record('https://www.espn.com/mma/fighter/_/id/2504951/stipe-miocic')
-    build_all_records('../data/urls/name_url.tsv')
+    # build_all_records('../data/urls/name_url.tsv')
+    pass
 
 
 
