@@ -1,6 +1,0 @@
-Calvin Kattar	L	Decision - Unanimous	5
-Pat Audinwood	L	Majority Decision	3
-Pat Audinwood	D	Draw	3
-Dan Lauzon	L	TKO	1
-David Smith	W	Decision - Unanimous	3
-Raul Castillo	L	KO/TKO	1

@@ -1,8 +1,0 @@
-Kazuki Tokudome	L	KO	1
-Naoyuki Kotani	L	Decision - Unanimous	3
-Yusuke Kasuya	D	Decision - Split (Draw)	3
-Travis Perzynski	W	Decision - Majority	3
-Shinji Sasaki	W	TKO	1
-Kotetsu Boku	L	Decision - Unanimous	3
-Shinji Sasaki	W	Unanimous Decision	2
-Mizuto Hirota	L	Unanimous Decision	2

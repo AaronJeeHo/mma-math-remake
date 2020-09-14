@@ -1,2 +1,0 @@
-Mark Lemminger	L	Decision - Split	5
-Jeff Peterson	L	Decision - Split	3

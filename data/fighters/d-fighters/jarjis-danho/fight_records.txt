@@ -1,9 +1,0 @@
-Christian Colombo	D	Decision - Majority (Draw)	3
-Daniel Omielanczuk	L	Decision - Majority	3
-Stefan Traunmuller	W	TKO	1
-Marcus Vanttinen	W	TKO	3
-Mohamed Abdel Karim	W	TKO	1
-David Shvelidze	D	No Contest	3
-Igor Swonkin	W	TKO	1
-Jermaine Van Rooy	W	TKO	2
-Admir Bogucanin	W	TKO	1
