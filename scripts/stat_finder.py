@@ -6,6 +6,7 @@ Python Version: 3.7
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from pathlib import Path
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
@@ -249,7 +250,8 @@ def get_header_img(link):
 
 
 def main():
-    name_db = pd.read_csv('../data/urls/name_url.tsv',
+    path = Path(__file__).parent
+    name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
                           sep='\t', header=None, names=['name', 'link'])
     # link = name_to_url(name_db, 'Khabib Nurmagomedov')
     link = name_to_url(name_db, 'Niina Aaltonen')
