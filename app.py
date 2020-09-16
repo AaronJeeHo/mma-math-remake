@@ -19,7 +19,8 @@ from scripts.path_finder import mma_math
 FONT_AWESOME = "https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 
 app = dash.Dash(__name__,
-                external_stylesheets=[dbc.themes.DARKLY, FONT_AWESOME])
+                external_stylesheets=[dbc.themes.DARKLY, FONT_AWESOME],
+                suppress_callback_exceptions=True)
 # Data
 
 path = Path(__file__).parent
@@ -132,18 +133,6 @@ def find_path(challenger, opponent):
     fight_path = mma_math(name_db, challenger, opponent)
     print(fight_path)
     print(len(fight_path))
-    return html.Div(className='path-row', children=[
-        dcc.Slider(
-            id='path-slider',
-            min=0,
-            max=len(fight_path) - 1,
-            step=None,
-            marks={i: fight_path[i] for i in range(len(fight_path))}
-        )]
-                    )
-
-
-def initial_path(challenger, opponent):
     return [
         dbc.Button(challenger, id='ch-button', className='ch-button'),
 
@@ -153,6 +142,32 @@ def initial_path(challenger, opponent):
         ]),
         dbc.Button(opponent, id='op-button', className='op-button')
     ]
+
+
+def initial_path(challenger, opponent):
+    return [
+        dbc.Button(challenger, id='ch-button', className='ch-button'),
+
+        dcc.Loading(id='path-loader', children=[
+            html.Div(id='path-holder', className='path-holder', children=[
+                # html.I(className='fas fa-arrow-right fa-lg arrow')
+            ])]
+                    ),
+
+        dbc.Button(opponent, id='op-button', className='op-button')
+    ]
+
+
+# def initial_path(challenger, opponent):
+#     return [
+#         dbc.Button(challenger, id='ch-button', className='ch-button'),
+#
+#         html.Div(id='path-holder', className='path-holder', children=[
+#             html.I(className='fas fa-arrow-right fa-lg arrow')
+#
+#         ]),
+#         dbc.Button(opponent, id='op-button', className='op-button')
+#     ]
 
 
 """-----------------------------------------------
@@ -318,9 +333,24 @@ def content_layout(ch_name, op_name):
 # App Layout
 app.layout = html.Div(children=[
     side_bar(),
-    html.Div(id='layout', children=[
-        ]
-             )])
+    dbc.Spinner(id='load-layout', size='lg', children=[
+        html.Div(id='layout')],
+                spinner_style={'margin-left': '55vw',
+                               'margin-top': '45vh',
+                               'width': '5rem',
+                               'height': '5rem'}
+
+                )
+
+])
+
+
+
+# app.layout = html.Div(children=[
+#     side_bar(),
+#     html.Div(id='layout', children=[
+#         ]
+#              )])
 
 
 # CALLBACKS
@@ -336,7 +366,9 @@ app.layout = html.Div(children=[
      State("fighter-b", "valid"),
      State("fighter-a", "invalid"),
      State("fighter-b", "invalid"),
-     State("submit", "disabled")]
+     State("submit", "disabled")],
+    prevent_initial_call=True
+
 )
 def check_name(a_name, b_name,
                a_curr_val, b_curr_val, a_curr_inv, b_curr_inv, b_dis):
@@ -348,6 +380,8 @@ def check_name(a_name, b_name,
     b_valid = b_curr_val
     b_invalid = b_curr_inv
     is_disabled = b_dis
+
+    # print(dash.callback_context)
 
     if (a_link is not None) and (a_name != b_name):
         a_valid = True
@@ -385,6 +419,28 @@ def update_dash(n, a_value, b_value):
         ch = a_value
         op = b_value
         return content_layout(a_value, b_value)
+
+
+@app.callback(
+    Output('path-holder', 'children'),
+    [Input("layout", "children")],
+    [State("fighter-a", "value"),
+     State("fighter-b", "value")],
+    prevent_initial_call=True
+)
+def update_path(layout, ch_name, op_name):
+    print('Layout updated...finding path')
+    return f"{ch_name} -> {op_name}"
+
+
+# @app.callback(
+#     Output('path-holder', 'children'),
+#     [Input('layout', 'children'),
+#      Input('op-button', 'value')]
+# )
+# def test(ch_name, op_name):
+#     print('oof')
+#     return None
 
 
 # Run App
