@@ -7,18 +7,23 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
+from pathlib import Path
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
 
 from scripts.stat_finder import *
 from scripts.visual import *
+from scripts.path_finder import mma_math
 
+FONT_AWESOME = "https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
+app = dash.Dash(__name__,
+                external_stylesheets=[dbc.themes.DARKLY, FONT_AWESOME])
 # Data
 
-name_db = pd.read_csv('data/urls/name_url.tsv',
+path = Path(__file__).parent
+name_db = pd.read_csv((path / "data/urls/name_url.tsv"),
                       sep='\t', header=None, names=['name', 'link'])
 
 """-----------------------------------------------
@@ -121,24 +126,33 @@ def insert_fig(fig):
     return dcc.Graph(className='fig', figure=fig, responsive='auto')
 
 
-# Example Graph
+# Path Finder
+
+def find_path(challenger, opponent):
+    fight_path = mma_math(name_db, challenger, opponent)
+    print(fight_path)
+    print(len(fight_path))
+    return html.Div(className='path-row', children=[
+        dcc.Slider(
+            id='path-slider',
+            min=0,
+            max=len(fight_path) - 1,
+            step=None,
+            marks={i: fight_path[i] for i in range(len(fight_path))}
+        )]
+                    )
 
 
-def ex_bar():
-    data = px.data.gapminder()
+def initial_path(challenger, opponent):
+    return [
+        dbc.Button(challenger, id='ch-button', className='ch-button'),
 
-    data_canada = data[data.country == 'Canada']
-    fig = px.bar(data_canada, x='year', y='pop',
-                 hover_data=['lifeExp', 'gdpPercap'], color='lifeExp',
-                 labels={'pop': 'population of Canada'}, height=400)
-    return fig
+        html.Div(id='path-holder', className='path-holder', children=[
+            html.I(className='fas fa-arrow-right fa-lg arrow')
 
-
-def ex_pie():
-    df = px.data.tips()
-    fig = px.pie(df, values='tip', names='day')
-
-    return fig
+        ]),
+        dbc.Button(opponent, id='op-button', className='op-button')
+    ]
 
 
 """-----------------------------------------------
@@ -287,8 +301,15 @@ def content_layout(ch_name, op_name):
 
 
         dbc.Row(className="bot-row", children=[
-            dbc.Col(id='path', width=12)]
-        )
+            dbc.Col(id='bot-row-col', className='bot-row-col', width=12, children=[
+                dbc.Row(className='path-title', children=[
+                    html.H4('MMA-MATH Path', className='path-title-text')
+                ]),
+                dbc.Row(id='path-row', className='path-row',
+                        children=initial_path(ch_name, op_name)
+                        )
+            ])
+        ])
     ])
 
 
@@ -358,7 +379,7 @@ def check_name(a_name, b_name,
 )
 def update_dash(n, a_value, b_value):
     if n is None:
-        return content_layout('Khabib Nurmagomedov', 'Niina Aaltonen')
+        return content_layout('Khabib Nurmagomedov', 'Conor McGregor')
         # return html.H1('PLEASE INPUT FIGHTERS', className='content-area')
     else:
         ch = a_value

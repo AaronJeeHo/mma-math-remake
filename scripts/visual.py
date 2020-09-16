@@ -5,6 +5,7 @@ Python Version: 3.7
 
 import plotly.express as px
 import pandas as pd
+from pathlib import Path
 from scripts.stat_finder import scrape_stats, scrape_ratio, name_to_url
 
 """
@@ -455,13 +456,15 @@ def plot_ratios(stats):
 
 
 def main():
-    name_db = pd.read_csv('../data/urls/name_url.tsv',
+    path = Path(__file__).parent
+    name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
                           sep='\t', header=None, names=['name', 'link'])
     link = name_to_url(name_db, 'Khabib Nurmagomedov')
     op_link = name_to_url(name_db, 'Conor McGregor')
 
     stat_list = scrape_stats(link)
     op_stat_list = scrape_stats(op_link)
+
     # ratio = scrape_ratio(link)
     # fig = plot_targets(stat_list)
     # fig_r = plot_targets_reverse(stat_list)
@@ -474,8 +477,8 @@ def main():
     # fig.show()
     # fig_r.show()
 
-    plot_combined_totals('Khabib Nurmagomedov', 'Conor McGregor',
-                         stat_list, op_stat_list)
+    # plot_combined_totals('Khabib Nurmagomedov', 'Conor McGregor',
+    #                      stat_list, op_stat_list)
 
 
 if __name__ == '__main__':
