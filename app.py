@@ -129,45 +129,57 @@ def insert_fig(fig):
 
 # Path Finder
 
-def find_path(challenger, opponent):
-    fight_path = mma_math(name_db, challenger, opponent)
-    print(fight_path)
-    print(len(fight_path))
-    return [
-        dbc.Button(challenger, id='ch-button', className='ch-button'),
-
-        html.Div(id='path-holder', className='path-holder', children=[
-            html.I(className='fas fa-arrow-right fa-lg arrow')
-
-        ]),
-        dbc.Button(opponent, id='op-button', className='op-button')
-    ]
-
-
 def initial_path(challenger, opponent):
     return [
         dbc.Button(challenger, id='ch-button', className='ch-button'),
 
-        dcc.Loading(id='path-loader', children=[
-            html.Div(id='path-holder', className='path-holder', children=[
-                # html.I(className='fas fa-arrow-right fa-lg arrow')
-            ])]
+        dbc.Spinner(id='path-loader', children=[
+            html.Div(id='path-holder', className='path-holder')]
                     ),
 
         dbc.Button(opponent, id='op-button', className='op-button')
     ]
 
 
-# def initial_path(challenger, opponent):
-#     return [
-#         dbc.Button(challenger, id='ch-button', className='ch-button'),
+def find_path(fight_path):
+    path_list = [html.I(className='fas fa-arrow-right fa-lg arrow')]
+
+    if len(fight_path) > 2:
+        win_list = fight_path[1:-1]
+
+        for fighter in win_list:
+            f_id = fighter.replace(' ', '')
+            path_list.append(
+                dbc.Button(fighter, id=f_id, className='win-button',
+                           style={'margin-left': '0.5em',
+                                  'margin-right': '0.5em'})
+            )
+
+            path_list.append(
+                html.I(className='fas fa-arrow-right fa-lg arrow')
+            )
+
+    return path_list
+
+# def find_path(challenger, opponent):
+#     fight_path = mma_math(name_db, challenger, opponent)
+#     path_list = [html.I(className='fas fa-arrow-right fa-lg arrow')]
 #
-#         html.Div(id='path-holder', className='path-holder', children=[
-#             html.I(className='fas fa-arrow-right fa-lg arrow')
+#     if len(fight_path) > 2:
+#         win_list = fight_path[1:-1]
 #
-#         ]),
-#         dbc.Button(opponent, id='op-button', className='op-button')
-#     ]
+#         for fighter in win_list:
+#             path_list.append(
+#                 dbc.Button(fighter, className='win-button',
+#                            style={'margin-left': '0.5em',
+#                                   'margin-right': '0.5em'})
+#             )
+#
+#             path_list.append(
+#                 html.I(className='fas fa-arrow-right fa-lg arrow')
+#             )
+#
+#     return path_list
 
 
 """-----------------------------------------------
@@ -188,7 +200,13 @@ def side_bar():
             html.P('This is the law of MMA Math', className='bold-y')
         ]),
         html.Hr(className='side-line'),
-        fighter_input()]
+        fighter_input(),
+
+        html.Div(id='current-challenger', style={'display': 'none'}),
+        html.Div(id='current-opponent', style={'display': 'none'}),
+        html.Div(id='current-path', style={'display': 'none'})
+
+    ]
                     )
 
 
@@ -333,24 +351,17 @@ def content_layout(ch_name, op_name):
 # App Layout
 app.layout = html.Div(children=[
     side_bar(),
-    dbc.Spinner(id='load-layout', size='lg', children=[
-        html.Div(id='layout')],
-                spinner_style={'margin-left': '55vw',
-                               'margin-top': '45vh',
-                               'width': '5rem',
-                               'height': '5rem'}
-
-                )
+    html.Div(id='layout')
+    # dbc.Spinner(id='load-layout', size='lg', children=[
+    #     html.Div(id='layout')],
+    #             spinner_style={'margin-left': '55vw',
+    #                            'margin-top': '45vh',
+    #                            'width': '5rem',
+    #                            'height': '5rem'}
+    #
+    #             )
 
 ])
-
-
-
-# app.layout = html.Div(children=[
-#     side_bar(),
-#     html.Div(id='layout', children=[
-#         ]
-#              )])
 
 
 # CALLBACKS
@@ -406,41 +417,58 @@ def check_name(a_name, b_name,
 
 
 @app.callback(
-    Output('layout', 'children'),
+    [Output('layout', 'children'),
+     Output('current-challenger', 'children'),
+     Output('current-opponent', 'children')],
     [Input("submit", "n_clicks")],
     [State("fighter-a", "value"),
      State("fighter-b", "value")]
 )
 def update_dash(n, a_value, b_value):
     if n is None:
-        return content_layout('Khabib Nurmagomedov', 'Conor McGregor')
+        return (content_layout('Khabib Nurmagomedov', 'Conor McGregor'),
+                'Khabib Nurmagomedov', 'Conor McGregor')
         # return html.H1('PLEASE INPUT FIGHTERS', className='content-area')
     else:
-        ch = a_value
-        op = b_value
-        return content_layout(a_value, b_value)
+        # ch = a_value
+        # op = b_value
+
+        return content_layout(a_value, b_value), a_value, b_value
 
 
 @app.callback(
-    Output('path-holder', 'children'),
-    [Input("layout", "children")],
-    [State("fighter-a", "value"),
-     State("fighter-b", "value")],
+    [Output('path-holder', 'children'),
+     Output('current-path', 'children')],
+    [Input("current-challenger", "children"),
+     Input("current-opponent", "children")],
     prevent_initial_call=True
 )
-def update_path(layout, ch_name, op_name):
+def update_path(ch_name, op_name):
     print('Layout updated...finding path')
-    return f"{ch_name} -> {op_name}"
+    win_path = mma_math(name_db, ch_name, op_name)
+    fight_path = find_path(win_path)
+
+    if len(win_path) > 2:
+        op_list = win_path[1:-1]
+        id_list = [fighter.replace(' ', '') for fighter in op_list]
+    else:
+        id_list = []
+
+    return fight_path, id_list
 
 
 # @app.callback(
-#     Output('path-holder', 'children'),
-#     [Input('layout', 'children'),
-#      Input('op-button', 'value')]
+#     [Output('path-holder', 'children'),
+#      Output('current-path', 'children')],
+#     [Input("current-challenger", "children"),
+#      Input("current-opponent", "children")],
+#     prevent_initial_call=True
 # )
-# def test(ch_name, op_name):
-#     print('oof')
-#     return None
+# def update_path(ch_name, op_name):
+#     print('Layout updated...finding path')
+#     fight_path = find_path(ch_name, op_name)
+#
+#     return fight_path, fight_path
 
 
 # Run App

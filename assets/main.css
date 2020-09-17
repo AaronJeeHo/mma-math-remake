@@ -365,12 +365,17 @@
   display: inline-flex;
   justify-content: center;
   align-content: center;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 0.8em;
+  margin-right: 0.8em;
 }
 
 .arrow {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.win-button{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
