@@ -8,7 +8,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from pathlib import Path
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output, State, ALL
+from dash.exceptions import PreventUpdate
 import plotly.express as px
 import pandas as pd
 
@@ -148,9 +149,17 @@ def find_path(fight_path):
         win_list = fight_path[1:-1]
 
         for fighter in win_list:
-            f_id = fighter.replace(' ', '')
+            #f_id = fighter.replace(' ', '')
             path_list.append(
-                dbc.Button(fighter, id=f_id, className='win-button',
+                dbc.Button(fighter,
+                           id={
+                               'type': 'path-button',
+                               'name': fighter
+
+                           },
+
+
+                           className='win-button',
                            style={'margin-left': '0.5em',
                                   'margin-right': '0.5em'})
             )
@@ -161,16 +170,17 @@ def find_path(fight_path):
 
     return path_list
 
-# def find_path(challenger, opponent):
-#     fight_path = mma_math(name_db, challenger, opponent)
+
+# def find_path(fight_path):
 #     path_list = [html.I(className='fas fa-arrow-right fa-lg arrow')]
 #
 #     if len(fight_path) > 2:
 #         win_list = fight_path[1:-1]
 #
 #         for fighter in win_list:
+#             f_id = fighter.replace(' ', '')
 #             path_list.append(
-#                 dbc.Button(fighter, className='win-button',
+#                 dbc.Button(fighter, id=f_id, className='win-button',
 #                            style={'margin-left': '0.5em',
 #                                   'margin-right': '0.5em'})
 #             )
@@ -180,6 +190,7 @@ def find_path(fight_path):
 #             )
 #
 #     return path_list
+
 
 
 """-----------------------------------------------
@@ -426,8 +437,9 @@ def check_name(a_name, b_name,
 )
 def update_dash(n, a_value, b_value):
     if n is None:
-        return (content_layout('Khabib Nurmagomedov', 'Conor McGregor'),
-                'Khabib Nurmagomedov', 'Conor McGregor')
+        ch = 'Chan Sung Jung'
+        op = 'Conor McGregor'
+        return content_layout(ch, op), ch, op
         # return html.H1('PLEASE INPUT FIGHTERS', className='content-area')
     else:
         # ch = a_value
@@ -449,26 +461,46 @@ def update_path(ch_name, op_name):
     fight_path = find_path(win_path)
 
     if len(win_path) > 2:
-        op_list = win_path[1:-1]
-        id_list = [fighter.replace(' ', '') for fighter in op_list]
+        id_list = win_path[1:-1]
+        # op_list = win_path[1:-1]
+        # id_list = [fighter.replace(' ', '') for fighter in op_list]
     else:
         id_list = []
 
     return fight_path, id_list
 
 
-# @app.callback(
-#     [Output('path-holder', 'children'),
-#      Output('current-path', 'children')],
-#     [Input("current-challenger", "children"),
-#      Input("current-opponent", "children")],
-#     prevent_initial_call=True
-# )
-# def update_path(ch_name, op_name):
-#     print('Layout updated...finding path')
-#     fight_path = find_path(ch_name, op_name)
-#
-#     return fight_path, fight_path
+@app.callback(
+    Output('head-ch', 'children'),
+    [Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
+    [State({'type': 'path-button', 'name': ALL}, 'children')],
+    prevent_initial_call=True
+)
+def click_path(n, children):
+    context = dash.callback_context
+
+    if len(context.triggered) > 1 or context.triggered[0]['value'] is None:
+        print('initial')
+        raise PreventUpdate
+
+    clicked = (context.triggered[0]['prop_id']).split('.')[0]
+    name = context.states[f"{clicked}.children"]
+
+    ch_data = fighter_data(name_db, name)
+    ch_head = ch_data[0]
+    ch_records = ch_data[1]
+    ch_stats = ch_data[2]
+    ch_plots = challenger_visuals(ch_records, ch_stats)
+
+    return challenger_img(*ch_head)
+
+
+
+
+
+
+
+
 
 
 # Run App
