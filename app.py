@@ -75,7 +75,7 @@ def empty_card():
 
 
 def challenger_img(link, f_name, l_name):
-    return [html.Img(className="ch-img", src=link, alt=f"No Image"),
+    return [html.Img(className="ch-img", src=link),
             html.Div(className="ch-name", children=[
                 html.H2(f_name), html.H2(l_name)])
             ]
@@ -138,7 +138,8 @@ def initial_path(challenger, opponent):
             html.Div(id='path-holder', className='path-holder')]
                     ),
 
-        dbc.Button(opponent, id='op-button', className='op-button')
+        dbc.Button(opponent, id='op-button',
+                   className='op-button', disabled=True)
     ]
 
 
@@ -245,6 +246,114 @@ def fighter_input():
                        color='primary', disabled=True)]
                  )]
                     )
+
+
+def initial_layout():
+    no_data = fighter_data(name_db, None)
+    no_records = no_data[1]
+    no_stats = no_data[2]
+
+    ch_head = (None, 'Challenger', 'Fighter A')
+    op_head = (None, 'Opponent', 'Fighter B')
+
+    ch_plots = challenger_visuals(no_records, no_stats)
+    op_plots = opponent_visuals(no_records, no_stats)
+
+
+
+    # no_records = {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
+    # print(no_data)
+
+    return html.Div(className='content-area', children=[
+        dbc.Row(className="top-row", children=[
+            dbc.Col(challenger_img(*ch_head), width=5,
+                    id='head-ch', className='head-ch'),
+            dbc.Col(opponent_img(*op_head), width=5, className='head-op')],
+                justify='between'),
+
+        dbc.Row(className="row-two", children=[
+            dbc.Col(get_wins(no_records), width=5, className='wins'),
+            dbc.Col(get_wins(no_records), width=5, className='wins')],
+                justify='between'),
+
+        dbc.Row(className="row-three", children=[
+            dbc.Col(className='row-three-col', width=5, children=[
+                dbc.Row(className='row-three-col-row', children=[
+                    dbc.Col(className='fig-col-three', width=4, children=[
+                        insert_fig(ch_plots[1])
+                    ]),
+                    dbc.Col(className='fig-col-three', width=8, children=[
+                        insert_fig(ch_plots[0])
+                    ])],
+                        no_gutters=True, justify='between')]
+                    ),
+
+            dbc.Col(className='axis-col', width=2, children=[
+                dbc.Row(className='axis-box', children=[
+                    html.H4('Takedown Accuracy', className='axis-text')
+                ]),
+
+                dbc.Row(className='axis-box', children=[
+                    html.H4('Sig. Strike Accuracy', className='axis-text')
+
+                ], style={'border-top-style': 'none',
+                          'border-bottom-style': 'none'}),
+                dbc.Row(className='axis-box', children=[
+                    html.H4('Total Strike Accuracy', className='axis-text')
+
+                ]),
+            ]),
+
+            dbc.Col(className='row-three-col', width=5, children=[
+                dbc.Row(className='row-three-col-row', children=[
+                    dbc.Col(className='fig-col-three', width=8, children=[
+                        insert_fig(op_plots[0])
+                    ]),
+                    dbc.Col(className='fig-col-three', width=4, children=[
+                        insert_fig(op_plots[1])
+                    ])],
+                        no_gutters=True, justify='between')]
+                    )],
+                justify='between'),
+
+        dbc.Row(className="row-four", children=[
+            dbc.Col(insert_fig(ch_plots[2]), width=5, className='row-four-col'),
+
+            dbc.Col(className='four-axis-col', width=2, children=[
+                dbc.Row(className='four-axis-title-box', children=[
+                    html.H4('Target Breakdown', className='axis-text')
+                ], style={'color': '#F9AA33'}),
+
+                dbc.Row(className='four-axis-box', children=[
+                    html.H3('Head', className='axis-text')
+                ]),
+
+                dbc.Row(className='four-axis-box', children=[
+                    html.H3('Body', className='axis-text')
+
+                ], style={'border-top-style': 'none',
+                          'border-bottom-style': 'none'}),
+                dbc.Row(className='four-axis-box', children=[
+                    html.H3('Leg', className='axis-text')
+
+                ]),
+            ]),
+
+            dbc.Col(insert_fig(op_plots[2]), width=5, className='row-four-col')],
+                justify='between'
+                ),
+
+        dbc.Row(className="bot-row", children=[
+            dbc.Col(id='bot-row-col', className='bot-row-col', width=12, children=[
+                dbc.Row(className='path-title', children=[
+                    html.H4('MMA-MATH Path', className='path-title-text')
+                ]),
+                dbc.Row(id='path-row', className='path-row',
+                        children=initial_path('Fighter A', 'Fighter B')
+                        )
+            ])
+        ])
+    ])
 
 
 def content_layout(ch_name, op_name):
@@ -437,10 +546,10 @@ def check_name(a_name, b_name,
 )
 def update_dash(n, a_value, b_value):
     if n is None:
-        ch = 'Chan Sung Jung'
-        op = 'Conor McGregor'
-        return content_layout(ch, op), ch, op
-        # return html.H1('PLEASE INPUT FIGHTERS', className='content-area')
+        # ch = 'Chan Sung Jung'
+        # op = 'Conor McGregor'
+        # return content_layout(ch, op), ch, op
+        return initial_layout(), None, None
     else:
         # ch = a_value
         # op = b_value

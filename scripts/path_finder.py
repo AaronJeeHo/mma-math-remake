@@ -46,10 +46,7 @@ def get_losses(fight_file):
 
         return tuple(df.loc[df['res'] != 'W']['opponent'])
 
-    except FileNotFoundError:
-        return None
-
-    except ValueError:
+    except (FileNotFoundError, ValueError):
         return None
 
 
@@ -71,6 +68,9 @@ def make_graph(db, fighter_a, fighter_b):
     :param str fighter_b: Name of fighter
     :return: FighterGraph
     """
+
+    if (fighter_a is None) or (fighter_b is None):
+        return None
 
     if len(get_losses(name_to_file(db, fighter_b))) < 1:
         print('No path, fighter is undefeated')

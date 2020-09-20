@@ -54,10 +54,13 @@ def percent_to_stats(df, col):
 
 
 def scrape_ratio(link):
-    split_url = link.split('_')
-    stat_link = f"{split_url[0]}stats/_{split_url[1]}"
+    # split_url = link.split('_')
+    # stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
     try:
+        split_url = link.split('_')
+        stat_link = f"{split_url[0]}stats/_{split_url[1]}"
+
         response = requests.get(stat_link, timeout=10)
         src = response.content
 
@@ -73,15 +76,18 @@ def scrape_ratio(link):
         else:
             return {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
 
-    except ImportError:
+    except (ImportError, TypeError, AttributeError):
         return {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
 
 
 def scrape_stats(link):
-    split_url = link.split('_')
-    stat_link = f"{split_url[0]}stats/_{split_url[1]}"
+    # split_url = link.split('_')
+    # stat_link = f"{split_url[0]}stats/_{split_url[1]}"
 
     try:
+        split_url = link.split('_')
+        stat_link = f"{split_url[0]}stats/_{split_url[1]}"
+
         df_list = pd.read_html(stat_link)
 
         # Get striking stats
@@ -201,7 +207,7 @@ def scrape_stats(link):
         # print(f'{f_name} Stats Found!')
         return striking_stats, clinch_stats, ground_stats
 
-    except ImportError:
+    except (ImportError, TypeError, AttributeError):
         striking_stats = {'Head Strike Accuracy': 0.0,
                           'Body Strike Accuracy': 0.0,
                           'Leg Strike Accuracy': 0.0,
@@ -223,28 +229,33 @@ def scrape_stats(link):
 
 
 def get_header_img(link):
-    response = requests.get(link, timeout=10)
-    src = response.content
-    # src = urlopen(link)
-    soup = BeautifulSoup(src, 'html.parser')
     img_link = None
     f_name = None
     l_name = None
 
-    headshot = soup.find_all('figure', class_='PlayerHeader__HeadShot')
-    name_header = soup.find_all('h1', class_='PlayerHeader__Name')
+    if link is None:
+        return img_link, f_name, l_name
 
-    if len(headshot) > 0:
-        # img_list = (headshot[0].find_all('img'))
-        split_id = link.split('id/')[-1]
-        id_num = split_id.split('/')[0]
-        img_link = (f"https://a.espncdn.com/combiner/i?img=/i/headshots/"
-                    f"mma/players/full/{id_num}.png&w=350&h=254")
+    else:
+        response = requests.get(link, timeout=10)
+        src = response.content
+        # src = urlopen(link)
+        soup = BeautifulSoup(src, 'html.parser')
 
-    if len(name_header) > 0:
-        name_list = name_header[0].find_all('span')
-        f_name = name_list[0].text
-        l_name = name_list[1].text
+        headshot = soup.find_all('figure', class_='PlayerHeader__HeadShot')
+        name_header = soup.find_all('h1', class_='PlayerHeader__Name')
+
+        if len(headshot) > 0:
+            # img_list = (headshot[0].find_all('img'))
+            split_id = link.split('id/')[-1]
+            id_num = split_id.split('/')[0]
+            img_link = (f"https://a.espncdn.com/combiner/i?img=/i/headshots/"
+                        f"mma/players/full/{id_num}.png&w=350&h=254")
+
+        if len(name_header) > 0:
+            name_list = name_header[0].find_all('span')
+            f_name = name_list[0].text
+            l_name = name_list[1].text
 
     return img_link, f_name, l_name
 
@@ -253,12 +264,16 @@ def main():
     path = Path(__file__).parent
     name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
                           sep='\t', header=None, names=['name', 'link'])
+
+    lowercase_db = name_db['name'].str.lower(), name_db['name']
+    print(lowercase_db)
+
     # link = name_to_url(name_db, 'Khabib Nurmagomedov')
-    link = name_to_url(name_db, 'Niina Aaltonen')
-    stats = scrape_stats(link)
-    for d in stats:
-        for i in d:
-            print(i, d[i])
+    # link = name_to_url(name_db, 'Niina Aaltonen')
+    # stats = scrape_stats(link)
+    # for d in stats:
+    #     for i in d:
+    #         print(i, d[i])
 
 
 if __name__ == '__main__':

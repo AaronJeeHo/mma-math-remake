@@ -63,12 +63,6 @@ def plot_targets(stats):
     fig['data'][1]['name'] = 'Standing Strikes'
     fig['data'][2]['name'] = 'Overall Accuracy'
     fig.update_layout(
-        # title={
-        #     'x': 0.5, 'y': 0.97,
-        #     'xanchor': 'center',
-        #     'yanchor': 'top',
-        #     'font': {'size': 25}
-        # },
         autosize=True,
         margin={
             'pad': 0,
@@ -94,9 +88,12 @@ def plot_targets(stats):
 
     fig.update_yaxes(
         showgrid=False,
+        title={
+            'text': '',
+            'standoff': 0
+        },
         ticksuffix=" Strikes",
         visible=False
-        #tickfont={'size': 20}
     )
 
     fig.update_xaxes(
@@ -105,7 +102,6 @@ def plot_targets(stats):
             'standoff': 0
         },
         ticksuffix="%",
-        #tickfont={'size': 15}
     )
 
     return fig
@@ -150,7 +146,9 @@ def plot_targets_reverse(stats):
 
     fig.update_traces(
         legendgroup="position",
+        # cliponaxis=False,
         textposition="outside",
+
         texttemplate='%{x}',
         hovertemplate=('<b>%{y}</b><br><br>'
                        'Fight Position: %{data.offsetgroup}<br><br>'
@@ -162,12 +160,6 @@ def plot_targets_reverse(stats):
     fig['data'][2]['name'] = 'Overall Accuracy'
 
     fig.update_layout(
-        # title={
-        #     'x': 0.5, 'y': 0.97,
-        #     'xanchor': 'center',
-        #     'yanchor': 'top',
-        #     'font': {'size': 25}
-        # },
         autosize=True,
         margin={
             'pad': 0,
@@ -181,13 +173,12 @@ def plot_targets_reverse(stats):
             'title': '',
             'itemsizing': 'trace',
             'traceorder': 'normal',
-            #'tracegroupgap': 50,
             'orientation': 'h',
             'x': 0.6, 'y': 1,
             'xanchor': 'center',
             'yanchor': 'bottom',
-            #'font': {'size': 20}
         }
+
 
     )
 
@@ -197,10 +188,9 @@ def plot_targets_reverse(stats):
             'text': '',
             'standoff': 0
         },
-        ticksuffix=" Strikes",
+        # ticksuffix=" Strikes",
         side="right",
         visible=False,
-        #tickfont={'size': 20}
     )
 
     fig.update_xaxes(
@@ -209,8 +199,10 @@ def plot_targets_reverse(stats):
             'standoff': 0
         },
         ticksuffix="%",
-        #tickfont={'size': 15}
+
     )
+
+    print(fig)
 
     return fig
 
@@ -255,11 +247,6 @@ def plot_totals(stats):
 
     fig.update_layout(showlegend=False,
                       autosize=True,
-                      # hoverlabel={
-                      #     'font': 'right',
-                      #
-                      #
-                      # },
 
 
 
@@ -349,7 +336,7 @@ def plot_totals_reverse(stats):
         showgrid=False,
         title={
             'text': '',
-            'standoff': 0
+            'standoff': 0.5
         },
         side="right",
         visible=False
@@ -362,49 +349,51 @@ def plot_totals_reverse(stats):
             'standoff': 0
         },
         ticksuffix="%",
+
         #tickfont={'size': 15}
     )
+
 
     return fig
 
 
-def plot_combined_totals(challenger, opponent, ch_stats, op_stats):
-
-    ch_striking = ch_stats[0]
-    ch_clinch = ch_stats[1]
-    op_striking = op_stats[0]
-    op_clinch = op_stats[1]
-
-    total_data = {'Fighter': [challenger, opponent],
-                  'Total Strike Accuracy': [
-                      ch_striking['Total Strike Accuracy'],
-                      op_striking['Total Strike Accuracy']
-                  ],
-                  'Significant Strike Accuracy': [
-                      ch_striking['Significant Strike Accuracy'],
-                      op_striking['Significant Strike Accuracy']
-                  ],
-                  'Takedown Accuracy': [
-                      ch_clinch['Takedown Accuracy'],
-                      op_clinch['Takedown Accuracy']
-                  ]
-                  }
-
-    df = pd.DataFrame(total_data, columns=['Fighter',
-                                           'Total Strike Accuracy',
-                                           'Significant Strike Accuracy',
-                                           'Takedown Accuracy']
-                      )
-
-    fig = px.bar(data_frame=df,
-                 y=['Total Strike Accuracy', 'Significant Strike Accuracy', 'Takedown Accuracy'],
-                 facet_col='Fighter',
-                 title='Overall Stats',
-                 range_x=[0, 105],
-                 orientation='h',
-                 template='plotly_dark',
-                 color_discrete_sequence=['#e74c3c', '#e74c3c', '#e74c3c'])
-    fig.show()
+# def plot_combined_totals(challenger, opponent, ch_stats, op_stats):
+#
+#     ch_striking = ch_stats[0]
+#     ch_clinch = ch_stats[1]
+#     op_striking = op_stats[0]
+#     op_clinch = op_stats[1]
+#
+#     total_data = {'Fighter': [challenger, opponent],
+#                   'Total Strike Accuracy': [
+#                       ch_striking['Total Strike Accuracy'],
+#                       op_striking['Total Strike Accuracy']
+#                   ],
+#                   'Significant Strike Accuracy': [
+#                       ch_striking['Significant Strike Accuracy'],
+#                       op_striking['Significant Strike Accuracy']
+#                   ],
+#                   'Takedown Accuracy': [
+#                       ch_clinch['Takedown Accuracy'],
+#                       op_clinch['Takedown Accuracy']
+#                   ]
+#                   }
+#
+#     df = pd.DataFrame(total_data, columns=['Fighter',
+#                                            'Total Strike Accuracy',
+#                                            'Significant Strike Accuracy',
+#                                            'Takedown Accuracy']
+#                       )
+#
+#     fig = px.bar(data_frame=df,
+#                  y=['Total Strike Accuracy', 'Significant Strike Accuracy', 'Takedown Accuracy'],
+#                  facet_col='Fighter',
+#                  title='Overall Stats',
+#                  range_x=[0, 105],
+#                  orientation='h',
+#                  template='plotly_dark',
+#                  color_discrete_sequence=['#e74c3c', '#e74c3c', '#e74c3c'])
+#     fig.show()
 
 
 
