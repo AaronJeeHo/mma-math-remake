@@ -202,8 +202,6 @@ def plot_targets_reverse(stats):
 
     )
 
-    print(fig)
-
     return fig
 
 

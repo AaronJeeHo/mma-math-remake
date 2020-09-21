@@ -142,9 +142,11 @@ def get_path(f_graph, fighter_a, fighter_b):
 
 def mma_math(db, fighter_a, fighter_b):
     graph = make_graph(db, fighter_a, fighter_b)
-    path = get_path(graph, fighter_a, fighter_b)
 
-    return path
+    if graph is None:
+        return None
+    else:
+        return get_path(graph, fighter_a, fighter_b)
 
 
 def main():

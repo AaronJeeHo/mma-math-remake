@@ -28,6 +28,13 @@ path = Path(__file__).parent
 name_db = pd.read_csv((path / "data/urls/name_url.tsv"),
                       sep='\t', header=None, names=['name', 'link'])
 
+# name_list = list(name_db['name'])
+name_list = list(name_db['name'].map(lambda x: html.Option(value=x)))
+
+# lowercase = name_db['name'].str.lower()
+# lowercase_db = pd.concat([lowercase, name_db['name']],
+#                          axis=1, keys=['lower', 'name'])
+
 """-----------------------------------------------
 Helpers for Updating stats and visuals
 
@@ -60,18 +67,26 @@ def opponent_visuals(records, stats):
     return totals_graph, ratio_graph, striking_graph
 
 
+def query_fighters():
+    pass
+
+
+
+
+
 """-----------------------------------------------
 Html Content Wrappers
 
 -----------------------------------------------"""
-def empty_card():
-    return dbc.Card(
-            dbc.CardBody([
-                html.Div([
-                    html.H2("Text"),
-                ], style={'textAlign': 'center'})
-            ])
-    )
+def input_suggestion():
+    return html.Datalist(id='suggestion',
+                         children=name_list)
+
+
+# def input_suggestion():
+#     return html.Datalist(id='suggestion', children=[
+#         html.Option(value=name) for name in name_list
+#     ])
 
 
 def challenger_img(link, f_name, l_name):
@@ -139,7 +154,7 @@ def initial_path(challenger, opponent):
                     ),
 
         dbc.Button(opponent, id='op-button',
-                   className='op-button', disabled=True)
+                   className='op-button')
     ]
 
 
@@ -158,8 +173,6 @@ def find_path(fight_path):
                                'name': fighter
 
                            },
-
-
                            className='win-button',
                            style={'margin-left': '0.5em',
                                   'margin-right': '0.5em'})
@@ -170,28 +183,6 @@ def find_path(fight_path):
             )
 
     return path_list
-
-
-# def find_path(fight_path):
-#     path_list = [html.I(className='fas fa-arrow-right fa-lg arrow')]
-#
-#     if len(fight_path) > 2:
-#         win_list = fight_path[1:-1]
-#
-#         for fighter in win_list:
-#             f_id = fighter.replace(' ', '')
-#             path_list.append(
-#                 dbc.Button(fighter, id=f_id, className='win-button',
-#                            style={'margin-left': '0.5em',
-#                                   'margin-right': '0.5em'})
-#             )
-#
-#             path_list.append(
-#                 html.I(className='fas fa-arrow-right fa-lg arrow')
-#             )
-#
-#     return path_list
-
 
 
 """-----------------------------------------------
@@ -228,24 +219,56 @@ def fighter_input():
                className='side-text'),
         html.Br(),
 
+        input_suggestion(),
+
         dbc.Form(className='input-form', children=[
             dbc.FormGroup(className='input-a', children=[
                 dbc.Label('Fighter A', html_for='fighter-a'),
                 dbc.Input(id='fighter-a', type='text',
                           valid=False, invalid=True,
-                          placeholder='Input Challenger Name')]),
+                          placeholder='Input Challenger Name',
+                          list='suggestion')]
+                          ),
+
             html.P('Beats', className='side-text'),
 
             dbc.FormGroup(className='input-b', children=[
                 dbc.Label('Fighter B', html_for='fighter-b'),
                 dbc.Input(id='fighter-b', type='text',
                           valid=False, invalid=True,
-                          placeholder='Input Opponent Name')]
+                          placeholder='Input Opponent Name',
+                          list='suggestion')]
                           ),
             dbc.Button('Confirm', id='submit', size='lg',
                        color='primary', disabled=True)]
                  )]
                     )
+
+
+# def fighter_input():
+#     return html.Div(className='fighter-input', children=[
+#         html.P('Input two fighters to prove if...',
+#                className='side-text'),
+#         html.Br(),
+#
+#         dbc.Form(className='input-form', children=[
+#             dbc.FormGroup(className='input-a', children=[
+#                 dbc.Label('Fighter A', html_for='fighter-a'),
+#                 dbc.Input(id='fighter-a', type='text',
+#                           valid=False, invalid=True,
+#                           placeholder='Input Challenger Name')]),
+#             html.P('Beats', className='side-text'),
+#
+#             dbc.FormGroup(className='input-b', children=[
+#                 dbc.Label('Fighter B', html_for='fighter-b'),
+#                 dbc.Input(id='fighter-b', type='text',
+#                           valid=False, invalid=True,
+#                           placeholder='Input Opponent Name')]
+#                           ),
+#             dbc.Button('Confirm', id='submit', size='lg',
+#                        color='primary', disabled=True)]
+#                  )]
+#                     )
 
 
 def initial_layout():
@@ -562,17 +585,22 @@ def update_dash(n, a_value, b_value):
      Output('current-path', 'children')],
     [Input("current-challenger", "children"),
      Input("current-opponent", "children")],
+    [State("submit", "n_clicks")],
     prevent_initial_call=True
 )
-def update_path(ch_name, op_name):
-    print('Layout updated...finding path')
+def update_path(ch_name, op_name, clicks):
+    if clicks is None:
+        return find_path([]), []
+
     win_path = mma_math(name_db, ch_name, op_name)
+
+    if win_path is None:
+        return html.H2('NO PATH FOUND'), None
+
     fight_path = find_path(win_path)
 
     if len(win_path) > 2:
         id_list = win_path[1:-1]
-        # op_list = win_path[1:-1]
-        # id_list = [fighter.replace(' ', '') for fighter in op_list]
     else:
         id_list = []
 

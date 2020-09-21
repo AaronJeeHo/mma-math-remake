@@ -265,7 +265,10 @@ def main():
     name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
                           sep='\t', header=None, names=['name', 'link'])
 
-    lowercase_db = name_db['name'].str.lower(), name_db['name']
+    lowercase = name_db['name'].str.lower()
+    lowercase_db = pd.concat([lowercase, name_db['name']],
+                             axis=1, keys=['lower', 'name'])
+
     print(lowercase_db)
 
     # link = name_to_url(name_db, 'Khabib Nurmagomedov')
