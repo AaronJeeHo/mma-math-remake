@@ -79,14 +79,7 @@ Html Content Wrappers
 
 -----------------------------------------------"""
 def input_suggestion():
-    return html.Datalist(id='suggestion',
-                         children=name_list)
-
-
-# def input_suggestion():
-#     return html.Datalist(id='suggestion', children=[
-#         html.Option(value=name) for name in name_list
-#     ])
+    return html.Datalist(id='suggestion', children=name_list)
 
 
 def challenger_img(link, f_name, l_name):
@@ -139,8 +132,8 @@ def get_wins(wins):
 
 # Row Three Helpers
 
-def insert_fig(fig):
-    return dcc.Graph(className='fig', figure=fig, responsive='auto')
+def insert_fig(fig_id, fig):
+    return dcc.Graph(id=fig_id, className='fig', figure=fig, responsive='auto')
 
 
 # Path Finder
@@ -207,7 +200,8 @@ def side_bar():
 
         html.Div(id='current-challenger', style={'display': 'none'}),
         html.Div(id='current-opponent', style={'display': 'none'}),
-        html.Div(id='current-path', style={'display': 'none'})
+        html.Div(id='current-path', style={'display': 'none'}),
+        html.Div(id='temp', style={'display': 'none'})
 
     ]
                     )
@@ -245,32 +239,6 @@ def fighter_input():
                     )
 
 
-# def fighter_input():
-#     return html.Div(className='fighter-input', children=[
-#         html.P('Input two fighters to prove if...',
-#                className='side-text'),
-#         html.Br(),
-#
-#         dbc.Form(className='input-form', children=[
-#             dbc.FormGroup(className='input-a', children=[
-#                 dbc.Label('Fighter A', html_for='fighter-a'),
-#                 dbc.Input(id='fighter-a', type='text',
-#                           valid=False, invalid=True,
-#                           placeholder='Input Challenger Name')]),
-#             html.P('Beats', className='side-text'),
-#
-#             dbc.FormGroup(className='input-b', children=[
-#                 dbc.Label('Fighter B', html_for='fighter-b'),
-#                 dbc.Input(id='fighter-b', type='text',
-#                           valid=False, invalid=True,
-#                           placeholder='Input Opponent Name')]
-#                           ),
-#             dbc.Button('Confirm', id='submit', size='lg',
-#                        color='primary', disabled=True)]
-#                  )]
-#                     )
-
-
 def initial_layout():
     no_data = fighter_data(name_db, None)
     no_records = no_data[1]
@@ -303,10 +271,10 @@ def initial_layout():
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig(ch_plots[1])
+                        insert_fig('ch_wins', ch_plots[1])
                     ]),
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig(ch_plots[0])
+                        insert_fig('ch_totals', ch_plots[0])
                     ])],
                         no_gutters=True, justify='between')]
                     ),
@@ -330,17 +298,18 @@ def initial_layout():
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig(op_plots[0])
+                        insert_fig('op_totals', op_plots[0])
                     ]),
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig(op_plots[1])
+                        insert_fig('op_wins', op_plots[1])
                     ])],
                         no_gutters=True, justify='between')]
                     )],
                 justify='between'),
 
         dbc.Row(className="row-four", children=[
-            dbc.Col(insert_fig(ch_plots[2]), width=5, className='row-four-col'),
+            dbc.Col(insert_fig('ch_targets', ch_plots[2]), width=5,
+                    className='row-four-col'),
 
             dbc.Col(className='four-axis-col', width=2, children=[
                 dbc.Row(className='four-axis-title-box', children=[
@@ -362,7 +331,8 @@ def initial_layout():
                 ]),
             ]),
 
-            dbc.Col(insert_fig(op_plots[2]), width=5, className='row-four-col')],
+            dbc.Col(insert_fig('op_targets', op_plots[2]), width=5,
+                    className='row-four-col')],
                 justify='between'
                 ),
 
@@ -410,10 +380,10 @@ def content_layout(ch_name, op_name):
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig(ch_plots[1])
+                        insert_fig('ch_wins', ch_plots[1])
                     ]),
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig(ch_plots[0])
+                        insert_fig('ch_totals', ch_plots[0])
                     ])],
                         no_gutters=True, justify='between')]
                     ),
@@ -437,10 +407,10 @@ def content_layout(ch_name, op_name):
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig(op_plots[0])
+                        insert_fig('op_totals', op_plots[0])
                     ]),
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig(op_plots[1])
+                        insert_fig('op_wins', op_plots[1])
                     ])],
                         no_gutters=True, justify='between')]
                     )],
@@ -448,7 +418,8 @@ def content_layout(ch_name, op_name):
 
 
         dbc.Row(className="row-four", children=[
-            dbc.Col(insert_fig(ch_plots[2]), width=5, className='row-four-col'),
+            dbc.Col(insert_fig('ch_targets', ch_plots[2]),
+                    width=5, className='row-four-col'),
 
             dbc.Col(className='four-axis-col', width=2, children=[
                 dbc.Row(className='four-axis-title-box', children=[
@@ -471,7 +442,8 @@ def content_layout(ch_name, op_name):
             ]),
 
 
-            dbc.Col(insert_fig(op_plots[2]), width=5, className='row-four-col')],
+            dbc.Col(insert_fig('op_targets', op_plots[2]),
+                    width=5, className='row-four-col')],
                 justify='between'
                 ),
 
@@ -488,8 +460,6 @@ def content_layout(ch_name, op_name):
         ])
     ])
 
-
-# EMPTY PLACEHOLDER
 
 # App Layout
 app.layout = html.Div(children=[
@@ -608,6 +578,61 @@ def update_path(ch_name, op_name, clicks):
 
 
 @app.callback(
+    [Output("temp", "children")],
+    [Input("current-path", "children")],
+    [State("ch_wins", "figure"),
+     State("ch_totals", "figure"),
+     State("ch_targets", "figure")],
+    prevent_initial_call=True
+)
+def update_frames(win_path, wins, totals, targets):
+    wins['frames'] = []
+    totals['frames'] = []
+    totals['layout']['updatemenus'][0]['buttons'] = []
+    totals['layout']['updatemenus'][0]['visible'] = True
+
+    targets['frames'] = []
+
+    # print(totals['layout'])
+    print(totals['layout']['updatemenus'])
+
+
+    for fighter in win_path:
+        stats = fighter_data(name_db, fighter)
+        plots = challenger_visuals(stats[1], stats[2])
+        button = {
+            'args': [
+                [fighter],
+                {'frame': {'duration': 0, 'redraw': True},
+                 'mode': 'immediate',
+                 'fromcurrent': True,
+                 'transition': {'duration': 0, 'easing': 'linear'}
+                 }],
+            'method': 'animate'
+        }
+
+        totals['frames'].append({'data': plots[0]['data'], 'name': fighter})
+        totals['layout']['updatemenus'][0]['buttons'].append(button)
+
+
+    return ['done']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.callback(
     Output('head-ch', 'children'),
     [Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
     [State({'type': 'path-button', 'name': ALL}, 'children')],
@@ -630,13 +655,6 @@ def click_path(n, children):
     ch_plots = challenger_visuals(ch_records, ch_stats)
 
     return challenger_img(*ch_head)
-
-
-
-
-
-
-
 
 
 

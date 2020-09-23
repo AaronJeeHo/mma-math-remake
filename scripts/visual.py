@@ -155,6 +155,7 @@ def plot_targets_reverse(stats):
                        'Striking Accuracy: %{x}<extra></extra>')
     )
 
+    # fig['frames'] = []
     fig['data'][0]['name'] = 'Ground Strikes'
     fig['data'][1]['name'] = 'Standing Strikes'
     fig['data'][2]['name'] = 'Overall Accuracy'
@@ -177,7 +178,12 @@ def plot_targets_reverse(stats):
             'x': 0.6, 'y': 1,
             'xanchor': 'center',
             'yanchor': 'bottom',
-        }
+        },
+        updatemenus=[{
+            'visible': False,
+            'buttons': []
+        }]
+
 
 
     )
@@ -233,7 +239,7 @@ def plot_totals(stats):
                  text='Percent',
                  orientation='h',
                  template='plotly_dark',
-                 color_discrete_sequence=['#e74c3c', '#e74c3c', '#e74c3c']
+                 color_discrete_sequence=['#e74c3c', '#e74c3c', '#e74c3c'],
                  )
 
     fig.update_traces(
@@ -306,6 +312,8 @@ def plot_totals_reverse(stats):
                  color_discrete_sequence=['#3498db', '#3498db', '#3498db']
                  )
 
+    # fig['frames'] = []
+
     fig.update_traces(
         textposition="outside",
         texttemplate='%{x}',
@@ -327,7 +335,11 @@ def plot_totals_reverse(stats):
                           'r': 0,
                           'b': 0,
                           't': 0,
-                      }
+                      },
+                      updatemenus=[{
+                          'visible': False,
+                          'buttons': []
+                      }]
                       )
 
     fig.update_yaxes(
@@ -355,47 +367,6 @@ def plot_totals_reverse(stats):
     return fig
 
 
-# def plot_combined_totals(challenger, opponent, ch_stats, op_stats):
-#
-#     ch_striking = ch_stats[0]
-#     ch_clinch = ch_stats[1]
-#     op_striking = op_stats[0]
-#     op_clinch = op_stats[1]
-#
-#     total_data = {'Fighter': [challenger, opponent],
-#                   'Total Strike Accuracy': [
-#                       ch_striking['Total Strike Accuracy'],
-#                       op_striking['Total Strike Accuracy']
-#                   ],
-#                   'Significant Strike Accuracy': [
-#                       ch_striking['Significant Strike Accuracy'],
-#                       op_striking['Significant Strike Accuracy']
-#                   ],
-#                   'Takedown Accuracy': [
-#                       ch_clinch['Takedown Accuracy'],
-#                       op_clinch['Takedown Accuracy']
-#                   ]
-#                   }
-#
-#     df = pd.DataFrame(total_data, columns=['Fighter',
-#                                            'Total Strike Accuracy',
-#                                            'Significant Strike Accuracy',
-#                                            'Takedown Accuracy']
-#                       )
-#
-#     fig = px.bar(data_frame=df,
-#                  y=['Total Strike Accuracy', 'Significant Strike Accuracy', 'Takedown Accuracy'],
-#                  facet_col='Fighter',
-#                  title='Overall Stats',
-#                  range_x=[0, 105],
-#                  orientation='h',
-#                  template='plotly_dark',
-#                  color_discrete_sequence=['#e74c3c', '#e74c3c', '#e74c3c'])
-#     fig.show()
-
-
-
-
 """
 Plot Ratio Graphs
 """
@@ -421,6 +392,8 @@ def plot_ratios(stats):
                                      'Submissions': '#BB86FC'}
                  )
 
+    # fig['frames'] = []
+
     fig.update_traces(textposition='inside',
                       textinfo='label+percent',
                       textfont={'size': 40},
@@ -435,7 +408,11 @@ def plot_ratios(stats):
                           'r': 0,
                           'b': 0,
                           't': 0,
-                      }
+                      },
+                      updatemenus=[{
+                          'visible': False,
+                          'buttons': []
+                      }]
                       )
 
     return fig
@@ -443,29 +420,25 @@ def plot_ratios(stats):
 
 
 def main():
-    path = Path(__file__).parent
-    name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
-                          sep='\t', header=None, names=['name', 'link'])
-    link = name_to_url(name_db, 'Khabib Nurmagomedov')
-    op_link = name_to_url(name_db, 'Conor McGregor')
-
-    stat_list = scrape_stats(link)
-    op_stat_list = scrape_stats(op_link)
-
-    # ratio = scrape_ratio(link)
-    # fig = plot_targets(stat_list)
+    # path = Path(__file__).parent
+    # name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
+    #                       sep='\t', header=None, names=['name', 'link'])
+    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
+    # op_link = name_to_url(name_db, 'Conor McGregor')
+    #
+    # stat_list = scrape_stats(link)
     # fig_r = plot_targets_reverse(stat_list)
+    # print(fig_r['data'])
 
-    # fig = plot_totals(stat_list)
-    # fig_r = plot_totals_reverse(stat_list)
+    df = px.data.gapminder()
 
-    # fig = plot_ratios(ratio)
+    fig = px.bar(df, x="continent", y="pop", color="continent",
+                 animation_frame="year", animation_group="country", range_y=[0, 4000000000])
+    fig.show()
+    print(fig['layout']['updatemenus'])
+    print(fig['layout']['sliders'])
+    print(fig['frames'])
 
-    # fig.show()
-    # fig_r.show()
-
-    # plot_combined_totals('Khabib Nurmagomedov', 'Conor McGregor',
-    #                      stat_list, op_stat_list)
 
 
 if __name__ == '__main__':
