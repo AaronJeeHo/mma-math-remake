@@ -201,7 +201,8 @@ def side_bar():
         html.Div(id='current-challenger', style={'display': 'none'}),
         html.Div(id='current-opponent', style={'display': 'none'}),
         html.Div(id='current-path', style={'display': 'none'}),
-        html.Div(id='temp', style={'display': 'none'})
+        html.Div(id='temp', style={'display': 'none'}),
+        dcc.Store(id='fig-storage')
 
     ]
                     )
@@ -263,7 +264,8 @@ def initial_layout():
                 justify='between'),
 
         dbc.Row(className="row-two", children=[
-            dbc.Col(get_wins(no_records), width=5, className='wins'),
+            dbc.Col(get_wins(no_records), width=5, id='ch-recs',
+                    className='wins'),
             dbc.Col(get_wins(no_records), width=5, className='wins')],
                 justify='between'),
 
@@ -271,10 +273,10 @@ def initial_layout():
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig('ch_wins', ch_plots[1])
+                        insert_fig('ch-wins', ch_plots[1])
                     ]),
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig('ch_totals', ch_plots[0])
+                        insert_fig('ch-totals', ch_plots[0])
                     ])],
                         no_gutters=True, justify='between')]
                     ),
@@ -298,17 +300,17 @@ def initial_layout():
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig('op_totals', op_plots[0])
+                        insert_fig('op-totals', op_plots[0])
                     ]),
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig('op_wins', op_plots[1])
+                        insert_fig('op-wins', op_plots[1])
                     ])],
                         no_gutters=True, justify='between')]
                     )],
                 justify='between'),
 
         dbc.Row(className="row-four", children=[
-            dbc.Col(insert_fig('ch_targets', ch_plots[2]), width=5,
+            dbc.Col(insert_fig('ch-targets', ch_plots[2]), width=5,
                     className='row-four-col'),
 
             dbc.Col(className='four-axis-col', width=2, children=[
@@ -331,7 +333,7 @@ def initial_layout():
                 ]),
             ]),
 
-            dbc.Col(insert_fig('op_targets', op_plots[2]), width=5,
+            dbc.Col(insert_fig('op-targets', op_plots[2]), width=5,
                     className='row-four-col')],
                 justify='between'
                 ),
@@ -371,7 +373,8 @@ def content_layout(ch_name, op_name):
 
 
         dbc.Row(className="row-two", children=[
-            dbc.Col(get_wins(ch_records), width=5, className='wins'),
+            dbc.Col(get_wins(ch_records), width=5, id='ch-recs',
+                    className='wins'),
             dbc.Col(get_wins(op_records), width=5, className='wins')],
                 justify='between'),
 
@@ -380,10 +383,10 @@ def content_layout(ch_name, op_name):
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig('ch_wins', ch_plots[1])
+                        insert_fig('ch-wins', ch_plots[1])
                     ]),
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig('ch_totals', ch_plots[0])
+                        insert_fig('ch-totals', ch_plots[0])
                     ])],
                         no_gutters=True, justify='between')]
                     ),
@@ -407,10 +410,10 @@ def content_layout(ch_name, op_name):
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
                     dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig('op_totals', op_plots[0])
+                        insert_fig('op-totals', op_plots[0])
                     ]),
                     dbc.Col(className='fig-col-three', width=4, children=[
-                        insert_fig('op_wins', op_plots[1])
+                        insert_fig('op-wins', op_plots[1])
                     ])],
                         no_gutters=True, justify='between')]
                     )],
@@ -418,7 +421,7 @@ def content_layout(ch_name, op_name):
 
 
         dbc.Row(className="row-four", children=[
-            dbc.Col(insert_fig('ch_targets', ch_plots[2]),
+            dbc.Col(insert_fig('ch-targets', ch_plots[2]),
                     width=5, className='row-four-col'),
 
             dbc.Col(className='four-axis-col', width=2, children=[
@@ -442,7 +445,7 @@ def content_layout(ch_name, op_name):
             ]),
 
 
-            dbc.Col(insert_fig('op_targets', op_plots[2]),
+            dbc.Col(insert_fig('op-targets', op_plots[2]),
                     width=5, className='row-four-col')],
                 justify='between'
                 ),
@@ -571,6 +574,7 @@ def update_path(ch_name, op_name, clicks):
 
     if len(win_path) > 2:
         id_list = win_path[1:-1]
+        # id_list = win_path[0:-1]
     else:
         id_list = []
 
@@ -578,83 +582,175 @@ def update_path(ch_name, op_name, clicks):
 
 
 @app.callback(
-    [Output("temp", "children")],
+    Output("fig-storage", "data"),
     [Input("current-path", "children")],
-    [State("ch_wins", "figure"),
-     State("ch_totals", "figure"),
-     State("ch_targets", "figure")],
+    [State("current-challenger", "children"),
+     State('head-ch', 'children'),
+     State('ch-recs', 'children'),
+     State("ch-wins", "figure"),
+     State("ch-totals", "figure"),
+     State("ch-targets", "figure")],
     prevent_initial_call=True
 )
-def update_frames(win_path, wins, totals, targets):
-    wins['frames'] = []
-    totals['frames'] = []
-    totals['layout']['updatemenus'][0]['buttons'] = []
-    totals['layout']['updatemenus'][0]['visible'] = True
+def update_frames(win_path, ch_name, header, recs, wins, totals, targets):
+    fig_dict = {}
 
-    targets['frames'] = []
+    ch_data = {
+        'header': header,
+        'record': recs,
+        'wins': wins,
+        'totals': totals,
+        'targets': targets
+    }
 
-    # print(totals['layout'])
-    print(totals['layout']['updatemenus'])
+    # ch_data = {
+    #     'header': header,
+    #     'record': recs,
+    #     'wins': wins['data'],
+    #     'totals': totals['data'],
+    #     'targets': targets['data']
+    # }
 
+    fig_dict[ch_name] = ch_data
 
     for fighter in win_path:
         stats = fighter_data(name_db, fighter)
         plots = challenger_visuals(stats[1], stats[2])
-        button = {
-            'args': [
-                [fighter],
-                {'frame': {'duration': 0, 'redraw': True},
-                 'mode': 'immediate',
-                 'fromcurrent': True,
-                 'transition': {'duration': 0, 'easing': 'linear'}
-                 }],
-            'method': 'animate'
+
+        fig_dict[fighter] = {
+            'header': challenger_img(*stats[0]),
+            'record': get_wins(stats[1]),
+            'wins': plots[1],
+            'totals': plots[0],
+            'targets': plots[2]
         }
 
-        totals['frames'].append({'data': plots[0]['data'], 'name': fighter})
-        totals['layout']['updatemenus'][0]['buttons'].append(button)
+        # fig_dict[fighter] = {
+        #     'header': challenger_img(*stats[0]),
+        #     'record': get_wins(stats[1]),
+        #     'wins': plots[1]['data'],
+        #     'totals': plots[0]['data'],
+        #     'targets': plots[2]['data']
+        # }
+
+    return fig_dict
 
 
-    return ['done']
+# @app.callback(
+#     Output("temp", "children"),
+#     [Input("fig-storage", "data")],
+#     prevent_initial_call=True
+# )
+# def check_storage(storage):
+#     print(storage)
+#     return 'Done'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+# @app.callback(
+#     [Output("ch-totals", "figure")],
+#     [Input("current-path", "children")],
+#     [State("ch-wins", "figure"),
+#      State("ch-totals", "figure"),
+#      State("ch-targets", "figure")],
+#     prevent_initial_call=True
+# )
+# def update_frames(win_path, wins, totals, targets):
+#     wins['frames'] = []
+#     totals['frames'] = []
+#     totals['layout']['updatemenus'][0]['buttons'] = []
+#     totals['layout']['updatemenus'][0]['visible'] = True
+#     totals['layout']['updatemenus'][0]['type'] = 'buttons'
+#     totals['layout']['updatemenus'][0]['active'] = 0
+#     totals['layout']['updatemenus'][0]['showactive'] = True
+#
+#     targets['frames'] = []
+#
+#     # print(totals['layout'])
+#     print(totals['layout']['updatemenus'])
+#
+#
+#     for fighter in win_path:
+#         stats = fighter_data(name_db, fighter)
+#         plots = challenger_visuals(stats[1], stats[2])
+#         button = {
+#             'args': [
+#                 [fighter],
+#                 {'frame': {'duration': 100, 'redraw': True},
+#                  'mode': 'immediate',
+#                  'name': fighter,
+#                  'fromcurrent': True,
+#                  'transition': {'duration': 100, 'easing': 'linear'}
+#                  }],
+#             'label': fighter,
+#             'method': 'animate'
+#         }
+#
+#         totals['frames'].append({'data': plots[0]['data'], 'name': fighter})
+#         totals['layout']['updatemenus'][0]['buttons'].append(button)
+#
+#     print(totals['layout']['updatemenus'])
+#     print(totals['frames'])
+#
+#     return [totals]
 
 
 @app.callback(
-    Output('head-ch', 'children'),
-    [Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
-    [State({'type': 'path-button', 'name': ALL}, 'children')],
+    [Output('head-ch', 'children'),
+     Output('ch-recs', 'children'),
+     Output('ch-wins', 'figure'),
+     Output('ch-totals', 'figure'),
+     Output('ch-targets', 'figure')],
+    [Input('ch-button', 'n_clicks'),
+     Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
+    [State({'type': 'path-button', 'name': ALL}, 'children'),
+     State('ch-button', 'children'),
+     State('current-challenger', 'children'),
+     State("fig-storage", "data")],
     prevent_initial_call=True
 )
-def click_path(n, children):
+def click_path(nc, np, children, ch_name, curr_fighter, fig_dict):
     context = dash.callback_context
 
+    # print(context.triggered)
+    # print(context.states)
+
     if len(context.triggered) > 1 or context.triggered[0]['value'] is None:
-        print('initial')
         raise PreventUpdate
 
     clicked = (context.triggered[0]['prop_id']).split('.')[0]
     name = context.states[f"{clicked}.children"]
 
-    ch_data = fighter_data(name_db, name)
-    ch_head = ch_data[0]
-    ch_records = ch_data[1]
-    ch_stats = ch_data[2]
-    ch_plots = challenger_visuals(ch_records, ch_stats)
+    print(name)
 
-    return challenger_img(*ch_head)
+    data = fig_dict[name]
+
+    return (data['header'], data['record'],
+            data['wins'], data['totals'], data['targets'])
+
+
+# @app.callback(
+#     Output('head-ch', 'children'),
+#     [Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
+#     [State({'type': 'path-button', 'name': ALL}, 'children')],
+#     prevent_initial_call=True
+# )
+# def click_path(n, children):
+#     context = dash.callback_context
+#
+#     if len(context.triggered) > 1 or context.triggered[0]['value'] is None:
+#         print('initial')
+#         raise PreventUpdate
+#
+#     clicked = (context.triggered[0]['prop_id']).split('.')[0]
+#     name = context.states[f"{clicked}.children"]
+#
+#     ch_data = fighter_data(name_db, name)
+#     ch_head = ch_data[0]
+#     ch_records = ch_data[1]
+#     ch_stats = ch_data[2]
+#     ch_plots = challenger_visuals(ch_records, ch_stats)
+#
+#     return challenger_img(*ch_head)
 
 
 
