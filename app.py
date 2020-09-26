@@ -147,7 +147,8 @@ def initial_path(challenger, opponent):
                     ),
 
         dbc.Button(opponent, id='op-button',
-                   className='op-button')
+                   className='op-button'),
+        html.Div(challenger, id='current-figure', style={'display': 'none'})
     ]
 
 
@@ -542,15 +543,11 @@ def check_name(a_name, b_name,
 )
 def update_dash(n, a_value, b_value):
     if n is None:
-        # ch = 'Chan Sung Jung'
-        # op = 'Conor McGregor'
-        # return content_layout(ch, op), ch, op
         return initial_layout(), None, None
+        # return initial_layout(), None
     else:
-        # ch = a_value
-        # op = b_value
-
         return content_layout(a_value, b_value), a_value, b_value
+        # return content_layout(a_value, b_value), b_value
 
 
 @app.callback(
@@ -574,7 +571,6 @@ def update_path(ch_name, op_name, clicks):
 
     if len(win_path) > 2:
         id_list = win_path[1:-1]
-        # id_list = win_path[0:-1]
     else:
         id_list = []
 
@@ -603,14 +599,6 @@ def update_frames(win_path, ch_name, header, recs, wins, totals, targets):
         'targets': targets
     }
 
-    # ch_data = {
-    #     'header': header,
-    #     'record': recs,
-    #     'wins': wins['data'],
-    #     'totals': totals['data'],
-    #     'targets': targets['data']
-    # }
-
     fig_dict[ch_name] = ch_data
 
     for fighter in win_path:
@@ -625,25 +613,25 @@ def update_frames(win_path, ch_name, header, recs, wins, totals, targets):
             'targets': plots[2]
         }
 
-        # fig_dict[fighter] = {
-        #     'header': challenger_img(*stats[0]),
-        #     'record': get_wins(stats[1]),
-        #     'wins': plots[1]['data'],
-        #     'totals': plots[0]['data'],
-        #     'targets': plots[2]['data']
-        # }
-
     return fig_dict
 
 
-# @app.callback(
-#     Output("temp", "children"),
-#     [Input("fig-storage", "data")],
-#     prevent_initial_call=True
-# )
-# def check_storage(storage):
-#     print(storage)
-#     return 'Done'
+@app.callback(
+    Output("temp", "children"),
+    [Input("fig-storage", "data")],
+    prevent_initial_call=True
+)
+def check_storage(storage):
+
+    for key in storage:
+        # layout = storage[key]['totals']['layout']
+        layout = storage[key]['totals']
+
+        for i in layout:
+            print(i)
+            print(layout[i])
+
+    return 'Done'
 
 
 # @app.callback(
@@ -699,33 +687,36 @@ def update_frames(win_path, ch_name, header, recs, wins, totals, targets):
      Output('ch-recs', 'children'),
      Output('ch-wins', 'figure'),
      Output('ch-totals', 'figure'),
-     Output('ch-targets', 'figure')],
+     Output('ch-targets', 'figure'),
+     Output('current-figure', 'children')],
     [Input('ch-button', 'n_clicks'),
      Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
     [State({'type': 'path-button', 'name': ALL}, 'children'),
      State('ch-button', 'children'),
      State('current-challenger', 'children'),
+     State('current-figure', 'children'),
      State("fig-storage", "data")],
     prevent_initial_call=True
 )
-def click_path(nc, np, children, ch_name, curr_fighter, fig_dict):
+def click_path(nc, np, children, ch_name, ch_data, curr_figure, fig_dict):
     context = dash.callback_context
-
-    # print(context.triggered)
-    # print(context.states)
 
     if len(context.triggered) > 1 or context.triggered[0]['value'] is None:
         raise PreventUpdate
+    else:
 
-    clicked = (context.triggered[0]['prop_id']).split('.')[0]
-    name = context.states[f"{clicked}.children"]
+        clicked = (context.triggered[0]['prop_id']).split('.')[0]
+        name = context.states[f"{clicked}.children"]
 
-    print(name)
+        if name == curr_figure:
+            print('current fighter shown')
+            raise PreventUpdate
+        else:
 
-    data = fig_dict[name]
-
-    return (data['header'], data['record'],
-            data['wins'], data['totals'], data['targets'])
+            data = fig_dict[name]
+            return (data['header'], data['record'],
+                    data['wins'], data['totals'], data['targets'],
+                    name)
 
 
 # @app.callback(

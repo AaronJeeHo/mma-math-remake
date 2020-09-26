@@ -82,6 +82,10 @@ def plot_targets(stats):
             'xanchor': 'center',
             'yanchor': 'bottom',
             #'font': {'size': 20}
+        },
+        transition={
+            'duration': 300,
+            'easing': 'linear'
         }
 
     )
@@ -179,10 +183,11 @@ def plot_targets_reverse(stats):
             'xanchor': 'center',
             'yanchor': 'bottom',
         },
-        updatemenus=[{
-            'visible': False,
-            'buttons': []
-        }]
+        transition={
+            'duration': 300,
+            'easing': 'linear'
+        }
+
 
 
 
@@ -260,6 +265,10 @@ def plot_totals(stats):
                           'r': 0,
                           'b': 0,
                           't': 0,
+                      },
+                      transition={
+                          'duration': 300,
+                          'easing': 'linear'
                       }
 
                       )
@@ -336,10 +345,11 @@ def plot_totals_reverse(stats):
                           'b': 0,
                           't': 0,
                       },
-                      updatemenus=[{
-                          'visible': False,
-                          'buttons': []
-                      }]
+                      transition={
+                          'duration': 300,
+                          'easing': 'linear'
+                      }
+
                       )
 
     fig.update_yaxes(
@@ -409,10 +419,11 @@ def plot_ratios(stats):
                           'b': 0,
                           't': 0,
                       },
-                      updatemenus=[{
-                          'visible': False,
-                          'buttons': []
-                      }]
+                      transition={
+                          'duration': 300,
+                          'easing': 'linear'
+                      }
+
                       )
 
     return fig
