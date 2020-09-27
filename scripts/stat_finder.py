@@ -177,13 +177,13 @@ def scrape_stats(link):
             lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
                            sum(leg_gs['SGLA'].astype(float))), 2) * 100
 
-        sub_a = sum((ground.loc[(ground['SM'].astype(str) != '0') &
-                                (ground['SM'] != '-')]['SM']).astype(int))
-
-        stats_only = ground.loc[:, 'SGBL':'SM']
-        active_stats = ((stats_only != '0') & (stats_only != '-')).any(axis=1)
-
-        num_stats = sum(list(active_stats))
+        # sub_a = sum((ground.loc[(ground['SM'].astype(str) != '0') &
+        #                         (ground['SM'] != '-')]['SM']).astype(int))
+        #
+        # stats_only = ground.loc[:, 'SGBL':'SM']
+        # active_stats = ((stats_only != '0') & (stats_only != '-')).any(axis=1)
+        #
+        # num_stats = sum(list(active_stats))
 
         # Process stats into dict
         striking_stats = {'Head Strike Accuracy': frac_to_stats(head_s),
@@ -202,7 +202,7 @@ def scrape_stats(link):
         ground_stats = {'Ground Head Strike Accuracy': hgs_a,
                         'Ground Body Strike Accuracy': bgs_a,
                         'Ground Leg Strike Accuracy': lgs_a,
-                        'Sub Attempts Per Fight': round((sub_a/num_stats), 2)
+                        # 'Sub Attempts Per Fight': round((sub_a/num_stats), 2)
                         }
         # print(f'{f_name} Stats Found!')
         return striking_stats, clinch_stats, ground_stats
@@ -223,7 +223,7 @@ def scrape_stats(link):
         ground_stats = {'Ground Head Strike Accuracy': 0.0,
                         'Ground Body Strike Accuracy': 0.0,
                         'Ground Leg Strike Accuracy': 0.0,
-                        'Sub Attempts Per Fight': 0.0
+                        # 'Sub Attempts Per Fight': 0.0
                         }
         return striking_stats, clinch_stats, ground_stats
 

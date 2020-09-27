@@ -67,13 +67,6 @@ def opponent_visuals(records, stats):
     return totals_graph, ratio_graph, striking_graph
 
 
-def query_fighters():
-    pass
-
-
-
-
-
 """-----------------------------------------------
 Html Content Wrappers
 
@@ -252,10 +245,18 @@ def initial_layout():
     ch_plots = challenger_visuals(no_records, no_stats)
     op_plots = opponent_visuals(no_records, no_stats)
 
+    op_totals = insert_fig('op-totals', op_plots[0])
+    ch_totals = insert_fig('ch-totals', ch_plots[0])
 
+    op_totals.figure['data'][0].pop('textposition', None)
+    ch_totals.figure['data'][0].pop('textposition', None)
 
-    # no_records = {'WLD': (0, 0, 0), 'KO': (0, 0), 'SUB': (0, 0)}
-    # print(no_data)
+    op_targets = insert_fig('op-targets', op_plots[2])
+    ch_targets = insert_fig('ch-targets', ch_plots[2])
+
+    for i in range(3):
+        op_targets.figure['data'][i].pop('textposition', None)
+        ch_targets.figure['data'][i].pop('textposition', None)
 
     return html.Div(className='content-area', children=[
         dbc.Row(className="top-row", children=[
@@ -276,9 +277,8 @@ def initial_layout():
                     dbc.Col(className='fig-col-three', width=4, children=[
                         insert_fig('ch-wins', ch_plots[1])
                     ]),
-                    dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig('ch-totals', ch_plots[0])
-                    ])],
+                    dbc.Col(className='fig-col-three', width=8,
+                            children=ch_totals)],
                         no_gutters=True, justify='between')]
                     ),
 
@@ -300,9 +300,8 @@ def initial_layout():
 
             dbc.Col(className='row-three-col', width=5, children=[
                 dbc.Row(className='row-three-col-row', children=[
-                    dbc.Col(className='fig-col-three', width=8, children=[
-                        insert_fig('op-totals', op_plots[0])
-                    ]),
+                    dbc.Col(className='fig-col-three', width=8,
+                            children=op_totals),
                     dbc.Col(className='fig-col-three', width=4, children=[
                         insert_fig('op-wins', op_plots[1])
                     ])],
@@ -311,9 +310,7 @@ def initial_layout():
                 justify='between'),
 
         dbc.Row(className="row-four", children=[
-            dbc.Col(insert_fig('ch-targets', ch_plots[2]), width=5,
-                    className='row-four-col'),
-
+            dbc.Col(ch_targets, width=5, className='row-four-col'),
             dbc.Col(className='four-axis-col', width=2, children=[
                 dbc.Row(className='four-axis-title-box', children=[
                     html.H4('Target Breakdown', className='axis-text')
@@ -334,8 +331,7 @@ def initial_layout():
                 ]),
             ]),
 
-            dbc.Col(insert_fig('op-targets', op_plots[2]), width=5,
-                    className='row-four-col')],
+            dbc.Col(op_targets, width=5, className='row-four-col')],
                 justify='between'
                 ),
 
@@ -444,7 +440,6 @@ def content_layout(ch_name, op_name):
 
                 ]),
             ]),
-
 
             dbc.Col(insert_fig('op-targets', op_plots[2]),
                     width=5, className='row-four-col')],
@@ -618,68 +613,12 @@ def update_frames(win_path, ch_name, header, recs, wins, totals, targets):
 
 @app.callback(
     Output("temp", "children"),
-    [Input("fig-storage", "data")],
+    [Input("layout", "loading_state")],
     prevent_initial_call=True
 )
-def check_storage(storage):
-
-    for key in storage:
-        # layout = storage[key]['totals']['layout']
-        layout = storage[key]['totals']
-
-        for i in layout:
-            print(i)
-            print(layout[i])
-
+def check_storage(loading):
+    print(loading)
     return 'Done'
-
-
-# @app.callback(
-#     [Output("ch-totals", "figure")],
-#     [Input("current-path", "children")],
-#     [State("ch-wins", "figure"),
-#      State("ch-totals", "figure"),
-#      State("ch-targets", "figure")],
-#     prevent_initial_call=True
-# )
-# def update_frames(win_path, wins, totals, targets):
-#     wins['frames'] = []
-#     totals['frames'] = []
-#     totals['layout']['updatemenus'][0]['buttons'] = []
-#     totals['layout']['updatemenus'][0]['visible'] = True
-#     totals['layout']['updatemenus'][0]['type'] = 'buttons'
-#     totals['layout']['updatemenus'][0]['active'] = 0
-#     totals['layout']['updatemenus'][0]['showactive'] = True
-#
-#     targets['frames'] = []
-#
-#     # print(totals['layout'])
-#     print(totals['layout']['updatemenus'])
-#
-#
-#     for fighter in win_path:
-#         stats = fighter_data(name_db, fighter)
-#         plots = challenger_visuals(stats[1], stats[2])
-#         button = {
-#             'args': [
-#                 [fighter],
-#                 {'frame': {'duration': 100, 'redraw': True},
-#                  'mode': 'immediate',
-#                  'name': fighter,
-#                  'fromcurrent': True,
-#                  'transition': {'duration': 100, 'easing': 'linear'}
-#                  }],
-#             'label': fighter,
-#             'method': 'animate'
-#         }
-#
-#         totals['frames'].append({'data': plots[0]['data'], 'name': fighter})
-#         totals['layout']['updatemenus'][0]['buttons'].append(button)
-#
-#     print(totals['layout']['updatemenus'])
-#     print(totals['frames'])
-#
-#     return [totals]
 
 
 @app.callback(
@@ -717,32 +656,6 @@ def click_path(nc, np, children, ch_name, ch_data, curr_figure, fig_dict):
             return (data['header'], data['record'],
                     data['wins'], data['totals'], data['targets'],
                     name)
-
-
-# @app.callback(
-#     Output('head-ch', 'children'),
-#     [Input({'type': 'path-button', 'name': ALL}, 'n_clicks')],
-#     [State({'type': 'path-button', 'name': ALL}, 'children')],
-#     prevent_initial_call=True
-# )
-# def click_path(n, children):
-#     context = dash.callback_context
-#
-#     if len(context.triggered) > 1 or context.triggered[0]['value'] is None:
-#         print('initial')
-#         raise PreventUpdate
-#
-#     clicked = (context.triggered[0]['prop_id']).split('.')[0]
-#     name = context.states[f"{clicked}.children"]
-#
-#     ch_data = fighter_data(name_db, name)
-#     ch_head = ch_data[0]
-#     ch_records = ch_data[1]
-#     ch_stats = ch_data[2]
-#     ch_plots = challenger_visuals(ch_records, ch_stats)
-#
-#     return challenger_img(*ch_head)
-
 
 
 # Run App
