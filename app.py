@@ -213,10 +213,13 @@ def side_bar():
             html.P('This is the law of MMA Math', className='bold-y')
         ]),
         html.Hr(className='side-line'),
-        fighter_input(),
 
+        input_suggestion(),
+        # fighter_input(),
+        #
         # html.Hr(className='side-line'),
-        path_controller(),
+        # path_controller(),
+        control_tabs(),
 
 
         html.Div(id='current-challenger', style={'display': 'none'}),
@@ -257,7 +260,8 @@ def fighter_input():
                           ),
             dbc.Button('Confirm', id='submit', size='lg',
                        color='primary', disabled=True)]
-                 )], style={'display': 'none'}
+                 )]
+                    # , style={'display': 'none'}
                     )
 
 
@@ -272,6 +276,15 @@ def path_controller():
         ]),
         html.Br(),
         dbc.Button('Cancel Search', id='abort', size='lg', color='danger')
+    ])
+
+
+def control_tabs():
+    return html.Div(id='tab-container', children=[
+        dcc.Tabs(id='tabs', value='input', children=[
+            dcc.Tab(value='input', children=fighter_input()),
+            dcc.Tab(value='timer', children=path_controller())
+        ], style={'display': 'none'})
     ])
 
 
@@ -384,9 +397,6 @@ def initial_layout():
                 dbc.Row(id='path-row', className='path-row',
                         children=initial_path('Fighter A', 'Fighter B')
                         ),
-
-                # html.Div(id='is-loading', style={'display': 'none'},
-                #          children='False'),
             ])
         ])
     ])
@@ -499,9 +509,6 @@ def content_layout(ch_name, op_name):
                 dbc.Row(id='path-row', className='path-row',
                         children=initial_path(ch_name, op_name)
                         ),
-
-                # html.Div(id='is-loading', style={'display': 'none'},
-                #          children='True'),
             ])
         ])
     ])
@@ -511,14 +518,6 @@ def content_layout(ch_name, op_name):
 app.layout = html.Div(children=[
     side_bar(),
     html.Div(id='layout')
-    # dbc.Spinner(id='load-layout', size='lg', children=[
-    #     html.Div(id='layout')],
-    #             spinner_style={'margin-left': '55vw',
-    #                            'margin-top': '45vh',
-    #                            'width': '5rem',
-    #                            'height': '5rem'}
-    #
-    #             )
 
 ])
 
@@ -595,7 +594,7 @@ def update_dash(n, a_value, b_value):
     [Input("timer-interval", "n_intervals")],
     prevent_initial_call=True
 )
-def test_abort(n):
+def update_timer(n):
     minutes = int(n / 60)
     seconds = int(n % 60)
 
@@ -607,31 +606,57 @@ def test_abort(n):
     return time_val
 
 
+@app.callback(
+    Output("tabs", "value"),
+    [Input("current-opponent", "children"),
+     Input("abort", "n_clicks")],
+    prevent_initial_call=True
+)
+def click_abort(op, n):
+    context = dash.callback_context
 
-# @app.callback(
-#     Output("temp", "children"),
-#     [Input("is-loading", "children"),
-#      Input("layout", "children")]
-# )
-# def test_abort(loading, test):
-#     ctx = dash.callback_context
-#     print(ctx.triggered)
-#     print(ctx.inputs)
-#
-#     if loading == 'True':
-#         print('loading...')
-#     else:
-#         print('not loading')
-#     return 'Done'
+    if context.triggered[0]['value'] is None:
+        print('initial')
+        raise PreventUpdate
+
+    else:
+        trigger_id = context.triggered[0]['prop_id'].split('.')[0]
+
+        if trigger_id == 'current-opponent':
+            print('curr opponent')
+            return 'timer'
+
+        elif trigger_id == 'abort':
+            print('abort')
+            return 'input'
+
+        else:
+            print('error')
+            raise PreventUpdate
+
+
+@app.callback(
+    [Output("timer-interval", "disabled"),
+     Output("timer-interval", "n_intervals")],
+    [Input("tabs", "value")],
+    prevent_initial_call=True
+)
+def update_timer(tab):
+    if tab == 'timer':
+        print('start time')
+        return False, dash.no_update
+    else:
+        print('disable and reset time')
+        return True, 0
 
 
 @app.callback(
     [Output('path-holder', 'children'),
      Output('current-path', 'children'),
      Output("fig-storage", "data")],
-    [Input("current-challenger", "children"),
-     Input("current-opponent", "children")],
-    [State("submit", "n_clicks"),
+    [Input("current-challenger", "children")],
+    [State("current-opponent", "children"),
+     State("submit", "n_clicks"),
      State('head-ch', 'children'),
      State('ch-recs', 'children'),
      State("ch-wins", "figure"),
@@ -682,6 +707,65 @@ def update_path(ch_name, op_name, clicks, header, recs, wins, totals, targets):
     print('path found')
 
     return fight_path, id_list, fig_dict
+
+
+# @app.callback(
+#     [Output('path-holder', 'children'),
+#      Output('current-path', 'children'),
+#      Output("fig-storage", "data")],
+#     [Input("current-challenger", "children"),
+#      Input("current-opponent", "children")],
+#     [State("submit", "n_clicks"),
+#      State('head-ch', 'children'),
+#      State('ch-recs', 'children'),
+#      State("ch-wins", "figure"),
+#      State("ch-totals", "figure"),
+#      State("ch-targets", "figure")],
+#     prevent_initial_call=True
+# )
+# def update_path(ch_name, op_name, clicks, header, recs, wins, totals, targets):
+#     if clicks is None:
+#         return find_path([]), [], {}
+#
+#     fig_dict = {}
+#
+#     ch_data = {
+#         'header': header,
+#         'record': recs,
+#         'wins': wins,
+#         'totals': totals,
+#         'targets': targets
+#     }
+#
+#     fig_dict[ch_name] = ch_data
+#
+#     win_path = mma_math(name_db, ch_name, op_name)
+#
+#     if win_path is None:
+#         return html.H2('NO PATH FOUND'), None, None
+#
+#     fight_path = find_path(win_path)
+#
+#     if len(win_path) > 2:
+#         id_list = win_path[1:-1]
+#
+#         for fighter in id_list:
+#             stats = fighter_data(name_db, fighter)
+#             plots = challenger_visuals(stats[1], stats[2])
+#
+#             fig_dict[fighter] = {
+#                 'header': challenger_img(*stats[0]),
+#                 'record': get_wins(stats[1]),
+#                 'wins': plots[1],
+#                 'totals': plots[0],
+#                 'targets': plots[2]
+#             }
+#     else:
+#         id_list = []
+#
+#     print('path found')
+#
+#     return fight_path, id_list, fig_dict
 
 
 @app.callback(
