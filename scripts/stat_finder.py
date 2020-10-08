@@ -3,11 +3,12 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
+import warnings
+
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from pathlib import Path
-import warnings
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -54,9 +55,6 @@ def percent_to_stats(df, col):
 
 
 def scrape_ratio(link):
-    # split_url = link.split('_')
-    # stat_link = f"{split_url[0]}stats/_{split_url[1]}"
-
     try:
         split_url = link.split('_')
         stat_link = f"{split_url[0]}stats/_{split_url[1]}"
@@ -81,9 +79,6 @@ def scrape_ratio(link):
 
 
 def scrape_stats(link):
-    # split_url = link.split('_')
-    # stat_link = f"{split_url[0]}stats/_{split_url[1]}"
-
     try:
         split_url = link.split('_')
         stat_link = f"{split_url[0]}stats/_{split_url[1]}"
@@ -106,8 +101,6 @@ def scrape_stats(link):
                               (striking['SSA'] != '-') &
                               (striking['SSA'].astype(str) != '0')][['SSL', 'SSA']]
 
-        # sig_attempted = sum(t_sigs['SSA'].astype(float))
-
         if t_sigs.empty:
             sig_r = 0.0
         else:
@@ -124,15 +117,12 @@ def scrape_stats(link):
                                (striking['%LEG'] != '-')][['%BODY',
                                                            '%HEAD', '%LEG']]
 
-        # Get clinch stats
         clinch = df_list[1]
 
         takedowns = clinch.loc[((clinch['TDL'].astype(str) != '0') |
                                 (clinch['TDA'].astype(str) != '0')) &
                                (clinch['TDL'] != '-') &
                                (clinch['TDA'] != '-')]
-
-        # td_attempted = sum(takedowns['TDA'].astype(float))
 
         if takedowns.empty:
             td_a = 0.0
@@ -147,8 +137,6 @@ def scrape_stats(link):
                              (ground['SGBA'] != '-') &
                              (ground['SGBL'] != '-')][['SGBL', 'SGBA']]
 
-        #bgs_attempted = sum(body_gs['SGBA'].astype(float))
-
         if body_gs.empty:
             bgs_a = 0.0
         else:
@@ -158,8 +146,6 @@ def scrape_stats(link):
         head_gs = ground.loc[(ground['SGHA'].astype(str) != '0') &
                              (ground['SGHA'] != '-') &
                              (ground['SGHL'] != '-')][['SGHL', 'SGHA']]
-
-        # hgs_attempted = sum(head_gs['SGHA'].astype(float))
 
         if head_gs.empty:
             hgs_a = 0.0
@@ -176,14 +162,6 @@ def scrape_stats(link):
         else:
             lgs_a = round((sum(leg_gs['SGLL'].astype(float)) /
                            sum(leg_gs['SGLA'].astype(float))), 2) * 100
-
-        # sub_a = sum((ground.loc[(ground['SM'].astype(str) != '0') &
-        #                         (ground['SM'] != '-')]['SM']).astype(int))
-        #
-        # stats_only = ground.loc[:, 'SGBL':'SM']
-        # active_stats = ((stats_only != '0') & (stats_only != '-')).any(axis=1)
-        #
-        # num_stats = sum(list(active_stats))
 
         # Process stats into dict
         striking_stats = {'Head Strike Accuracy': frac_to_stats(head_s),
@@ -202,9 +180,8 @@ def scrape_stats(link):
         ground_stats = {'Ground Head Strike Accuracy': hgs_a,
                         'Ground Body Strike Accuracy': bgs_a,
                         'Ground Leg Strike Accuracy': lgs_a,
-                        # 'Sub Attempts Per Fight': round((sub_a/num_stats), 2)
                         }
-        # print(f'{f_name} Stats Found!')
+
         return striking_stats, clinch_stats, ground_stats
 
     except (ImportError, TypeError, AttributeError):
@@ -223,7 +200,6 @@ def scrape_stats(link):
         ground_stats = {'Ground Head Strike Accuracy': 0.0,
                         'Ground Body Strike Accuracy': 0.0,
                         'Ground Leg Strike Accuracy': 0.0,
-                        # 'Sub Attempts Per Fight': 0.0
                         }
         return striking_stats, clinch_stats, ground_stats
 
@@ -239,14 +215,12 @@ def get_header_img(link):
     else:
         response = requests.get(link, timeout=10)
         src = response.content
-        # src = urlopen(link)
         soup = BeautifulSoup(src, 'html.parser')
 
         headshot = soup.find_all('figure', class_='PlayerHeader__HeadShot')
         name_header = soup.find_all('h1', class_='PlayerHeader__Name')
 
         if len(headshot) > 0:
-            # img_list = (headshot[0].find_all('img'))
             split_id = link.split('id/')[-1]
             id_num = split_id.split('/')[0]
             img_link = (f"https://a.espncdn.com/combiner/i?img=/i/headshots/"
@@ -261,22 +235,7 @@ def get_header_img(link):
 
 
 def main():
-    path = Path(__file__).parent
-    name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
-                          sep='\t', header=None, names=['name', 'link'])
-
-    lowercase = name_db['name'].str.lower()
-    lowercase_db = pd.concat([lowercase, name_db['name']],
-                             axis=1, keys=['lower', 'name'])
-
-    print(lowercase_db)
-
-    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
-    # link = name_to_url(name_db, 'Niina Aaltonen')
-    # stats = scrape_stats(link)
-    # for d in stats:
-    #     for i in d:
-    #         print(i, d[i])
+    pass
 
 
 if __name__ == '__main__':

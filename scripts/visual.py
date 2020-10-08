@@ -3,10 +3,8 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
-import plotly.express as px
 import pandas as pd
-from pathlib import Path
-from scripts.stat_finder import scrape_stats, scrape_ratio, name_to_url
+import plotly.express as px
 
 """
 Plot Target graphs
@@ -35,7 +33,6 @@ def plot_targets(stats):
 
     df = pd.DataFrame(target_data, columns=['Striking Accuracy', 'Type', 'Percent'])
     fig = px.bar(data_frame=df,
-                 # title='Striking Accuracy',
                  y='Striking Accuracy',
                  x='Percent',
                  range_x=[0, 110],
@@ -76,12 +73,10 @@ def plot_targets(stats):
             'title': '',
             'itemsizing': 'trace',
             'traceorder': 'reversed',
-            #'tracegroupgap': 50,
             'orientation': 'h',
             'x': 0.4, 'y': 1,
             'xanchor': 'center',
             'yanchor': 'bottom',
-            #'font': {'size': 20}
         },
         transition={
             'duration': 300,
@@ -133,7 +128,6 @@ def plot_targets_reverse(stats):
 
     df = pd.DataFrame(target_data, columns=['Striking Accuracy', 'Type', 'Percent'])
     fig = px.bar(data_frame=df,
-                 # title='Striking Accuracy',
                  y='Striking Accuracy',
                  x='Percent',
                  range_x=[110, 0],
@@ -150,7 +144,6 @@ def plot_targets_reverse(stats):
 
     fig.update_traces(
         legendgroup="position",
-        # cliponaxis=False,
         textposition="outside",
 
         texttemplate='%{x}',
@@ -159,7 +152,6 @@ def plot_targets_reverse(stats):
                        'Striking Accuracy: %{x}<extra></extra>')
     )
 
-    # fig['frames'] = []
     fig['data'][0]['name'] = 'Ground Strikes'
     fig['data'][1]['name'] = 'Standing Strikes'
     fig['data'][2]['name'] = 'Overall Accuracy'
@@ -188,9 +180,6 @@ def plot_targets_reverse(stats):
             'easing': 'linear'
         }
 
-
-
-
     )
 
     fig.update_yaxes(
@@ -199,7 +188,6 @@ def plot_targets_reverse(stats):
             'text': '',
             'standoff': 0
         },
-        # ticksuffix=" Strikes",
         side="right",
         visible=False,
     )
@@ -239,7 +227,6 @@ def plot_totals(stats):
     fig = px.bar(data_frame=df,
                  y='Stats',
                  x='Percent',
-                 # title='Overall Stats',
                  range_x=[0, 105],
                  text='Percent',
                  orientation='h',
@@ -251,13 +238,10 @@ def plot_totals(stats):
         textposition="outside",
         texttemplate='%{x}',
         hovertemplate=('<b>%{label}</b><br><br>Percent: %{x}')
-        #textfont={'size': 15}
     )
 
     fig.update_layout(showlegend=False,
                       autosize=True,
-
-
 
                       margin={
                           'pad': 0,
@@ -280,7 +264,6 @@ def plot_totals(stats):
             'standoff': 0
         },
         visible=False
-        #tickfont={'size': 15}
     )
 
     fig.update_xaxes(
@@ -289,7 +272,6 @@ def plot_totals(stats):
             'standoff': 0
         },
         ticksuffix="%",
-        #tickfont={'size': 15}
     )
 
     return fig
@@ -313,7 +295,6 @@ def plot_totals_reverse(stats):
     fig = px.bar(data_frame=df,
                  y='Stats',
                  x='Percent',
-                 # title='Overall Stats',
                  range_x=[105, 0],
                  text='Percent',
                  orientation='h',
@@ -321,13 +302,10 @@ def plot_totals_reverse(stats):
                  color_discrete_sequence=['#3498db', '#3498db', '#3498db']
                  )
 
-    # fig['frames'] = []
-
     fig.update_traces(
         textposition="outside",
         texttemplate='%{x}',
         hovertemplate=('<b>%{label}</b><br><br>Percent: %{x}')
-        #textfont={'size': 15}
     )
 
     fig.update_layout(showlegend=False,
@@ -360,7 +338,6 @@ def plot_totals_reverse(stats):
         },
         side="right",
         visible=False
-        #tickfont={'size': 15}
     )
 
     fig.update_xaxes(
@@ -369,10 +346,7 @@ def plot_totals_reverse(stats):
             'standoff': 0
         },
         ticksuffix="%",
-
-        #tickfont={'size': 15}
     )
-
 
     return fig
 
@@ -402,8 +376,6 @@ def plot_ratios(stats):
                                      'Submissions': '#BB86FC'}
                  )
 
-    # fig['frames'] = []
-
     fig.update_traces(textposition='inside',
                       textinfo='label+percent',
                       textfont={'size': 40},
@@ -429,27 +401,8 @@ def plot_ratios(stats):
     return fig
 
 
-
 def main():
-    # path = Path(__file__).parent
-    # name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
-    #                       sep='\t', header=None, names=['name', 'link'])
-    # link = name_to_url(name_db, 'Khabib Nurmagomedov')
-    # op_link = name_to_url(name_db, 'Conor McGregor')
-    #
-    # stat_list = scrape_stats(link)
-    # fig_r = plot_targets_reverse(stat_list)
-    # print(fig_r['data'])
-
-    df = px.data.gapminder()
-
-    fig = px.bar(df, x="continent", y="pop", color="continent",
-                 animation_frame="year", animation_group="country", range_y=[0, 4000000000])
-    fig.show()
-    print(fig['layout']['updatemenus'])
-    print(fig['layout']['sliders'])
-    print(fig['frames'])
-
+    pass
 
 
 if __name__ == '__main__':

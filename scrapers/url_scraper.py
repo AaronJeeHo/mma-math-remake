@@ -3,9 +3,10 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
-import requests
 import re
 from pathlib import Path
+
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -94,10 +95,7 @@ def name_links():
 
 
 def main():
-    # build_url_db('http://www.espn.com/mma/fighters')
-    # name_links()
     pass
-
 
 
 if __name__ == '__main__':

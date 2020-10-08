@@ -1,13 +1,1 @@
-http://www.espn.com/mma/fighter/_/id/4218410/pasquale-coluccio
-http://www.espn.com/mma/fighter/_/id/3902686/darrell-flores
-http://www.espn.com/mma/fighter/_/id/4388928/antonio-galvao
-http://www.espn.com/mma/fighter/_/id/4609790/irina-godynets
-http://www.espn.com/mma/fighter/_/id/3039035/jeff-green
-http://www.espn.com/mma/fighter/_/id/4601423/vladislav-kharebin
-http://www.espn.com/mma/fighter/_/id/2516120/daylin-logan
-http://www.espn.com/mma/fighter/_/id/3003044/shawn-machado
-http://www.espn.com/mma/fighter/_/id/2951332/yoshitomi-mishima
-http://www.espn.com/mma/fighter/_/id/2554597/josh-mueller
-http://www.espn.com/mma/fighter/_/id/4662096/kaheem-murray
-http://www.espn.com/mma/fighter/_/id/2965161/thiago-perpetuo
-http://www.espn.com/mma/fighter/_/id/3041421/sky-rudloe
+

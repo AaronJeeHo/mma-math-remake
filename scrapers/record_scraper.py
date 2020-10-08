@@ -3,11 +3,11 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
-
 import shutil
-import pandas as pd
 from pathlib import Path
 from urllib.error import HTTPError
+
+import pandas as pd
 
 
 def update_record(link):
@@ -77,7 +77,6 @@ def update_directories():
 
 
 def main():
-    # update_directories()
     pass
 
 

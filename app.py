@@ -4,19 +4,17 @@ Python Version: 3.7
 """
 
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
 import dash_bootstrap_components as dbc
+import dash_core_components as dcc
 import dash_daq as daq
-
-
+import dash_html_components as html
 from dash.dependencies import Input, Output, State, ALL
 from dash.exceptions import PreventUpdate
+from pathlib import Path
 
-
+from scripts.path_finder import mma_math
 from scripts.stat_finder import *
 from scripts.visual import *
-from scripts.path_finder import mma_math
 
 FONT_AWESOME = "https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 
@@ -30,7 +28,6 @@ name_db = pd.read_csv((path / "data/urls/name_url.tsv"),
                       sep='\t', header=None, names=['name', 'link'])
 
 name_list = list(name_db['name'].map(lambda x: html.Option(value=x)))
-
 
 """-----------------------------------------------
 Helpers for Updating stats and visuals
@@ -74,10 +71,14 @@ def format_time(n):
         time_val = f"{minutes}:{seconds}"
 
     return time_val
+
+
 """-----------------------------------------------
 Html Content Wrappers
 
 -----------------------------------------------"""
+
+
 def input_suggestion():
     return html.Datalist(id='suggestion', children=name_list)
 
@@ -91,7 +92,7 @@ def challenger_img(link, f_name, l_name):
 
 def opponent_img(link, f_name, l_name):
     return [html.Div(className="op-name", children=[
-                html.H2(f_name), html.H2(l_name)]),
+        html.H2(f_name), html.H2(l_name)]),
             html.Img(className="op-img",
                      src=link)
             ]
@@ -148,11 +149,9 @@ def initial_path(challenger, opponent):
         ]
                     ),
 
-
         dbc.Button(opponent, id='op-button',
                    className='op-button'),
         html.Div(challenger, id='current-figure', style={'display': 'none'}),
-        # html.Div(id='is-loading', style={'display': 'none'}, children=True)
     ]
 
 
@@ -163,7 +162,6 @@ def find_path(fight_path):
         win_list = fight_path[1:-1]
 
         for fighter in win_list:
-            #f_id = fighter.replace(' ', '')
             path_list.append(
                 dbc.Button(fighter,
                            id={
@@ -203,32 +201,14 @@ def side_bar():
         html.Hr(className='side-line'),
 
         input_suggestion(),
-
-        # fighter_input(),
-        # timer_toast(),
         control_tabs(),
-
 
         html.Div(id='current-challenger', style={'display': 'none'}),
         html.Div(id='current-opponent', style={'display': 'none'}),
         html.Div(id='current-path', style={'display': 'none'}),
         html.Div(id='timer-status', style={'display': 'none'}),
-        html.Div(id='temp', style={'display': 'none'}),
-        # html.Div(id='is-loading', style={'display': 'none'}),
         dcc.Store(id='fig-storage'),
         dcc.Store(id='path-found'),
-
-
-        # html.Div(id='is-loading-container', children=[
-        #     dcc.RadioItems(id='is-loading',
-        #                    options=[{'label': 'True', 'value': 'True'},
-        #                             {'label': 'False', 'value': 'False'}],
-        #                    value='False',
-        #                    )
-        # ])
-
-
-
     ]
                     )
 
@@ -238,8 +218,6 @@ def fighter_input():
         html.P('Input two fighters to prove if...',
                className='side-text'),
         html.Br(),
-
-        # input_suggestion(),
 
         dbc.Form(className='input-form', children=[
             dbc.FormGroup(className='input-a', children=[
@@ -262,7 +240,6 @@ def fighter_input():
             dbc.Button('Confirm', id='submit', size='lg',
                        color='primary', disabled=True)]
                  )]
-                    # , style={'display': 'none'}
                     )
 
 
@@ -279,9 +256,6 @@ def path_controller():
         dbc.Button('Cancel Search', id='abort', size='lg', color='danger')
     ])
 
-# def timer_popover():
-#     return
-
 
 def control_tabs():
     return html.Div(id='tab-container', children=[
@@ -294,26 +268,6 @@ def control_tabs():
                  )
     ]
                     )
-
-
-
-
-
-        # dbc.Tabs(id='tabs', value='input', children=[
-        #     dcc.Tab(value='input', children=fighter_input()),
-        #     dcc.Tab(value='timer', children=path_controller())
-        # ]
-
-                 # ,style={'display': 'none'}
-
-
-# def control_tabs():
-#     return html.Div(id='tab-container', children=[
-#         dcc.Tabs(id='tabs', value='input', children=[
-#             dcc.Tab(value='input', children=fighter_input()),
-#             dcc.Tab(value='timer', children=path_controller())
-#         ], style={'display': 'none'})
-#     ])
 
 
 def initial_layout():
@@ -425,7 +379,6 @@ def initial_layout():
                 dbc.Row(id='path-row', className='path-row',
                         children=initial_path('Fighter A', 'Fighter B')
 
-
                         ),
                 html.Div(id='is-loading-container', children=[
                     dcc.RadioItems(id='is-loading',
@@ -433,7 +386,7 @@ def initial_layout():
                                             {'label': 'False', 'value': 'False'}],
                                    value='False',
                                    )
-                ])
+                ], style={'display': 'none'})
             ])
         ])
     ])
@@ -459,13 +412,11 @@ def content_layout(ch_name, op_name):
             dbc.Col(opponent_img(*op_head), width=5, className='head-op')],
                 justify='between'),
 
-
         dbc.Row(className="row-two", children=[
             dbc.Col(get_wins(ch_records), width=5, id='ch-recs',
                     className='wins'),
             dbc.Col(get_wins(op_records), width=5, className='wins')],
                 justify='between'),
-
 
         dbc.Row(className="row-three", children=[
             dbc.Col(className='row-three-col', width=5, children=[
@@ -507,7 +458,6 @@ def content_layout(ch_name, op_name):
                     )],
                 justify='between'),
 
-
         dbc.Row(className="row-four", children=[
             dbc.Col(insert_fig('ch-targets', ch_plots[2]),
                     width=5, className='row-four-col'),
@@ -537,7 +487,6 @@ def content_layout(ch_name, op_name):
                 justify='between'
                 ),
 
-
         dbc.Row(className="bot-row", children=[
             dbc.Col(id='bot-row-col', className='bot-row-col', width=12, children=[
                 dbc.Row(className='path-title', children=[
@@ -563,7 +512,6 @@ def content_layout(ch_name, op_name):
 app.layout = html.Div(children=[
     side_bar(),
     html.Div(id='layout')
-
 ])
 
 
@@ -594,8 +542,6 @@ def check_name(a_name, b_name,
     b_valid = b_curr_val
     b_invalid = b_curr_inv
     is_disabled = b_dis
-
-    # print(dash.callback_context)
 
     if (a_link is not None) and (a_name != b_name):
         a_valid = True
@@ -633,7 +579,6 @@ def update_dash(n, a_value, b_value):
         return initial_layout(), None, None, dash.no_update
     else:
         return content_layout(a_value, b_value), a_value, b_value, 0
-
 
 
 @app.callback(
@@ -734,66 +679,6 @@ def update_path(start, abort, ch_name, op_name, clicks, header, recs, wins, tota
         id_list = []
 
     return fight_path, id_list, fig_dict, 'False'
-
-
-# @app.callback(
-#     [Output('path-holder', 'children'),
-#      Output('current-path', 'children'),
-#      Output("fig-storage", "data"),
-#      Output("is-loading", "value")],
-#     [Input("timer-start", "children")],
-#     [State("current-challenger", "children"),
-#      State("current-opponent", "children"),
-#      State("submit", "n_clicks"),
-#      State('head-ch', 'children'),
-#      State('ch-recs', 'children'),
-#      State("ch-wins", "figure"),
-#      State("ch-totals", "figure"),
-#      State("ch-targets", "figure")],
-#     prevent_initial_call=True
-# )
-# def update_path(start, ch_name, op_name, clicks, header, recs, wins, totals, targets):
-#     if clicks is None or ch_name is None:
-#         print('initial')
-#         return find_path([]), dash.no_update, dash.no_update, dash.no_update
-#
-#     fig_dict = {}
-#
-#     ch_data = {
-#         'header': header,
-#         'record': recs,
-#         'wins': wins,
-#         'totals': totals,
-#         'targets': targets
-#     }
-#
-#     fig_dict[ch_name] = ch_data
-#
-#     win_path = mma_math(name_db, ch_name, op_name)
-#
-#     if win_path is None:
-#         return html.H2('NO PATH FOUND'), [], {}, 'False'
-#
-#     fight_path = find_path(win_path)
-#
-#     if len(win_path) > 2:
-#         id_list = win_path[1:-1]
-#
-#         for fighter in id_list:
-#             stats = fighter_data(name_db, fighter)
-#             plots = challenger_visuals(stats[1], stats[2])
-#
-#             fig_dict[fighter] = {
-#                 'header': challenger_img(*stats[0]),
-#                 'record': get_wins(stats[1]),
-#                 'wins': plots[1],
-#                 'totals': plots[0],
-#                 'targets': plots[2]
-#             }
-#     else:
-#         id_list = []
-#
-#     return fight_path, id_list, fig_dict, 'False'
 
 
 @app.callback(

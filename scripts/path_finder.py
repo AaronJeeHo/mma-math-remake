@@ -4,9 +4,11 @@ Python Version: 3.7
 """
 
 import sys
-import pandas as pd
-from pathlib import Path
 from _collections import deque
+from pathlib import Path
+
+import pandas as pd
+
 from scripts.stat_finder import name_to_url
 
 
@@ -150,17 +152,7 @@ def mma_math(db, fighter_a, fighter_b):
 
 
 def main():
-    path = Path(__file__).parent
-    name_db = pd.read_csv((path / '../data/urls/name_url.tsv'),
-                          sep='\t', header=None, names=['name', 'link'])
-    f1 = 'Michael Bisping'
-    f2 = 'Stipe Miocic'
-
-    # print(name_to_file(name_db, f2))
-
-    math_path = mma_math(name_db, f1, f2)
-
-    print(' -> '.join(math_path))
+    pass
 
 
 if __name__ == '__main__':
