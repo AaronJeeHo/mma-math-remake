@@ -3,8 +3,10 @@ Author: Aaron Ho
 Python Version: 3.7
 """
 
-import requests
 import re
+from pathlib import Path
+
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -51,14 +53,16 @@ def build_url_db(source_url):
                             http://www.espn.com/mma/fighters
     """
     source_list = get_sources(source_url)
-    with open('../data/urls/source_urls.txt', 'w') as s_file:
+    path = Path(__file__).parent
+
+    with open((path / '../data/urls/source_urls.txt'), 'w') as s_file:
         s_file.write('\n'.join(source_list))
         print("Source URLs updated")
 
     print('Updating fighter URLs')
     for source in source_list:
         fighter_links = get_fighters(source)
-        with open(f'../data/urls/fighters_{source[-1]}.txt', 'w') as f_file:
+        with open(path / f'../data/urls/fighters_{source[-1]}.txt', 'w') as f_file:
             f_file.write('\n'.join(fighter_links))
 
     print('Fighter URLs updated')
@@ -68,12 +72,13 @@ def name_links():
     """
     Get fighter names alongside their links
     """
-    with open('../data/urls/source_urls.txt', 'r') as s_file:
+    path = Path(__file__).parent
+    with open((path / '../data/urls/source_urls.txt'), 'r') as s_file:
         source_list = [line.rstrip() for line in s_file]
 
     base_url = (source_list[0]).split(r'/mma/fighter')[0]
 
-    with open('../data/urls/name_url.tsv', 'w') as name_file:
+    with open((path / '../data/urls/name_url.tsv'), 'w') as name_file:
         for source_page in source_list:
             response = requests.get(source_page)
             src = response.content
@@ -90,10 +95,7 @@ def name_links():
 
 
 def main():
-    # build_url_db('http://www.espn.com/mma/fighters')
-    # name_links()
     pass
-
 
 
 if __name__ == '__main__':
