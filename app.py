@@ -720,4 +720,4 @@ def click_path(nc, np, children, ch_name, ch_data, curr_figure, fig_dict):
 
 # Run App
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
