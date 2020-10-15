@@ -35,11 +35,12 @@ Fighter input is done through the side bar and include suggestions and automatic
 
 &nbsp;
 ### Challenger Stats
-Upon completion, relevant statistics are shown for input fighters and fighters included on the path. Statistics can be
-shown on the fly by clicking the fighter along the path.
+Upon completion, relevant statistics are shown for fighters along the path.
+
+Different stats can be displayed on the fly by clicking different fighters.
 <br/>
 <br/>
-<img src=./assets/gifs/stats.gif>
+![validation](assets/gifs/path.gif)
 
 
 &nbsp;
